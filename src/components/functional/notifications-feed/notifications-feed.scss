@@ -12,6 +12,42 @@
   @media (min-width: 375px) {
     @apply drt:max-w-110;
   }
+
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track:hover
+  &::-webkit-scrollbar-corner 
+  {
+    @apply drt:bg-transparent;
+  }
+
+  &::-webkit-scrollbar {
+    @apply drt:w-1.5;
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track:hover {
+    @apply drt:bg-clip-padding;
+    border: 4px solid transparent;
+    border-radius: 9999px;
+  }
+
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-thumb:hover {
+    @apply drt:bg-clip-padding;
+    border: 4px solid transparent;
+    background: var(--drt-scrollbar-thumb) !important;
+    border-radius: 9999px;
+  }
+
+  &::-webkit-scrollbar-button {
+    @apply drt:hidden;
+  }
+
+  &::-webkit-resizer {
+    @apply drt:bg-transparent;
+  }
+
 }
 
 .notifications-info {
@@ -61,39 +97,6 @@
     color: var(--drt-neutral-500);
   }
 
-  &::-webkit-scrollbar,
-  &::-webkit-scrollbar-track,
-  &::-webkit-scrollbar-track:hover,
-  &::-webkit-scrollbar-corner {
-    @apply drt:bg-transparent;
-  }
-
-  &::-webkit-scrollbar {
-    @apply drt:w-4;
-  }
-
-  &::-webkit-scrollbar-track,
-  &::-webkit-scrollbar-track:hover {
-    @apply drt:bg-transparent drt:bg-clip-padding;
-    border: 4px solid transparent;
-    border-radius: 9999px;
-  }
-
-  &::-webkit-scrollbar-thumb,
-  &::-webkit-scrollbar-thumb:hover {
-    @apply drt:bg-clip-padding;
-    border: 4px solid transparent;
-    background-color: var(--drt-neutral-700);
-    border-radius: 9999px;
-  }
-
-  &::-webkit-scrollbar-button {
-    @apply drt:hidden;
-  }
-
-  &::-webkit-resizer {
-    @apply drt:bg-transparent;
-  }
 
   // Ensure children don't cause horizontal scroll
   > * {

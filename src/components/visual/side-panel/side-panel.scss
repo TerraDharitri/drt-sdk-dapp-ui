@@ -1,9 +1,9 @@
 .side-panel-wrapper {
-  @apply drt:fixed drt:top-0 drt:left-0 drt:right-0 drt:bottom-0 drt:flex drt:pointer-events-none drt:z-1;
-  @apply drt:justify-end drt:items-end;
+  @apply drt:flex drt:justify-end drt:items-start drt:z-50;
+  @apply drt:pointer-events-none drt:invisible;
 
   @media (min-width: 480px) {
-    @apply drt:p-4 drt:items-center;
+    @apply drt:fixed drt:top-0 drt:left-0 drt:right-0 drt:bottom-0 drt:p-4 drt:pr-0 drt:items-center;
   }
 
   &:before {
@@ -37,10 +37,9 @@
     @apply drt:rounded-tl-3xl drt:rounded-tr-3xl drt:backdrop-blur drt:pb-0;
     border: 1px solid var(--drt-border-color-primary);
     background-color: var(--drt-bg-color-primary);
-    max-height: calc(100% - 16px);
 
     @media (min-width: 480px) {
-      @apply drt:w-110 drt:h-full;
+      @apply drt:w-110 drt:h-full drt:mr-4;
       transform: translateX(calc(100% + 48px));
       border-radius: 20px;
     }

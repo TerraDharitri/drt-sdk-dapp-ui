@@ -3,17 +3,13 @@
 }
 
 .unlock-panel {
-  @apply drt:flex drt:flex-col drt:flex-1 drt:justify-between drt:overflow-hidden drt:pb-6;
+  @apply drt:flex drt:flex-col drt:h-full drt:justify-between drt:overflow-auto drt:pb-6;
 
   .unlock-panel-groups {
-    @apply drt:flex drt:flex-col drt:gap-4 drt:pt-6 drt:overflow-hidden;
+    @apply drt:flex drt:flex-col drt:gap-4 drt:pt-6;
+  }
 
-    @media (min-width: 640px) {
-      @apply drt:overflow-auto;
-    }
-
-    &::-webkit-scrollbar {
-      @apply drt:hidden;
-    }
+  &::-webkit-scrollbar {
+    @apply drt:hidden;
   }
 }

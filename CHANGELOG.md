@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [[0.0.15](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/165)] - 2025-07-15
+
+- [Removed cjs from bundle](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/164)
+
+## [[0.0.14](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/163)] - 2025-07-14
+
+- [Updates on styles for templates.](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/162)
+
+## [[0.0.13](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/161)] - 2025-07-10
+
+- [UI updates on icons for failed transactions and Firefox extension.](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/160)
+
+## [[0.0.12](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/159)] - 2025-07-10
+
+- [Added Check your device text on ledger connect](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/158)
+- [Fixed close button on transaction toast.](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/157)
+- [Fixed issue with xPortal back button on login screen](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/156)
+- [Fixed transaction toast loading](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/155)
+- [Updates on unlock panel and install links.](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/153)
+
+## [[0.0.11](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/152)] - 2025-07-08
+
+- [UI fixes on scrollbar, icons and unlock panel.](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/150)
+
+## [[0.0.10](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/149)] - 2025-07-04
+
+- [Fixed batch transactions order in toast.](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/148)
+- [Renamed and exposed `ledger-addresses` into `address-table`](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/147)
+
+## [[0.0.9](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/145)] - 2025-07-03
+
+- [Fixed icons max width / height in toasts.](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/143)
+- [Refactor color variable names to avoid Tailwind naming conflicts](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/142)
+- [Added dataTestId to unlock panel provider button](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/141)
+- [Added swipe functionality for the mobile side panel](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/140)
+
 ## [[0.0.8](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/138)] - 2025-06-30
 
 - [Fixed images not displaying in the unlock panel.](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/137)

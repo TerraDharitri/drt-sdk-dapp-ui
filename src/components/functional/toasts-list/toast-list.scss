@@ -13,6 +13,10 @@
   @apply drt:bottom-16;
 }
 
+.hidden {
+  display: none;
+}
+
 .view-all-button-container {
   @apply drt:absolute drt:-bottom-12 drt:right-0 drt:z-1;
 }

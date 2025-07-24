@@ -5,9 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { IAddressTableData } from "./types/address-table.types";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { CustomToastType, IComponentToast, ISimpleToast } from "./components/functional/toasts-list/components/transaction-toast/transaction-toast.type";
-import { IAccountScreenData, IConfirmScreenData, IConnectScreenData, ILedgerConnectPanelData } from "./components/functional/ledger-connect/ledger-connect.types";
+import { IConfirmScreenData, IConnectScreenData, ILedgerConnectPanelData } from "./components/functional/ledger-connect/ledger-connect.types";
 import { IEventBus } from "./utils/EventBus";
 import { IProviderBase, ProviderTypeEnum } from "./types/provider.types";
 import { DecodeMethodEnum } from "./components/functional/sign-transactions-panel/sign-transactions-panel.types";
@@ -19,9 +20,10 @@ import { LocalJSX as JSX } from "@stencil/core";
 import { IToastDataState, ITransactionProgressState } from "./components/functional/toasts-list/components/transaction-toast/transaction-toast.type";
 import { TransactionValueType } from "./components/controlled/transactions-table/transactions-table.type";
 import { IEventBus as IEventBus1, unknown as IWalletConnectPanelData } from "./components.d";
+export { IAddressTableData } from "./types/address-table.types";
 export { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 export { CustomToastType, IComponentToast, ISimpleToast } from "./components/functional/toasts-list/components/transaction-toast/transaction-toast.type";
-export { IAccountScreenData, IConfirmScreenData, IConnectScreenData, ILedgerConnectPanelData } from "./components/functional/ledger-connect/ledger-connect.types";
+export { IConfirmScreenData, IConnectScreenData, ILedgerConnectPanelData } from "./components/functional/ledger-connect/ledger-connect.types";
 export { IEventBus } from "./utils/EventBus";
 export { IProviderBase, ProviderTypeEnum } from "./types/provider.types";
 export { DecodeMethodEnum } from "./components/functional/sign-transactions-panel/sign-transactions-panel.types";
@@ -34,6 +36,10 @@ export { IToastDataState, ITransactionProgressState } from "./components/functio
 export { TransactionValueType } from "./components/controlled/transactions-table/transactions-table.type";
 export { IEventBus as IEventBus1, unknown as IWalletConnectPanelData } from "./components.d";
 export namespace Components {
+    interface DrtAddressTable {
+        "accountScreenData": IAddressTableData;
+        "selectedIndex": number;
+    }
     interface DrtAnglesLeftIcon {
     }
     interface DrtAnglesRightIcon {
@@ -106,10 +112,6 @@ export namespace Components {
     interface DrtGenericToast {
         "toast": CustomToastType;
     }
-    interface DrtLedgerAddresses {
-        "accountScreenData": IAccountScreenData;
-        "selectedIndex": number;
-    }
     interface DrtLedgerConfirm {
         "confirmScreenData": IConfirmScreenData;
     }
@@ -180,6 +182,12 @@ export namespace Components {
         "hasRightButton"?: boolean;
         "panelClassName"?: string;
         "panelTitle": string;
+    }
+    interface DrtSidePanelSwiper {
+        "close": () => Promise<void>;
+        "open": boolean;
+        "openToSnapPoint": (snapIndex?: number) => Promise<void>;
+        "sidePanelIdentifier": string;
     }
     interface DrtSignTransactionsAdvanced {
         "data": string;
@@ -313,6 +321,7 @@ export namespace Components {
     }
     interface DrtTransactionToastProgress {
         "endTime"?: number;
+        "isStatusPending"?: boolean;
         "startTime"?: number;
     }
     interface DrtTransactionValue {
@@ -332,6 +341,7 @@ export namespace Components {
     }
     interface DrtUnlockButton {
         "class"?: string;
+        "dataTestId"?: string;
         "icon"?: HTMLElement;
         "iconUrl": string;
         "label": string;
@@ -386,6 +396,10 @@ export namespace Components {
         "class"?: string;
     }
 }
+export interface DrtAddressTableCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDrtAddressTableElement;
+}
 export interface DrtCustomToastCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDrtCustomToastElement;
@@ -393,10 +407,6 @@ export interface DrtCustomToastCustomEvent<T> extends CustomEvent<T> {
 export interface DrtGenericToastCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDrtGenericToastElement;
-}
-export interface DrtLedgerAddressesCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLDrtLedgerAddressesElement;
 }
 export interface DrtLedgerIntroCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -421,6 +431,10 @@ export interface DrtSidePanelCustomEvent<T> extends CustomEvent<T> {
 export interface DrtSidePanelHeaderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDrtSidePanelHeaderElement;
+}
+export interface DrtSidePanelSwiperCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDrtSidePanelSwiperElement;
 }
 export interface DrtSimpleToastCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -447,6 +461,25 @@ export interface DrtWalletConnectScanCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDrtWalletConnectScanElement;
 }
 declare global {
+    interface HTMLDrtAddressTableElementEventMap {
+        "accessWallet": any;
+        "selectAccount": any;
+        "pageChange": number;
+    }
+    interface HTMLDrtAddressTableElement extends Components.DrtAddressTable, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDrtAddressTableElementEventMap>(type: K, listener: (this: HTMLDrtAddressTableElement, ev: DrtAddressTableCustomEvent<HTMLDrtAddressTableElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDrtAddressTableElementEventMap>(type: K, listener: (this: HTMLDrtAddressTableElement, ev: DrtAddressTableCustomEvent<HTMLDrtAddressTableElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDrtAddressTableElement: {
+        prototype: HTMLDrtAddressTableElement;
+        new (): HTMLDrtAddressTableElement;
+    };
     interface HTMLDrtAnglesLeftIconElement extends Components.DrtAnglesLeftIcon, HTMLStencilElement {
     }
     var HTMLDrtAnglesLeftIconElement: {
@@ -582,25 +615,6 @@ declare global {
     var HTMLDrtGenericToastElement: {
         prototype: HTMLDrtGenericToastElement;
         new (): HTMLDrtGenericToastElement;
-    };
-    interface HTMLDrtLedgerAddressesElementEventMap {
-        "accessWallet": any;
-        "selectAccount": any;
-        "pageChange": number;
-    }
-    interface HTMLDrtLedgerAddressesElement extends Components.DrtLedgerAddresses, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLDrtLedgerAddressesElementEventMap>(type: K, listener: (this: HTMLDrtLedgerAddressesElement, ev: DrtLedgerAddressesCustomEvent<HTMLDrtLedgerAddressesElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLDrtLedgerAddressesElementEventMap>(type: K, listener: (this: HTMLDrtLedgerAddressesElement, ev: DrtLedgerAddressesCustomEvent<HTMLDrtLedgerAddressesElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLDrtLedgerAddressesElement: {
-        prototype: HTMLDrtLedgerAddressesElement;
-        new (): HTMLDrtLedgerAddressesElement;
     };
     interface HTMLDrtLedgerConfirmElement extends Components.DrtLedgerConfirm, HTMLStencilElement {
     }
@@ -778,6 +792,24 @@ declare global {
     var HTMLDrtSidePanelHeaderElement: {
         prototype: HTMLDrtSidePanelHeaderElement;
         new (): HTMLDrtSidePanelHeaderElement;
+    };
+    interface HTMLDrtSidePanelSwiperElementEventMap {
+        "sheetDismiss": void;
+        "sheetSnapChange": { index: number; snapPoint: string };
+    }
+    interface HTMLDrtSidePanelSwiperElement extends Components.DrtSidePanelSwiper, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDrtSidePanelSwiperElementEventMap>(type: K, listener: (this: HTMLDrtSidePanelSwiperElement, ev: DrtSidePanelSwiperCustomEvent<HTMLDrtSidePanelSwiperElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDrtSidePanelSwiperElementEventMap>(type: K, listener: (this: HTMLDrtSidePanelSwiperElement, ev: DrtSidePanelSwiperCustomEvent<HTMLDrtSidePanelSwiperElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDrtSidePanelSwiperElement: {
+        prototype: HTMLDrtSidePanelSwiperElement;
+        new (): HTMLDrtSidePanelSwiperElement;
     };
     interface HTMLDrtSignTransactionsAdvancedElement extends Components.DrtSignTransactionsAdvanced, HTMLStencilElement {
     }
@@ -1134,6 +1166,7 @@ declare global {
         new (): HTMLDrtXportalQrCodePreloaderElement;
     };
     interface HTMLElementTagNameMap {
+        "drt-address-table": HTMLDrtAddressTableElement;
         "drt-angles-left-icon": HTMLDrtAnglesLeftIconElement;
         "drt-angles-right-icon": HTMLDrtAnglesRightIconElement;
         "drt-arrow-right-icon": HTMLDrtArrowRightIconElement;
@@ -1153,7 +1186,6 @@ declare global {
         "drt-fa-icon": HTMLDrtFaIconElement;
         "drt-format-amount": HTMLDrtFormatAmountElement;
         "drt-generic-toast": HTMLDrtGenericToastElement;
-        "drt-ledger-addresses": HTMLDrtLedgerAddressesElement;
         "drt-ledger-confirm": HTMLDrtLedgerConfirmElement;
         "drt-ledger-connect": HTMLDrtLedgerConnectElement;
         "drt-ledger-icon": HTMLDrtLedgerIconElement;
@@ -1172,6 +1204,7 @@ declare global {
         "drt-provider-idle-screen": HTMLDrtProviderIdleScreenElement;
         "drt-side-panel": HTMLDrtSidePanelElement;
         "drt-side-panel-header": HTMLDrtSidePanelHeaderElement;
+        "drt-side-panel-swiper": HTMLDrtSidePanelSwiperElement;
         "drt-sign-transactions-advanced": HTMLDrtSignTransactionsAdvancedElement;
         "drt-sign-transactions-advanced-data": HTMLDrtSignTransactionsAdvancedDataElement;
         "drt-sign-transactions-advanced-data-decode": HTMLDrtSignTransactionsAdvancedDataDecodeElement;
@@ -1223,6 +1256,13 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface DrtAddressTable {
+        "accountScreenData"?: IAddressTableData;
+        "onAccessWallet"?: (event: DrtAddressTableCustomEvent<any>) => void;
+        "onPageChange"?: (event: DrtAddressTableCustomEvent<number>) => void;
+        "onSelectAccount"?: (event: DrtAddressTableCustomEvent<any>) => void;
+        "selectedIndex"?: number;
+    }
     interface DrtAnglesLeftIcon {
     }
     interface DrtAnglesRightIcon {
@@ -1296,13 +1336,6 @@ declare namespace LocalJSX {
     interface DrtGenericToast {
         "onDeleteToast"?: (event: DrtGenericToastCustomEvent<string>) => void;
         "toast"?: CustomToastType;
-    }
-    interface DrtLedgerAddresses {
-        "accountScreenData"?: IAccountScreenData;
-        "onAccessWallet"?: (event: DrtLedgerAddressesCustomEvent<any>) => void;
-        "onPageChange"?: (event: DrtLedgerAddressesCustomEvent<number>) => void;
-        "onSelectAccount"?: (event: DrtLedgerAddressesCustomEvent<any>) => void;
-        "selectedIndex"?: number;
     }
     interface DrtLedgerConfirm {
         "confirmScreenData"?: IConfirmScreenData;
@@ -1378,6 +1411,12 @@ declare namespace LocalJSX {
         "onRightButtonClick"?: (event: DrtSidePanelHeaderCustomEvent<any>) => void;
         "panelClassName"?: string;
         "panelTitle"?: string;
+    }
+    interface DrtSidePanelSwiper {
+        "onSheetDismiss"?: (event: DrtSidePanelSwiperCustomEvent<void>) => void;
+        "onSheetSnapChange"?: (event: DrtSidePanelSwiperCustomEvent<{ index: number; snapPoint: string }>) => void;
+        "open"?: boolean;
+        "sidePanelIdentifier"?: string;
     }
     interface DrtSignTransactionsAdvanced {
         "data"?: string;
@@ -1512,6 +1551,7 @@ declare namespace LocalJSX {
     }
     interface DrtTransactionToastProgress {
         "endTime"?: number;
+        "isStatusPending"?: boolean;
         "startTime"?: number;
     }
     interface DrtTransactionValue {
@@ -1531,6 +1571,7 @@ declare namespace LocalJSX {
     }
     interface DrtUnlockButton {
         "class"?: string;
+        "dataTestId"?: string;
         "icon"?: HTMLElement;
         "iconUrl"?: string;
         "label"?: string;
@@ -1584,6 +1625,7 @@ declare namespace LocalJSX {
         "class"?: string;
     }
     interface IntrinsicElements {
+        "drt-address-table": DrtAddressTable;
         "drt-angles-left-icon": DrtAnglesLeftIcon;
         "drt-angles-right-icon": DrtAnglesRightIcon;
         "drt-arrow-right-icon": DrtArrowRightIcon;
@@ -1603,7 +1645,6 @@ declare namespace LocalJSX {
         "drt-fa-icon": DrtFaIcon;
         "drt-format-amount": DrtFormatAmount;
         "drt-generic-toast": DrtGenericToast;
-        "drt-ledger-addresses": DrtLedgerAddresses;
         "drt-ledger-confirm": DrtLedgerConfirm;
         "drt-ledger-connect": DrtLedgerConnect;
         "drt-ledger-icon": DrtLedgerIcon;
@@ -1622,6 +1663,7 @@ declare namespace LocalJSX {
         "drt-provider-idle-screen": DrtProviderIdleScreen;
         "drt-side-panel": DrtSidePanel;
         "drt-side-panel-header": DrtSidePanelHeader;
+        "drt-side-panel-swiper": DrtSidePanelSwiper;
         "drt-sign-transactions-advanced": DrtSignTransactionsAdvanced;
         "drt-sign-transactions-advanced-data": DrtSignTransactionsAdvancedData;
         "drt-sign-transactions-advanced-data-decode": DrtSignTransactionsAdvancedDataDecode;
@@ -1676,6 +1718,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "drt-address-table": LocalJSX.DrtAddressTable & JSXBase.HTMLAttributes<HTMLDrtAddressTableElement>;
             "drt-angles-left-icon": LocalJSX.DrtAnglesLeftIcon & JSXBase.HTMLAttributes<HTMLDrtAnglesLeftIconElement>;
             "drt-angles-right-icon": LocalJSX.DrtAnglesRightIcon & JSXBase.HTMLAttributes<HTMLDrtAnglesRightIconElement>;
             "drt-arrow-right-icon": LocalJSX.DrtArrowRightIcon & JSXBase.HTMLAttributes<HTMLDrtArrowRightIconElement>;
@@ -1695,7 +1738,6 @@ declare module "@stencil/core" {
             "drt-fa-icon": LocalJSX.DrtFaIcon & JSXBase.HTMLAttributes<HTMLDrtFaIconElement>;
             "drt-format-amount": LocalJSX.DrtFormatAmount & JSXBase.HTMLAttributes<HTMLDrtFormatAmountElement>;
             "drt-generic-toast": LocalJSX.DrtGenericToast & JSXBase.HTMLAttributes<HTMLDrtGenericToastElement>;
-            "drt-ledger-addresses": LocalJSX.DrtLedgerAddresses & JSXBase.HTMLAttributes<HTMLDrtLedgerAddressesElement>;
             "drt-ledger-confirm": LocalJSX.DrtLedgerConfirm & JSXBase.HTMLAttributes<HTMLDrtLedgerConfirmElement>;
             "drt-ledger-connect": LocalJSX.DrtLedgerConnect & JSXBase.HTMLAttributes<HTMLDrtLedgerConnectElement>;
             "drt-ledger-icon": LocalJSX.DrtLedgerIcon & JSXBase.HTMLAttributes<HTMLDrtLedgerIconElement>;
@@ -1714,6 +1756,7 @@ declare module "@stencil/core" {
             "drt-provider-idle-screen": LocalJSX.DrtProviderIdleScreen & JSXBase.HTMLAttributes<HTMLDrtProviderIdleScreenElement>;
             "drt-side-panel": LocalJSX.DrtSidePanel & JSXBase.HTMLAttributes<HTMLDrtSidePanelElement>;
             "drt-side-panel-header": LocalJSX.DrtSidePanelHeader & JSXBase.HTMLAttributes<HTMLDrtSidePanelHeaderElement>;
+            "drt-side-panel-swiper": LocalJSX.DrtSidePanelSwiper & JSXBase.HTMLAttributes<HTMLDrtSidePanelSwiperElement>;
             "drt-sign-transactions-advanced": LocalJSX.DrtSignTransactionsAdvanced & JSXBase.HTMLAttributes<HTMLDrtSignTransactionsAdvancedElement>;
             "drt-sign-transactions-advanced-data": LocalJSX.DrtSignTransactionsAdvancedData & JSXBase.HTMLAttributes<HTMLDrtSignTransactionsAdvancedDataElement>;
             "drt-sign-transactions-advanced-data-decode": LocalJSX.DrtSignTransactionsAdvancedDataDecode & JSXBase.HTMLAttributes<HTMLDrtSignTransactionsAdvancedDataDecodeElement>;
