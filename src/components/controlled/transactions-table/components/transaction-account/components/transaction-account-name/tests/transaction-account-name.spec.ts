@@ -35,7 +35,7 @@ describe('transaction-account-name', () => {
       `,
     });
 
-    const trimElement = root?.querySelector('drt-trim-text');
+    const trimElement = root?.querySelector('drt-trim');
     expect(trimElement).not.toBeNull();
     expect(trimElement?.getAttribute('text')).toBe('drt1q...');
     expect(trimElement?.getAttribute('datatestid')).toBe('account-trim');
@@ -52,7 +52,7 @@ describe('transaction-account-name', () => {
       `,
     });
 
-    const trimElement = root?.querySelector('drt-trim-text');
+    const trimElement = root?.querySelector('drt-trim');
     expect(trimElement).not.toBeNull();
   });
 

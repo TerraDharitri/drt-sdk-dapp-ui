@@ -1,7 +1,12 @@
 import type { EventEmitter } from '@stencil/core';
 import { Component, Event, h, Prop } from '@stencil/core';
+import classNames from 'classnames';
 
 import type { IConnectScreenData } from '../../ledger-connect.types';
+
+const ledgerIntroClasses: Record<string, string> = {
+  icon: 'drt:w-50 drt:h-auto drt:xs:w-100 drt:xs:h-85',
+};
 
 @Component({
   tag: 'drt-ledger-intro',
@@ -40,7 +45,11 @@ export class LedgerIntro {
     return (
       <div class="ledger-intro">
         <div class="ledger-intro-wrapper">
-          <drt-ledger-icon class="ledger-intro-icon" />
+          <drt-ledger-icon
+            class={classNames('ledger-intro-icon', {
+              [ledgerIntroClasses.icon]: true,
+            })}
+          />
 
           <div class="ledger-intro-description">
             Connect your device <br />

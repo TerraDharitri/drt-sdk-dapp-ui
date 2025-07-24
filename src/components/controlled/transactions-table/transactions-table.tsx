@@ -2,17 +2,17 @@ import { Component, h, Prop } from '@stencil/core';
 import classNames from 'classnames';
 
 import { DataTestIdsEnum } from '../../../constants/dataTestIds.enum';
-import type { ITransactionsTableRow } from './transactions-table.type';
+import type { TransactionRowType } from './transactions-table.type';
 
 const COLUMNS = ['TxHash', 'Age', 'Shard', 'From', 'To', 'Method', 'Value'];
 
 @Component({
   tag: 'drt-transactions-table',
-  styleUrl: 'transactions-table.css',
+  styleUrl: 'transactions-table.scss',
 })
 export class TransactionsTable {
   @Prop() class?: string;
-  @Prop() transactions: ITransactionsTableRow[];
+  @Prop() transactions: TransactionRowType[];
 
   render() {
     return (
@@ -33,7 +33,10 @@ export class TransactionsTable {
                 <drt-transaction-hash transaction={transaction}></drt-transaction-hash>
               </td>
               <td class="transactions-table-body-cell">
-                <drt-transaction-age age={transaction.age.timeAgo} tooltip={transaction.age.tooltip}></drt-transaction-age>
+                <drt-transaction-age
+                  age={transaction.age.timeAgo}
+                  tooltip={transaction.age.tooltip}
+                ></drt-transaction-age>
               </td>
               <td class="transactions-table-body-cell">
                 <drt-transaction-shards transaction={transaction}></drt-transaction-shards>
@@ -55,7 +58,10 @@ export class TransactionsTable {
                 ></drt-transaction-account>
               </td>
               <td class="transactions-table-body-cell">
-                <drt-transaction-method method={transaction.method.name} actionDescription={transaction.method.actionDescription}></drt-transaction-method>
+                <drt-transaction-method
+                  method={transaction.method.name}
+                  actionDescription={transaction.method.actionDescription}
+                ></drt-transaction-method>
               </td>
               <td class="transactions-table-body-cell">
                 <drt-transaction-value value={transaction.value}></drt-transaction-value>

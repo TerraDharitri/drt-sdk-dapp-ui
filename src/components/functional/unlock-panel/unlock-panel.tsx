@@ -5,8 +5,16 @@ import { ProviderTypeEnum } from 'types/provider.types';
 import type { IEventBus } from 'utils/EventBus';
 import { EventBus } from 'utils/EventBus';
 
+import { UnlockPanelGroupSlotEnum } from './components/unlock-panel-group/unlock-panel-group';
 import { getIsExtensionAvailable, getIsMetaMaskAvailable } from './helpers';
+import type { IUnlockPanelManagerData } from './unlock-panel.types';
 import { UnlockPanelEventsEnum } from './unlock-panel.types';
+
+const unlockPanelClasses: Record<string, string> = {
+  detectedPanelGroup: 'drt:hidden drt:sm:flex',
+  desktopPanelGroupTitle: 'drt:hidden drt:sm:flex',
+  mobilePanelGroupTitle: 'drt:sm:hidden',
+};
 
 @Component({
   tag: 'drt-unlock-panel',
@@ -14,13 +22,15 @@ import { UnlockPanelEventsEnum } from './unlock-panel.types';
   shadow: true,
 })
 export class UnlockPanel {
-  private eventBus: IEventBus = new EventBus();
-  private unsubscribeFunctions: (() => void)[] = [];
-
   @Element() hostElement: HTMLElement;
 
+  private eventBus: IEventBus = new EventBus();
+  private unsubscribeFunctions: (() => void)[] = [];
+  private anchor: HTMLElement | null = null;
+
   @State() isOpen: boolean = false;
-  @State() allowedProviders: IProviderBase[] = [];
+  @State() walletAddress: IUnlockPanelManagerData['walletAddress'] = null;
+  @State() allowedProviders: IUnlockPanelManagerData['providers'] = [];
 
   @State() isLoggingIn: boolean = false;
   @State() isIntroScreenVisible: boolean = false;
@@ -67,8 +77,6 @@ export class UnlockPanel {
     return !Object.values(ProviderTypeEnum).includes(currentProvider as ProviderTypeEnum);
   }
 
-  private anchor: HTMLElement | null = null;
-
   private setAnchor(element: HTMLElement | null) {
     if (!element) {
       return;
@@ -78,9 +86,10 @@ export class UnlockPanel {
     this.anchor.addEventListener(UnlockPanelEventsEnum.ANCHOR_CLOSE, this.handleResetLoginState);
   }
 
-  private unlockPanelUpdate = (allowedProviders: IProviderBase[]) => {
+  private unlockPanelUpdate = ({ providers, walletAddress }: IUnlockPanelManagerData) => {
     this.isOpen = true;
-    this.allowedProviders = allowedProviders;
+    this.walletAddress = walletAddress;
+    this.allowedProviders = providers;
   };
 
   private handleLogin(provider: IProviderBase) {
@@ -142,7 +151,7 @@ export class UnlockPanel {
       allowedProvider => !detectedProviders.includes(allowedProvider),
     );
 
-    const panelTitle = this.selectedMethod ? this.selectedMethod.name : 'Connect your wallet';
+    const panelTitle = this.selectedMethod ? this.selectedMethod.name : 'Connect a wallet';
     const hasDetectedProviders = detectedProviders.length > 0;
 
     const isProviderScreenVisible = !this.isLoggingIn && !this.isIntroScreenVisible;
@@ -156,7 +165,6 @@ export class UnlockPanel {
         onBack={this.handleResetLoginState}
         hasBackButton={isCustomProviderActive}
         showHeader={isProviderScreenVisible || isCustomProviderActive}
-        panelClassName="unlock-panel"
       >
         <div
           id="anchor"
@@ -177,22 +185,30 @@ export class UnlockPanel {
             <div class="unlock-panel-groups">
               {hasDetectedProviders && (
                 <drt-unlock-panel-group
-                  groupTitle="Detected"
                   providers={detectedProviders}
                   onLogin={(event: CustomEvent) => this.handleLogin(event.detail)}
-                />
+                  class={unlockPanelClasses.detectedPanelGroup}
+                >
+                  <div slot={UnlockPanelGroupSlotEnum.groupLabel}>Detected</div>
+                </drt-unlock-panel-group>
               )}
 
               <drt-unlock-panel-group
                 providers={otherProviders}
-                groupTitle={hasDetectedProviders ? 'Other Options' : 'Options'}
                 onLogin={(event: CustomEvent) => this.handleLogin(event.detail)}
               >
+                <div slot={UnlockPanelGroupSlotEnum.groupLabel}>
+                  <div class={unlockPanelClasses.mobilePanelGroupTitle}>Options</div>
+                  <div class={unlockPanelClasses.desktopPanelGroupTitle}>
+                    {hasDetectedProviders ? 'Other Options' : 'Options'}
+                  </div>
+                </div>
+
                 <slot />
               </drt-unlock-panel-group>
             </div>
 
-            <drt-unlock-panel-footer />
+            <drt-unlock-panel-footer walletAddress={this.walletAddress} />
           </div>
         )}
       </drt-side-panel>

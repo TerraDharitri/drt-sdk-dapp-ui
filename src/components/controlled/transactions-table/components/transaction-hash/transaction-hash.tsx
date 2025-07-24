@@ -1,16 +1,14 @@
 import { Component, h, Prop } from '@stencil/core';
-import classNames from 'classnames';
 import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 
-import type { ITransactionsTableRow } from '../../transactions-table.type';
+import type { TransactionRowType } from '../../transactions-table.type';
 
 @Component({
   tag: 'drt-transaction-hash',
-  styleUrl: 'transaction-hash.css',
 })
 export class TransactionHash {
   @Prop() class?: string;
-  @Prop() transaction: ITransactionsTableRow;
+  @Prop() transaction: TransactionRowType;
 
   render() {
     if (!this.transaction) {
@@ -18,9 +16,12 @@ export class TransactionHash {
     }
 
     return (
-      <div class={classNames(this.class, 'transaction-hash')}>
-        <drt-transaction-icon iconInfo={this.transaction.iconInfo}></drt-transaction-icon>
-        <drt-explorer-link dataTestId={DataTestIdsEnum.transactionLink} link={this.transaction.link} text={this.transaction.txHash}></drt-explorer-link>
+      <div class={{ 'transaction-hash': true, [this.class]: Boolean(this.class) }}>
+        <drt-transaction-icon iconInfo={this.transaction.iconInfo} />
+
+        <drt-explorer-link dataTestId={DataTestIdsEnum.transactionLink} link={this.transaction.link}>
+          <span>{this.transaction.txHash}</span>
+        </drt-explorer-link>
       </div>
     );
   }

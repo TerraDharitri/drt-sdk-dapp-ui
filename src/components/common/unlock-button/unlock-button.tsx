@@ -5,7 +5,7 @@ import type { IProviderBase } from 'types/provider.types';
 import { ProviderTypeEnum } from 'types/provider.types';
 
 const unlockButtonClasses: Record<string, string> = {
-  statusIcon: 'drt:fill-teal-400!',
+  statusIcon: 'drt:fill-accent!',
 };
 
 @Component({

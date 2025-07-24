@@ -1,12 +1,12 @@
 import { h } from '@stencil/core';
 import { newSpecPage } from '@stencil/core/testing';
-import type { ITransactionValue } from 'components/controlled/transactions-table/transactions-table.type';
+import type { TransactionValueType } from 'components/controlled/transactions-table/transactions-table.type';
 
 import { TransactionValue } from '../transaction-value';
 
 describe('TransactionValue', () => {
   it('renders with minimal props', async () => {
-    const value: ITransactionValue = {
+    const value: TransactionValueType = {
       rewaLabel: '',
       link: '',
       linkText: '',
@@ -29,7 +29,7 @@ describe('TransactionValue', () => {
   });
 
   it('renders with badge', async () => {
-    const value: ITransactionValue = {
+    const value: TransactionValueType = {
       badge: 'NFT',
       rewaLabel: '',
       link: '',
@@ -57,7 +57,7 @@ describe('TransactionValue', () => {
   });
 
   it('renders with formatted amount', async () => {
-    const value: ITransactionValue = {
+    const value: TransactionValueType = {
       showFormattedAmount: true,
       rewaLabel: 'xREWA',
       valueDecimal: '123',
@@ -83,7 +83,7 @@ describe('TransactionValue', () => {
   });
 
   it('renders with explorer link', async () => {
-    const value: ITransactionValue = {
+    const value: TransactionValueType = {
       rewaLabel: '',
       link: 'https://example.com',
       linkText: 'Example Link',
@@ -102,7 +102,7 @@ describe('TransactionValue', () => {
       <drt-transaction-value>
           <div class="transaction-value">
             <drt-explorer-link class="transaction-value-link text-truncate" link="https://example.com">
-              <div class="transaction-value-content" slot="content">
+              <div class="transaction-value-content">
                 <span class="transaction-value-link-text">Example Link</span>
               </div>
             </drt-explorer-link>
@@ -112,7 +112,7 @@ describe('TransactionValue', () => {
   });
 
   it('renders with SVG icon', async () => {
-    const value: ITransactionValue = {
+    const value: TransactionValueType = {
       rewaLabel: '',
       link: 'https://example.com',
       linkText: 'Example Link',
@@ -132,7 +132,7 @@ describe('TransactionValue', () => {
       <drt-transaction-value>
           <div class="transaction-value">
             <drt-explorer-link class="transaction-value-link side-link d-flex" link="https://example.com">
-              <div class="transaction-value-content" slot="content">
+              <div class="transaction-value-content">
                 <img alt="Example Icon" class="transaction-value-img" src="https://example.com/icon.svg">
                 <span class="transaction-value-link-text">Example Link</span>
               </div>
@@ -143,7 +143,7 @@ describe('TransactionValue', () => {
   });
 
   it('renders with truncated text', async () => {
-    const value: ITransactionValue = {
+    const value: TransactionValueType = {
       rewaLabel: '',
       link: 'https://example.com',
       linkText: 'Example Link',
@@ -163,7 +163,7 @@ describe('TransactionValue', () => {
       <drt-transaction-value>
           <div class="transaction-value">
             <drt-explorer-link class="transaction-value-link text-truncate" link="https://example.com">
-              <div class="transaction-value-content" slot="content">
+              <div class="transaction-value-content">
                 <span class="transaction-value-link-text truncate">Example Link</span>
               </div>
             </drt-explorer-link>
@@ -173,7 +173,7 @@ describe('TransactionValue', () => {
   });
 
   it('renders with titleText', async () => {
-    const value: ITransactionValue = {
+    const value: TransactionValueType = {
       rewaLabel: '',
       link: 'https://example.com',
       linkText: 'Example Link',
@@ -193,7 +193,7 @@ describe('TransactionValue', () => {
       <drt-transaction-value>
           <div class="transaction-value">
             <drt-explorer-link class="transaction-value-link text-truncate" link="https://example.com">
-              <div class="transaction-value-content" slot="content">
+              <div class="transaction-value-content">
                 <span class="transaction-value-link-text">Example Link</span>
               </div>
             </drt-explorer-link>

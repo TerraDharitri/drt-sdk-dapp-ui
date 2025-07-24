@@ -5,6 +5,7 @@
 }
 
 .spinner {
-  fill: #a09a93;
+  @apply drt:w-4 drt:h-4;
+  fill: var(--drt-text-color-secondary);
   animation: SpinnerAnimation 3000ms linear infinite;
 }

@@ -1,8 +1,7 @@
 :host {
-  display: flex;
+  @apply drt:flex;
 
   .check-icon {
-    width: 16px;
-    height: 16px;
+    @apply drt:w-4 drt:h-4;
   }
 }

@@ -1,172 +1,127 @@
 .pagination {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  user-select: none;
-  line-height: 1;
-  justify-content: center;
-  font-size: 16px;
-  max-width: 480px;
+  @apply drt:flex drt:items-center drt:gap-2 drt:leading-none drt:select-none drt:justify-center drt:text-base drt:max-w-120;
 
   .pagination-angle {
-    cursor: pointer;
-    transition: all 200ms ease;
-    display: none;
+    @apply drt:hidden drt:transition-all drt:duration-200 drt:ease-in-out drt:cursor-pointer;
+    color: var(--drt-text-color-primary);
 
     @media (min-width: 576px) {
-      display: flex;
+      @apply drt:flex;
     }
 
     &.disabled,
     &.inactive {
-      pointer-events: none;
+      @apply drt:pointer-events-none;
+      color: var(--drt-text-color-secondary);
 
       .pagination-angle-icon {
-        fill: #737373;
+        fill: var(--drt-text-color-secondary);
       }
     }
 
     &.disabled {
-      opacity: 0.5;
+      @apply drt:opacity-50;
     }
 
     &:hover {
-      color: #23f7dd;
+      color: var(--drt-text-accent-color);
 
       .pagination-angle-icon {
-        fill: #23f7dd;
+        fill: var(--drt-text-accent-color);
       }
     }
 
     .pagination-angle-icon {
-      fill: #e5e5e5;
-      font-size: 12px;
+      @apply drt:text-xs;
+      fill: var(--drt-text-color-primary);
 
       @media (min-width: 375px) {
-        font-size: 16px;
+        @apply drt:text-base drt:leading-none;
       }
     }
   }
 
   .pagination-edge-button {
-    display: none;
-    gap: 8px;
-    align-items: center;
-    transition: all 200ms ease;
-    cursor: pointer;
+    @apply drt:hidden drt:gap-2 drt:items-center drt:cursor-pointer drt:transition-all drt:duration-200 drt:ease-in-out;
+    color: var(--drt-text-color-primary);
 
     @media (min-width: 576px) {
-      padding: 0;
-      margin: 0 4px;
-      display: flex;
+      @apply drt:p-0 drt:my-0 drt:mx-1 drt:flex;
     }
 
     &.inactive,
     &.disabled {
-      pointer-events: none;
+      @apply drt:pointer-events-none;
+      color: var(--drt-text-color-secondary);
 
       .pagination-edge-button-icon {
-        fill: #737373;
+        fill: var(--drt-text-color-secondary);
       }
     }
 
     &.disabled {
-      opacity: 0.5;
+      @apply drt:opacity-50;
     }
 
     &:hover {
-      color: #23f7dd;
+      color: var(--drt-text-accent-color);
 
       .pagination-edge-button-icon {
-        fill: #23f7dd;
+        fill: var(--drt-text-accent-color);
       }
     }
 
     .pagination-edge-button-icon {
-      transition: all 200ms ease;
-      fill: #e5e5e5;
-      font-size: 12px;
+      @apply drt:transition-all drt:duration-200 drt:ease-in-out drt:text-xs;
+      fill: var(--drt-text-color-primary);
 
       @media (min-width: 375px) {
-        font-size: 16px;
+        @apply drt:text-base;
       }
     }
   }
 
   .pagination-items {
-    display: flex;
-    gap: 8px;
-    margin: 0 4px;
-    align-items: center;
+    @apply drt:flex drt:gap-2 drt:my-0 drt:mx-1 drt:items-center;
 
     .pagination-item-wrapper {
-      cursor: pointer;
-      text-align: center;
-      height: calc(24px + 4px);
-      width: calc(24px + 4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 200ms ease;
+      @apply drt:cursor-pointer drt:text-center drt:h-7 drt:w-7 drt:flex drt:items-center drt:justify-center;
+      @apply drt:transition-all drt:duration-200 drt:ease-in-out;
 
       @media (min-width: 768px) {
-        height: 32px;
-        width: 32px;
+        @apply drt:w-8 drt:h-8;
       }
 
       &.disabled {
-        opacity: 0.5;
-        pointer-events: none;
-        cursor: default;
+        @apply drt:pointer-events-none drt:cursor-default drt:opacity-50;
       }
 
       .pagination-item {
-        color: #e5e5e5;
-        transition: color 0.2s ease-out;
-        position: relative;
-        border-radius: 4px;
-        text-align: center;
-        padding: 8px 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        height: calc(24px + 4px);
-        width: calc(24px + 4px);
+        @apply drt:relative drt:flex drt:justify-center drt:items-center drt:py-2 drt:px-0 drt:text-center drt:w-7 drt:h-7;
+        @apply drt:transition-colors drt:duration-200 drt:ease-in-out drt:rounded drt:text-xs;
+        color: var(--drt-text-color-primary);
 
         @media (min-width: 768px) {
-          font-size: 16px;
-          height: 32px;
-          width: 32px;
+          @apply drt:text-base drt:h-8 drt:w-8;
         }
 
         &:before {
+          @apply drt:absolute drt:transition-all drt:duration-200 drt:ease-in-out drt:pointer-events-none drt:transform drt:w-7;
+          @apply drt:left-1/2 drt:top-1/2 drt:h-7 drt:z-1 drt:rounded-full drt:opacity-20 drt:-translate-y-1/2 drt:-translate-x-1/2;
+          background-color: var(--drt-pagination-item-bg);
           content: '';
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          transition: all 200ms ease;
-          background-color: #353535;
-          border-radius: 50%;
-          height: calc(24px + 4px);
-          width: calc(24px + 4px);
-          pointer-events: none;
-          opacity: 30%;
-          z-index: 1;
 
           @media (min-width: 768px) {
-            height: 32px;
-            width: 32px;
+            @apply drt:h-8 drt:w-8;
           }
         }
 
         &:hover {
-          color: #23f7dd;
+          color: var(--drt-text-accent-color);
 
           &:before {
-            opacity: 100%;
-            background-color: #143736;
+            @apply drt:opacity-100;
+            background-color: var(--drt-pagination-item-bg-hover);
           }
         }
 
@@ -179,17 +134,16 @@
         }
 
         &.active {
-          color: #23f7dd;
+          color: var(--drt-text-accent-color);
 
           &:before {
-            background-color: #143736;
-            opacity: 100%;
+            @apply drt:opacity-100;
+            background-color: var(--drt-pagination-item-bg-hover);
           }
         }
 
         .pagination-item-text {
-          position: relative;
-          z-index: 2;
+          @apply drt:z-2 drt:relative;
         }
       }
     }

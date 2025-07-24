@@ -1,13 +1,8 @@
 .tooltip {
-  display: flex;
-  font-family: 'Satoshi', sans-serif;
-  position: relative;
+  @apply drt:flex drt:relative;
 
   .tooltip-content-wrapper {
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
-    z-index: 1;
+    @apply drt:left-1/2 drt:absolute drt:z-1 drt:transform drt:-translate-x-1/2;
 
     &.top {
       bottom: calc(100% + 16px);
@@ -18,39 +13,27 @@
     }
 
     .tooltip-content {
-      flex-direction: row;
-      gap: 8px;
-      cursor: default;
-      background: #000000;
-      border-radius: 12px;
-      border: 1px solid #262626;
-      padding: 8px;
-      font-size: 12px;
-      color: #737373;
-      white-space: nowrap;
+      @apply drt:flex-row drt:cursor-default drt:p-2 drt:whitespace-nowrap drt:text-xs drt:rounded-xl;
+      background: var(--drt-bg-accent-color);
+      border: 1px solid var(--drt-neutral-800);
+      color: var(--drt-text-color-primary);
 
       &:after {
-        width: 8px;
-        height: 8px;
-        border: 1px solid #262626;
-        background-color: #000000;
-        position: absolute;
+        @apply drt:left-1/2 drt:origin-center drt:w-2 drt:h-2 drt:absolute;
+        border: 1px solid var(--drt-neutral-800);
+        background-color: var(--drt-bg-accent-color);
         content: '';
-        left: 50%;
-        transform-origin: center;
         transform: translateX(calc(50% - 8px)) rotateZ(calc(45deg * -1));
       }
 
       &.top:after {
+        @apply drt:border-t-0 drt:border-r-0;
         bottom: calc(4px * -1);
-        border-top: none;
-        border-right: none;
       }
 
       &.bottom:after {
+        @apply drt:border-b-0 drt:border-l-0;
         top: calc(4px * -1);
-        border-bottom: none;
-        border-left: none;
       }
     }
   }

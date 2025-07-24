@@ -5,6 +5,7 @@ import state from '../../signTransactionsPanelStore';
 
 const signTransactionsFooterClasses: Record<string, string> = {
   buttonTooltip: 'drt:absolute drt:top-0 drt:h-12 drt:left-0 drt:right-0',
+  explorerLinkIcon: 'drt:fill-link!',
 };
 
 @Component({
@@ -37,7 +38,7 @@ export class SignTransactionsFooter {
                 'highlighted': currentIndexCannotBeSignedYet,
               }}
             >
-              {isFirstTransaction ? 'Cancel' : 'Back'}
+              <span class="sign-transactions-footer-button-label">{isFirstTransaction ? 'Cancel' : 'Back'}</span>
             </button>
           </div>
 
@@ -102,7 +103,7 @@ export class SignTransactionsFooter {
         </div>
 
         <div class="sign-transactions-footer-identity">
-          <div class="sign-transactions-footer-identity-label">Sign in with</div>
+          <div class="sign-transactions-footer-identity-label">Sign with</div>
 
           {username && (
             <div class="sign-transactions-footer-identity-username">
@@ -111,18 +112,15 @@ export class SignTransactionsFooter {
             </div>
           )}
 
-          {!username && address && <drt-trim-text text={address} class="sign-transactions-footer-identity-address" />}
+          {!username && address && <drt-trim text={address} class="sign-transactions-footer-identity-address" />}
 
           <drt-copy-button
             text={username ?? address}
             class="sign-transactions-footer-identity-copy"
             iconClass="sign-transactions-footer-identity-copy-icon"
           />
-          <drt-explorer-link
-            link={explorerLink}
-            class="sign-transactions-footer-identity-explorer"
-            iconClass="sign-transactions-footer-identity-explorer-icon"
-          />
+
+          <drt-explorer-link link={explorerLink} iconClass={signTransactionsFooterClasses.explorerLinkIcon} />
         </div>
       </div>
     );

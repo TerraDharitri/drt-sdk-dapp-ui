@@ -1,213 +1,157 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden;
 
   .ledger-addresses {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Satoshi', sans-serif;
-    flex: 1;
-    gap: 16px;
+    @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden drt:py-6;
 
-    .ledger-addresses-label {
-      color: #fff;
-      line-height: 1;
+    .ledger-addresses-label-wrapper {
+      @apply drt:relative drt:z-2;
+
+      &:after {
+        @apply drt:absolute drt:left-0 drt:right-0 drt:h-0;
+        content: '';
+        top: calc(100% - 4px);
+        box-shadow: 0px 8px 12px 16px var(--drt-bg-color-primary);
+      }
+
+      .ledger-addresses-label {
+        @apply drt:leading-none drt:relative drt:z-1;
+        color: var(--drt-text-color-primary);
+      }
     }
 
     .ledger-addresses-wrapper {
-      position: relative;
+      @apply drt:relative drt:mb-auto drt:py-5 drt:overflow-auto;
+
+      &::-webkit-scrollbar {
+        @apply drt:hidden;
+      }
 
       .ledger-addresses-preloader {
-        display: flex;
-        flex-direction: column;
-        transition: all 200ms ease;
-        pointer-events: none;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        opacity: 0;
-        z-index: 1;
-        gap: 4px;
+        @apply drt:flex drt:flex-col drt:pointer-events-none drt:absolute drt:opacity-0 drt:z-1 drt:gap-1;
+        @apply drt:transition-all drt:duration-200 drt:ease-in-out drt:left-0 drt:right-0 drt:bottom-0 drt:top-5;
 
         &.visible {
-          opacity: 1;
-          pointer-events: all;
+          @apply drt:opacity-100 drt:pointer-events-auto;
         }
       }
 
       .ledger-addresses-list {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        pointer-events: none;
-        transition: all 200ms ease;
-        opacity: 0;
+        @apply drt:flex drt:flex-col drt:gap-1 drt:pointer-events-none drt:transition-all drt:ease-in-out;
+        @apply drt:duration-200 drt:opacity-0;
 
         &.visible {
-          opacity: 1;
-          pointer-events: all;
+          @apply drt:opacity-100 drt:pointer-events-auto;
         }
 
         .ledger-addresses-list-item {
-          border-radius: 8px;
-          display: flex;
-          color: #fff;
-          align-items: center;
-          padding: 16px;
-          height: 64px;
-          width: 100%;
-          position: relative;
-          cursor: pointer;
+          @apply drt:rounded-lg drt:flex drt:items-center drt:p-4 drt:h-16 drt:w-full;
+          @apply drt:cursor-pointer drt:transition-all drt:duration-200 drt:ease-in-out;
           border: 1px solid transparent;
-          transition: all 200ms ease;
-
-          &:before {
-            opacity: 30%;
-            content: '';
-            position: absolute;
-            background-color: #353535;
-            left: 0;
-            border-radius: 8px;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            pointer-events: none;
-          }
+          color: var(--drt-text-color-primary);
+          background-color: var(--drt-bg-color-secondary);
 
           &.checked,
           &:hover {
-            border-color: #23f7dd;
+            border-color: var(--drt-text-accent-color);
           }
 
           .ledger-addresses-list-item-checkbox {
-            position: relative;
-            z-index: 1;
-            border-radius: 50%;
-            transition: all 200ms ease;
-            min-width: 16px;
-            max-width: 16px;
-            height: 16px;
-            border: 1px solid #fff;
-            margin-right: 8px;
+            @apply drt:relative drt:z-1 drt:cursor-pointer drt:transition-all drt:duration-200 drt:rounded-full;
+            @apply drt:ease-in-out drt:mr-2 drt:min-w-4 drt:max-w-4 drt:h-4;
+            border: 1px solid var(--drt-text-color-primary);
 
             &:after {
-              width: calc(12px / 2);
-              height: calc(12px / 2);
+              @apply drt:absolute drt:left-1/2 drt:top-1/2 drt:rounded-full drt:opacity-0 drt:transition-all drt:duration-200;
+              @apply drt:ease-in-out drt:w-1.5 drt:h-1.5 drt:transform drt:-translate-x-1/2 drt:-translate-y-1/2;
+              background-color: var(--drt-text-accent-color);
               content: '';
-              transform: translate(-50%, -50%);
-              background-color: #23f7dd;
-              position: absolute;
-              transition: all 200ms ease;
-              border-radius: 50%;
-              opacity: 0;
-              left: 50%;
-              top: 50%;
             }
 
             &.checked {
-              border-color: #23f7dd;
+              border-color: var(--drt-text-accent-color);
 
               &:after {
-                opacity: 1;
+                @apply drt:opacity-100;
               }
             }
           }
 
           .ledger-addresses-list-item-index {
-            position: relative;
-            z-index: 1;
-            color: #a09a93;
-            font-size: 16px;
-            font-weight: 500;
-            transition: all 200ms ease;
-            margin-right: 16px;
+            @apply drt:relative drt:z-1 drt:text-base drt:font-medium drt:transition-all drt:duration-200 drt:mr-4 drt:ease-in-out;
+            color: var(--drt-text-color-secondary);
 
             &.checked {
-              color: #23f7dd;
+              color: var(--drt-text-accent-color);
             }
 
             &.narrow {
-              width: calc(24px + 4px);
+              @apply drt:w-7;
             }
 
             &.middle {
-              width: 32px;
+              @apply drt:w-8;
             }
 
             &.larger {
-              width: calc(40px + 4px);
+              @apply drt:w-11;
             }
 
             &.largest {
-              width: calc(64px - 4px);
+              @apply drt:w-15;
             }
           }
 
           .ledger-addresses-list-item-address {
-            position: relative;
-            z-index: 1;
-            max-width: 160px;
-            font-size: 16px;
-            min-width: 0;
-            margin-right: auto;
+            @apply drt:relative drt:z-1 drt:max-w-40 drt:text-base drt:mr-auto drt:min-w-0;
 
             .trim-wrapper {
-              align-items: flex-end;
+              @apply drt:leading-none;
             }
           }
 
           .ledger-addresses-list-item-balance {
-            position: relative;
-            margin-left: 16px;
-            font-weight: 500;
-            font-size: 16px;
-            z-index: 1;
+            @apply drt:relative drt:ml-4 drt:font-medium drt:text-base drt:z-1;
           }
         }
       }
     }
 
+    .ledger-addresses-pagination {
+      @apply drt:relative drt:z-1;
+
+      &:after {
+        @apply drt:absolute drt:left-0 drt:right-0 drt:h-0;
+        content: '';
+        bottom: calc(100% - 4px);
+        box-shadow: 0px -8px 12px 16px var(--drt-bg-color-primary);
+      }
+    }
+
     .ledger-addresses-button-wrapper {
-      position: relative;
-      z-index: 2;
+      @apply drt:relative drt:z-2 drt:mt-4;
 
       .ledger-addresses-button-tooltip-wrapper {
-        font-size: 12px;
-        color: #737373;
-        text-align: center;
+        @apply drt:text-xs drt:text-center;
+        color: var(--drt-neutral-500);
       }
 
       .ledger-addresses-button {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        height: 48px;
-        line-height: 1;
-        font-size: 16px;
-        color: #000000;
-        border-radius: 12px;
-        background-color: #23f7dd;
-        cursor: pointer;
-        border: 1px solid #23f7dd;
-        transition: all 200ms ease;
-        gap: 8px;
+        @apply drt:w-full drt:flex drt:items-center drt:justify-center drt:font-bold drt:h-12 drt:leading-none drt:text-base;
+        @apply drt:rounded-lg drt:cursor-pointer drt:transition-all drt:duration-200 drt:ease-in-out drt:gap-2;
+        color: var(--drt-button-text-primary);
+        background-color: var(--drt-button-bg-primary);
+        border: 1px solid var(---drt-button-bg-primary);
 
         &:hover {
-          opacity: 0.75;
+          @apply drt:opacity-75;
         }
 
         &.loading,
         &.disabled {
-          pointer-events: none;
-          background-color: transparent;
-          border-color: #a09a93;
-          cursor: default;
-          color: #a09a93;
+          @apply drt:pointer-events-none drt:bg-transparent drt:cursor-default;
+          border: 1px solid var(--drt-text-color-secondary);
+          color: var(--drt-text-color-secondary);
         }
       }
     }

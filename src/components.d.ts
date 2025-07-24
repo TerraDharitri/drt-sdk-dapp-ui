@@ -10,34 +10,30 @@ import { CustomToastType, IComponentToast, ISimpleToast } from "./components/fun
 import { IAccountScreenData, IConfirmScreenData, IConnectScreenData, ILedgerConnectPanelData } from "./components/functional/ledger-connect/ledger-connect.types";
 import { IEventBus } from "./utils/EventBus";
 import { IProviderBase, ProviderTypeEnum } from "./types/provider.types";
-import { ITransactionAccount, ITransactionIconInfo, ITransactionsTableRow } from "./components/controlled/transactions-table/transactions-table.type";
+import { DecodeMethodEnum } from "./components/functional/sign-transactions-panel/sign-transactions-panel.types";
+import { TransactionAccountType, TransactionIconInfoType, TransactionRowType } from "./components/controlled/transactions-table/transactions-table.type";
 import { ITransactionListItem } from "./components/visual/transaction-list-item/transaction-list-item.types";
-import { IconSizeEnumType } from "./components/common/transaction-asset-icon/transaction-asset-icon.types";
+import { IconSizeEnumType } from "./components/common/transaction-asset-icon/transaction-asset-icon";
 import { ITransactionListItem as ITransactionListItem1 } from "./components/visual/transaction-list-item/transaction-list-item.types";
 import { LocalJSX as JSX } from "@stencil/core";
 import { IToastDataState, ITransactionProgressState } from "./components/functional/toasts-list/components/transaction-toast/transaction-toast.type";
-import { ITransactionValue } from "./components/controlled/transactions-table/transactions-table.type";
-import { IEventBus as IEventBus1, unknown as IWalletConnectPanelData } from "./components";
+import { TransactionValueType } from "./components/controlled/transactions-table/transactions-table.type";
+import { IEventBus as IEventBus1, unknown as IWalletConnectPanelData } from "./components.d";
 export { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 export { CustomToastType, IComponentToast, ISimpleToast } from "./components/functional/toasts-list/components/transaction-toast/transaction-toast.type";
 export { IAccountScreenData, IConfirmScreenData, IConnectScreenData, ILedgerConnectPanelData } from "./components/functional/ledger-connect/ledger-connect.types";
 export { IEventBus } from "./utils/EventBus";
 export { IProviderBase, ProviderTypeEnum } from "./types/provider.types";
-export { ITransactionAccount, ITransactionIconInfo, ITransactionsTableRow } from "./components/controlled/transactions-table/transactions-table.type";
+export { DecodeMethodEnum } from "./components/functional/sign-transactions-panel/sign-transactions-panel.types";
+export { TransactionAccountType, TransactionIconInfoType, TransactionRowType } from "./components/controlled/transactions-table/transactions-table.type";
 export { ITransactionListItem } from "./components/visual/transaction-list-item/transaction-list-item.types";
-export { IconSizeEnumType } from "./components/common/transaction-asset-icon/transaction-asset-icon.types";
+export { IconSizeEnumType } from "./components/common/transaction-asset-icon/transaction-asset-icon";
 export { ITransactionListItem as ITransactionListItem1 } from "./components/visual/transaction-list-item/transaction-list-item.types";
 export { LocalJSX as JSX } from "@stencil/core";
 export { IToastDataState, ITransactionProgressState } from "./components/functional/toasts-list/components/transaction-toast/transaction-toast.type";
-export { ITransactionValue } from "./components/controlled/transactions-table/transactions-table.type";
-export { IEventBus as IEventBus1, unknown as IWalletConnectPanelData } from "./components";
+export { TransactionValueType } from "./components/controlled/transactions-table/transactions-table.type";
+export { IEventBus as IEventBus1, unknown as IWalletConnectPanelData } from "./components.d";
 export namespace Components {
-    interface DrtAngleLeftIcon {
-        "class"?: string;
-    }
-    interface DrtAngleRightIcon {
-        "class"?: string;
-    }
     interface DrtAnglesLeftIcon {
     }
     interface DrtAnglesRightIcon {
@@ -45,10 +41,14 @@ export namespace Components {
     interface DrtArrowRightIcon {
         "class"?: string;
     }
+    interface DrtArrowUpRightFromSquareIcon {
+        "class"?: string;
+    }
     interface DrtArrowUpRightIcon {
         "class"?: string;
     }
     interface DrtBackArrowIcon {
+        "class"?: string;
     }
     interface DrtCheckIcon {
         "class"?: string;
@@ -68,8 +68,10 @@ export namespace Components {
         "toast": IComponentToast;
     }
     interface DrtDefaultTransactionIconLarge {
+        "class"?: string;
     }
     interface DrtDefaultTransactionIconSmall {
+        "class"?: string;
     }
     interface DrtDharitriLogoIcon {
         "class"?: string;
@@ -77,10 +79,8 @@ export namespace Components {
     interface DrtExplorerLink {
         "class"?: string;
         "dataTestId"?: string;
-        "icon"?: IconDefinition | string;
         "iconClass"?: string;
         "link": string;
-        "text"?: string;
     }
     interface DrtExtensionProviderIcon {
         "class"?: string;
@@ -118,6 +118,7 @@ export namespace Components {
         "getEventBus": () => Promise<IEventBus>;
     }
     interface DrtLedgerIcon {
+        "class"?: string;
     }
     interface DrtLedgerIntro {
         "connectScreenData"?: IConnectScreenData;
@@ -184,6 +185,14 @@ export namespace Components {
         "data": string;
         "highlight"?: string;
     }
+    interface DrtSignTransactionsAdvancedData {
+        "data": string;
+        "highlight"?: string;
+    }
+    interface DrtSignTransactionsAdvancedDataDecode {
+        "currentDecodeMethod": DecodeMethodEnum;
+        "isToggled": boolean;
+    }
     interface DrtSignTransactionsFooter {
     }
     interface DrtSignTransactionsHeader {
@@ -206,6 +215,15 @@ export namespace Components {
     interface DrtSimpleToast {
         "toast": ISimpleToast;
     }
+    interface DrtSingleAngleDownIcon {
+        "class"?: string;
+    }
+    interface DrtSingleAngleLeftIcon {
+        "class"?: string;
+    }
+    interface DrtSingleAngleRightIcon {
+        "class"?: string;
+    }
     interface DrtSpinnerIcon {
         "class"?: string;
     }
@@ -219,7 +237,7 @@ export namespace Components {
         "triggerOnClick"?: boolean;
     }
     interface DrtTransactionAccount {
-        "account": ITransactionAccount;
+        "account": TransactionAccountType;
         "class"?: string;
         "dataTestId"?: string;
         "scope": 'receiver' | 'sender';
@@ -247,11 +265,11 @@ export namespace Components {
     }
     interface DrtTransactionHash {
         "class"?: string;
-        "transaction": ITransactionsTableRow;
+        "transaction": TransactionRowType;
     }
     interface DrtTransactionIcon {
         "class"?: string;
-        "iconInfo": ITransactionIconInfo;
+        "iconInfo": TransactionIconInfoType;
     }
     interface DrtTransactionListItem {
         "transaction": ITransactionListItem1;
@@ -263,7 +281,7 @@ export namespace Components {
     }
     interface DrtTransactionShards {
         "class"?: string;
-        "transaction": ITransactionsTableRow;
+        "transaction": TransactionRowType;
     }
     interface DrtTransactionToast {
         "fullWidth"?: boolean;
@@ -299,15 +317,15 @@ export namespace Components {
     }
     interface DrtTransactionValue {
         "class"?: string;
-        "value": ITransactionValue;
+        "value": TransactionValueType;
     }
     interface DrtTransactionsTable {
         "class"?: string;
-        "transactions": ITransactionsTableRow[];
+        "transactions": TransactionRowType[];
     }
     interface DrtTriangularWarningIcon {
     }
-    interface DrtTrimText {
+    interface DrtTrim {
         "class"?: string;
         "dataTestId"?: string;
         "text": string;
@@ -324,9 +342,10 @@ export namespace Components {
         "getEventBus": () => Promise<IEventBus>;
     }
     interface DrtUnlockPanelFooter {
+        "walletAddress": string;
     }
     interface DrtUnlockPanelGroup {
-        "groupTitle": string;
+        "class"?: string;
         "providers": IProviderBase[];
     }
     interface DrtUnlockProviderButton {
@@ -338,10 +357,22 @@ export namespace Components {
         "getEventBus": () => Promise<IEventBus>;
         "qrCodeSvg": string;
     }
+    interface DrtWalletConnectAppGalleryIcon {
+        "class"?: string;
+    }
+    interface DrtWalletConnectAppStoreIcon {
+        "class"?: string;
+    }
     interface DrtWalletConnectDownload {
+        "class"?: string;
+    }
+    interface DrtWalletConnectGooglePlayIcon {
+        "class"?: string;
     }
     interface DrtWalletConnectScan {
+        "class"?: string;
         "qrCodeSvg": string;
+        "walletConnectDeepLink"?: string;
     }
     interface DrtWalletProviderIcon {
         "class"?: string;
@@ -349,6 +380,7 @@ export namespace Components {
     interface DrtXaliasProviderIcon {
     }
     interface DrtXportalDownloadQrIcon {
+        "class"?: string;
     }
     interface DrtXportalQrCodePreloader {
         "class"?: string;
@@ -415,18 +447,6 @@ export interface DrtWalletConnectScanCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDrtWalletConnectScanElement;
 }
 declare global {
-    interface HTMLDrtAngleLeftIconElement extends Components.DrtAngleLeftIcon, HTMLStencilElement {
-    }
-    var HTMLDrtAngleLeftIconElement: {
-        prototype: HTMLDrtAngleLeftIconElement;
-        new (): HTMLDrtAngleLeftIconElement;
-    };
-    interface HTMLDrtAngleRightIconElement extends Components.DrtAngleRightIcon, HTMLStencilElement {
-    }
-    var HTMLDrtAngleRightIconElement: {
-        prototype: HTMLDrtAngleRightIconElement;
-        new (): HTMLDrtAngleRightIconElement;
-    };
     interface HTMLDrtAnglesLeftIconElement extends Components.DrtAnglesLeftIcon, HTMLStencilElement {
     }
     var HTMLDrtAnglesLeftIconElement: {
@@ -444,6 +464,12 @@ declare global {
     var HTMLDrtArrowRightIconElement: {
         prototype: HTMLDrtArrowRightIconElement;
         new (): HTMLDrtArrowRightIconElement;
+    };
+    interface HTMLDrtArrowUpRightFromSquareIconElement extends Components.DrtArrowUpRightFromSquareIcon, HTMLStencilElement {
+    }
+    var HTMLDrtArrowUpRightFromSquareIconElement: {
+        prototype: HTMLDrtArrowUpRightFromSquareIconElement;
+        new (): HTMLDrtArrowUpRightFromSquareIconElement;
     };
     interface HTMLDrtArrowUpRightIconElement extends Components.DrtArrowUpRightIcon, HTMLStencilElement {
     }
@@ -759,6 +785,18 @@ declare global {
         prototype: HTMLDrtSignTransactionsAdvancedElement;
         new (): HTMLDrtSignTransactionsAdvancedElement;
     };
+    interface HTMLDrtSignTransactionsAdvancedDataElement extends Components.DrtSignTransactionsAdvancedData, HTMLStencilElement {
+    }
+    var HTMLDrtSignTransactionsAdvancedDataElement: {
+        prototype: HTMLDrtSignTransactionsAdvancedDataElement;
+        new (): HTMLDrtSignTransactionsAdvancedDataElement;
+    };
+    interface HTMLDrtSignTransactionsAdvancedDataDecodeElement extends Components.DrtSignTransactionsAdvancedDataDecode, HTMLStencilElement {
+    }
+    var HTMLDrtSignTransactionsAdvancedDataDecodeElement: {
+        prototype: HTMLDrtSignTransactionsAdvancedDataDecodeElement;
+        new (): HTMLDrtSignTransactionsAdvancedDataDecodeElement;
+    };
     interface HTMLDrtSignTransactionsFooterElement extends Components.DrtSignTransactionsFooter, HTMLStencilElement {
     }
     var HTMLDrtSignTransactionsFooterElement: {
@@ -799,6 +837,24 @@ declare global {
     var HTMLDrtSimpleToastElement: {
         prototype: HTMLDrtSimpleToastElement;
         new (): HTMLDrtSimpleToastElement;
+    };
+    interface HTMLDrtSingleAngleDownIconElement extends Components.DrtSingleAngleDownIcon, HTMLStencilElement {
+    }
+    var HTMLDrtSingleAngleDownIconElement: {
+        prototype: HTMLDrtSingleAngleDownIconElement;
+        new (): HTMLDrtSingleAngleDownIconElement;
+    };
+    interface HTMLDrtSingleAngleLeftIconElement extends Components.DrtSingleAngleLeftIcon, HTMLStencilElement {
+    }
+    var HTMLDrtSingleAngleLeftIconElement: {
+        prototype: HTMLDrtSingleAngleLeftIconElement;
+        new (): HTMLDrtSingleAngleLeftIconElement;
+    };
+    interface HTMLDrtSingleAngleRightIconElement extends Components.DrtSingleAngleRightIcon, HTMLStencilElement {
+    }
+    var HTMLDrtSingleAngleRightIconElement: {
+        prototype: HTMLDrtSingleAngleRightIconElement;
+        new (): HTMLDrtSingleAngleRightIconElement;
     };
     interface HTMLDrtSpinnerIconElement extends Components.DrtSpinnerIcon, HTMLStencilElement {
     }
@@ -959,11 +1015,11 @@ declare global {
         prototype: HTMLDrtTriangularWarningIconElement;
         new (): HTMLDrtTriangularWarningIconElement;
     };
-    interface HTMLDrtTrimTextElement extends Components.DrtTrimText, HTMLStencilElement {
+    interface HTMLDrtTrimElement extends Components.DrtTrim, HTMLStencilElement {
     }
-    var HTMLDrtTrimTextElement: {
-        prototype: HTMLDrtTrimTextElement;
-        new (): HTMLDrtTrimTextElement;
+    var HTMLDrtTrimElement: {
+        prototype: HTMLDrtTrimElement;
+        new (): HTMLDrtTrimElement;
     };
     interface HTMLDrtUnlockButtonElement extends Components.DrtUnlockButton, HTMLStencilElement {
     }
@@ -1012,11 +1068,29 @@ declare global {
         prototype: HTMLDrtWalletConnectElement;
         new (): HTMLDrtWalletConnectElement;
     };
+    interface HTMLDrtWalletConnectAppGalleryIconElement extends Components.DrtWalletConnectAppGalleryIcon, HTMLStencilElement {
+    }
+    var HTMLDrtWalletConnectAppGalleryIconElement: {
+        prototype: HTMLDrtWalletConnectAppGalleryIconElement;
+        new (): HTMLDrtWalletConnectAppGalleryIconElement;
+    };
+    interface HTMLDrtWalletConnectAppStoreIconElement extends Components.DrtWalletConnectAppStoreIcon, HTMLStencilElement {
+    }
+    var HTMLDrtWalletConnectAppStoreIconElement: {
+        prototype: HTMLDrtWalletConnectAppStoreIconElement;
+        new (): HTMLDrtWalletConnectAppStoreIconElement;
+    };
     interface HTMLDrtWalletConnectDownloadElement extends Components.DrtWalletConnectDownload, HTMLStencilElement {
     }
     var HTMLDrtWalletConnectDownloadElement: {
         prototype: HTMLDrtWalletConnectDownloadElement;
         new (): HTMLDrtWalletConnectDownloadElement;
+    };
+    interface HTMLDrtWalletConnectGooglePlayIconElement extends Components.DrtWalletConnectGooglePlayIcon, HTMLStencilElement {
+    }
+    var HTMLDrtWalletConnectGooglePlayIconElement: {
+        prototype: HTMLDrtWalletConnectGooglePlayIconElement;
+        new (): HTMLDrtWalletConnectGooglePlayIconElement;
     };
     interface HTMLDrtWalletConnectScanElementEventMap {
         "downloadClick": any;
@@ -1060,11 +1134,10 @@ declare global {
         new (): HTMLDrtXportalQrCodePreloaderElement;
     };
     interface HTMLElementTagNameMap {
-        "drt-angle-left-icon": HTMLDrtAngleLeftIconElement;
-        "drt-angle-right-icon": HTMLDrtAngleRightIconElement;
         "drt-angles-left-icon": HTMLDrtAnglesLeftIconElement;
         "drt-angles-right-icon": HTMLDrtAnglesRightIconElement;
         "drt-arrow-right-icon": HTMLDrtArrowRightIconElement;
+        "drt-arrow-up-right-from-square-icon": HTMLDrtArrowUpRightFromSquareIconElement;
         "drt-arrow-up-right-icon": HTMLDrtArrowUpRightIconElement;
         "drt-back-arrow-icon": HTMLDrtBackArrowIconElement;
         "drt-check-icon": HTMLDrtCheckIconElement;
@@ -1100,11 +1173,16 @@ declare global {
         "drt-side-panel": HTMLDrtSidePanelElement;
         "drt-side-panel-header": HTMLDrtSidePanelHeaderElement;
         "drt-sign-transactions-advanced": HTMLDrtSignTransactionsAdvancedElement;
+        "drt-sign-transactions-advanced-data": HTMLDrtSignTransactionsAdvancedDataElement;
+        "drt-sign-transactions-advanced-data-decode": HTMLDrtSignTransactionsAdvancedDataDecodeElement;
         "drt-sign-transactions-footer": HTMLDrtSignTransactionsFooterElement;
         "drt-sign-transactions-header": HTMLDrtSignTransactionsHeaderElement;
         "drt-sign-transactions-overview": HTMLDrtSignTransactionsOverviewElement;
         "drt-sign-transactions-panel": HTMLDrtSignTransactionsPanelElement;
         "drt-simple-toast": HTMLDrtSimpleToastElement;
+        "drt-single-angle-down-icon": HTMLDrtSingleAngleDownIconElement;
+        "drt-single-angle-left-icon": HTMLDrtSingleAngleLeftIconElement;
+        "drt-single-angle-right-icon": HTMLDrtSingleAngleRightIconElement;
         "drt-spinner-icon": HTMLDrtSpinnerIconElement;
         "drt-toast-list": HTMLDrtToastListElement;
         "drt-tooltip": HTMLDrtTooltipElement;
@@ -1126,14 +1204,17 @@ declare global {
         "drt-transaction-value": HTMLDrtTransactionValueElement;
         "drt-transactions-table": HTMLDrtTransactionsTableElement;
         "drt-triangular-warning-icon": HTMLDrtTriangularWarningIconElement;
-        "drt-trim-text": HTMLDrtTrimTextElement;
+        "drt-trim": HTMLDrtTrimElement;
         "drt-unlock-button": HTMLDrtUnlockButtonElement;
         "drt-unlock-panel": HTMLDrtUnlockPanelElement;
         "drt-unlock-panel-footer": HTMLDrtUnlockPanelFooterElement;
         "drt-unlock-panel-group": HTMLDrtUnlockPanelGroupElement;
         "drt-unlock-provider-button": HTMLDrtUnlockProviderButtonElement;
         "drt-wallet-connect": HTMLDrtWalletConnectElement;
+        "drt-wallet-connect-app-gallery-icon": HTMLDrtWalletConnectAppGalleryIconElement;
+        "drt-wallet-connect-app-store-icon": HTMLDrtWalletConnectAppStoreIconElement;
         "drt-wallet-connect-download": HTMLDrtWalletConnectDownloadElement;
+        "drt-wallet-connect-google-play-icon": HTMLDrtWalletConnectGooglePlayIconElement;
         "drt-wallet-connect-scan": HTMLDrtWalletConnectScanElement;
         "drt-wallet-provider-icon": HTMLDrtWalletProviderIconElement;
         "drt-xalias-provider-icon": HTMLDrtXaliasProviderIconElement;
@@ -1142,12 +1223,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface DrtAngleLeftIcon {
-        "class"?: string;
-    }
-    interface DrtAngleRightIcon {
-        "class"?: string;
-    }
     interface DrtAnglesLeftIcon {
     }
     interface DrtAnglesRightIcon {
@@ -1155,10 +1230,14 @@ declare namespace LocalJSX {
     interface DrtArrowRightIcon {
         "class"?: string;
     }
+    interface DrtArrowUpRightFromSquareIcon {
+        "class"?: string;
+    }
     interface DrtArrowUpRightIcon {
         "class"?: string;
     }
     interface DrtBackArrowIcon {
+        "class"?: string;
     }
     interface DrtCheckIcon {
         "class"?: string;
@@ -1179,8 +1258,10 @@ declare namespace LocalJSX {
         "toast"?: IComponentToast;
     }
     interface DrtDefaultTransactionIconLarge {
+        "class"?: string;
     }
     interface DrtDefaultTransactionIconSmall {
+        "class"?: string;
     }
     interface DrtDharitriLogoIcon {
         "class"?: string;
@@ -1188,10 +1269,8 @@ declare namespace LocalJSX {
     interface DrtExplorerLink {
         "class"?: string;
         "dataTestId"?: string;
-        "icon"?: IconDefinition | string;
         "iconClass"?: string;
         "link"?: string;
-        "text"?: string;
     }
     interface DrtExtensionProviderIcon {
         "class"?: string;
@@ -1232,6 +1311,7 @@ declare namespace LocalJSX {
         "data"?: ILedgerConnectPanelData;
     }
     interface DrtLedgerIcon {
+        "class"?: string;
     }
     interface DrtLedgerIntro {
         "connectScreenData"?: IConnectScreenData;
@@ -1303,6 +1383,14 @@ declare namespace LocalJSX {
         "data"?: string;
         "highlight"?: string;
     }
+    interface DrtSignTransactionsAdvancedData {
+        "data"?: string;
+        "highlight"?: string;
+    }
+    interface DrtSignTransactionsAdvancedDataDecode {
+        "currentDecodeMethod"?: DecodeMethodEnum;
+        "isToggled"?: boolean;
+    }
     interface DrtSignTransactionsFooter {
     }
     interface DrtSignTransactionsHeader {
@@ -1324,6 +1412,15 @@ declare namespace LocalJSX {
         "onDeleteToast"?: (event: DrtSimpleToastCustomEvent<void>) => void;
         "toast"?: ISimpleToast;
     }
+    interface DrtSingleAngleDownIcon {
+        "class"?: string;
+    }
+    interface DrtSingleAngleLeftIcon {
+        "class"?: string;
+    }
+    interface DrtSingleAngleRightIcon {
+        "class"?: string;
+    }
     interface DrtSpinnerIcon {
         "class"?: string;
     }
@@ -1337,7 +1434,7 @@ declare namespace LocalJSX {
         "triggerOnClick"?: boolean;
     }
     interface DrtTransactionAccount {
-        "account"?: ITransactionAccount;
+        "account"?: TransactionAccountType;
         "class"?: string;
         "dataTestId"?: string;
         "scope"?: 'receiver' | 'sender';
@@ -1365,11 +1462,11 @@ declare namespace LocalJSX {
     }
     interface DrtTransactionHash {
         "class"?: string;
-        "transaction"?: ITransactionsTableRow;
+        "transaction"?: TransactionRowType;
     }
     interface DrtTransactionIcon {
         "class"?: string;
-        "iconInfo"?: ITransactionIconInfo;
+        "iconInfo"?: TransactionIconInfoType;
     }
     interface DrtTransactionListItem {
         "transaction"?: ITransactionListItem1;
@@ -1381,7 +1478,7 @@ declare namespace LocalJSX {
     }
     interface DrtTransactionShards {
         "class"?: string;
-        "transaction"?: ITransactionsTableRow;
+        "transaction"?: TransactionRowType;
     }
     interface DrtTransactionToast {
         "fullWidth"?: boolean;
@@ -1419,15 +1516,15 @@ declare namespace LocalJSX {
     }
     interface DrtTransactionValue {
         "class"?: string;
-        "value"?: ITransactionValue;
+        "value"?: TransactionValueType;
     }
     interface DrtTransactionsTable {
         "class"?: string;
-        "transactions"?: ITransactionsTableRow[];
+        "transactions"?: TransactionRowType[];
     }
     interface DrtTriangularWarningIcon {
     }
-    interface DrtTrimText {
+    interface DrtTrim {
         "class"?: string;
         "dataTestId"?: string;
         "text"?: string;
@@ -1442,9 +1539,10 @@ declare namespace LocalJSX {
     interface DrtUnlockPanel {
     }
     interface DrtUnlockPanelFooter {
+        "walletAddress"?: string;
     }
     interface DrtUnlockPanelGroup {
-        "groupTitle"?: string;
+        "class"?: string;
         "onLogin"?: (event: DrtUnlockPanelGroupCustomEvent<IProviderBase>) => void;
         "providers"?: IProviderBase[];
     }
@@ -1456,11 +1554,23 @@ declare namespace LocalJSX {
         "data"?: IWalletConnectPanelData;
         "qrCodeSvg"?: string;
     }
+    interface DrtWalletConnectAppGalleryIcon {
+        "class"?: string;
+    }
+    interface DrtWalletConnectAppStoreIcon {
+        "class"?: string;
+    }
     interface DrtWalletConnectDownload {
+        "class"?: string;
+    }
+    interface DrtWalletConnectGooglePlayIcon {
+        "class"?: string;
     }
     interface DrtWalletConnectScan {
+        "class"?: string;
         "onDownloadClick"?: (event: DrtWalletConnectScanCustomEvent<any>) => void;
         "qrCodeSvg"?: string;
+        "walletConnectDeepLink"?: string;
     }
     interface DrtWalletProviderIcon {
         "class"?: string;
@@ -1468,16 +1578,16 @@ declare namespace LocalJSX {
     interface DrtXaliasProviderIcon {
     }
     interface DrtXportalDownloadQrIcon {
+        "class"?: string;
     }
     interface DrtXportalQrCodePreloader {
         "class"?: string;
     }
     interface IntrinsicElements {
-        "drt-angle-left-icon": DrtAngleLeftIcon;
-        "drt-angle-right-icon": DrtAngleRightIcon;
         "drt-angles-left-icon": DrtAnglesLeftIcon;
         "drt-angles-right-icon": DrtAnglesRightIcon;
         "drt-arrow-right-icon": DrtArrowRightIcon;
+        "drt-arrow-up-right-from-square-icon": DrtArrowUpRightFromSquareIcon;
         "drt-arrow-up-right-icon": DrtArrowUpRightIcon;
         "drt-back-arrow-icon": DrtBackArrowIcon;
         "drt-check-icon": DrtCheckIcon;
@@ -1513,11 +1623,16 @@ declare namespace LocalJSX {
         "drt-side-panel": DrtSidePanel;
         "drt-side-panel-header": DrtSidePanelHeader;
         "drt-sign-transactions-advanced": DrtSignTransactionsAdvanced;
+        "drt-sign-transactions-advanced-data": DrtSignTransactionsAdvancedData;
+        "drt-sign-transactions-advanced-data-decode": DrtSignTransactionsAdvancedDataDecode;
         "drt-sign-transactions-footer": DrtSignTransactionsFooter;
         "drt-sign-transactions-header": DrtSignTransactionsHeader;
         "drt-sign-transactions-overview": DrtSignTransactionsOverview;
         "drt-sign-transactions-panel": DrtSignTransactionsPanel;
         "drt-simple-toast": DrtSimpleToast;
+        "drt-single-angle-down-icon": DrtSingleAngleDownIcon;
+        "drt-single-angle-left-icon": DrtSingleAngleLeftIcon;
+        "drt-single-angle-right-icon": DrtSingleAngleRightIcon;
         "drt-spinner-icon": DrtSpinnerIcon;
         "drt-toast-list": DrtToastList;
         "drt-tooltip": DrtTooltip;
@@ -1539,14 +1654,17 @@ declare namespace LocalJSX {
         "drt-transaction-value": DrtTransactionValue;
         "drt-transactions-table": DrtTransactionsTable;
         "drt-triangular-warning-icon": DrtTriangularWarningIcon;
-        "drt-trim-text": DrtTrimText;
+        "drt-trim": DrtTrim;
         "drt-unlock-button": DrtUnlockButton;
         "drt-unlock-panel": DrtUnlockPanel;
         "drt-unlock-panel-footer": DrtUnlockPanelFooter;
         "drt-unlock-panel-group": DrtUnlockPanelGroup;
         "drt-unlock-provider-button": DrtUnlockProviderButton;
         "drt-wallet-connect": DrtWalletConnect;
+        "drt-wallet-connect-app-gallery-icon": DrtWalletConnectAppGalleryIcon;
+        "drt-wallet-connect-app-store-icon": DrtWalletConnectAppStoreIcon;
         "drt-wallet-connect-download": DrtWalletConnectDownload;
+        "drt-wallet-connect-google-play-icon": DrtWalletConnectGooglePlayIcon;
         "drt-wallet-connect-scan": DrtWalletConnectScan;
         "drt-wallet-provider-icon": DrtWalletProviderIcon;
         "drt-xalias-provider-icon": DrtXaliasProviderIcon;
@@ -1558,11 +1676,10 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "drt-angle-left-icon": LocalJSX.DrtAngleLeftIcon & JSXBase.HTMLAttributes<HTMLDrtAngleLeftIconElement>;
-            "drt-angle-right-icon": LocalJSX.DrtAngleRightIcon & JSXBase.HTMLAttributes<HTMLDrtAngleRightIconElement>;
             "drt-angles-left-icon": LocalJSX.DrtAnglesLeftIcon & JSXBase.HTMLAttributes<HTMLDrtAnglesLeftIconElement>;
             "drt-angles-right-icon": LocalJSX.DrtAnglesRightIcon & JSXBase.HTMLAttributes<HTMLDrtAnglesRightIconElement>;
             "drt-arrow-right-icon": LocalJSX.DrtArrowRightIcon & JSXBase.HTMLAttributes<HTMLDrtArrowRightIconElement>;
+            "drt-arrow-up-right-from-square-icon": LocalJSX.DrtArrowUpRightFromSquareIcon & JSXBase.HTMLAttributes<HTMLDrtArrowUpRightFromSquareIconElement>;
             "drt-arrow-up-right-icon": LocalJSX.DrtArrowUpRightIcon & JSXBase.HTMLAttributes<HTMLDrtArrowUpRightIconElement>;
             "drt-back-arrow-icon": LocalJSX.DrtBackArrowIcon & JSXBase.HTMLAttributes<HTMLDrtBackArrowIconElement>;
             "drt-check-icon": LocalJSX.DrtCheckIcon & JSXBase.HTMLAttributes<HTMLDrtCheckIconElement>;
@@ -1598,11 +1715,16 @@ declare module "@stencil/core" {
             "drt-side-panel": LocalJSX.DrtSidePanel & JSXBase.HTMLAttributes<HTMLDrtSidePanelElement>;
             "drt-side-panel-header": LocalJSX.DrtSidePanelHeader & JSXBase.HTMLAttributes<HTMLDrtSidePanelHeaderElement>;
             "drt-sign-transactions-advanced": LocalJSX.DrtSignTransactionsAdvanced & JSXBase.HTMLAttributes<HTMLDrtSignTransactionsAdvancedElement>;
+            "drt-sign-transactions-advanced-data": LocalJSX.DrtSignTransactionsAdvancedData & JSXBase.HTMLAttributes<HTMLDrtSignTransactionsAdvancedDataElement>;
+            "drt-sign-transactions-advanced-data-decode": LocalJSX.DrtSignTransactionsAdvancedDataDecode & JSXBase.HTMLAttributes<HTMLDrtSignTransactionsAdvancedDataDecodeElement>;
             "drt-sign-transactions-footer": LocalJSX.DrtSignTransactionsFooter & JSXBase.HTMLAttributes<HTMLDrtSignTransactionsFooterElement>;
             "drt-sign-transactions-header": LocalJSX.DrtSignTransactionsHeader & JSXBase.HTMLAttributes<HTMLDrtSignTransactionsHeaderElement>;
             "drt-sign-transactions-overview": LocalJSX.DrtSignTransactionsOverview & JSXBase.HTMLAttributes<HTMLDrtSignTransactionsOverviewElement>;
             "drt-sign-transactions-panel": LocalJSX.DrtSignTransactionsPanel & JSXBase.HTMLAttributes<HTMLDrtSignTransactionsPanelElement>;
             "drt-simple-toast": LocalJSX.DrtSimpleToast & JSXBase.HTMLAttributes<HTMLDrtSimpleToastElement>;
+            "drt-single-angle-down-icon": LocalJSX.DrtSingleAngleDownIcon & JSXBase.HTMLAttributes<HTMLDrtSingleAngleDownIconElement>;
+            "drt-single-angle-left-icon": LocalJSX.DrtSingleAngleLeftIcon & JSXBase.HTMLAttributes<HTMLDrtSingleAngleLeftIconElement>;
+            "drt-single-angle-right-icon": LocalJSX.DrtSingleAngleRightIcon & JSXBase.HTMLAttributes<HTMLDrtSingleAngleRightIconElement>;
             "drt-spinner-icon": LocalJSX.DrtSpinnerIcon & JSXBase.HTMLAttributes<HTMLDrtSpinnerIconElement>;
             "drt-toast-list": LocalJSX.DrtToastList & JSXBase.HTMLAttributes<HTMLDrtToastListElement>;
             "drt-tooltip": LocalJSX.DrtTooltip & JSXBase.HTMLAttributes<HTMLDrtTooltipElement>;
@@ -1624,14 +1746,17 @@ declare module "@stencil/core" {
             "drt-transaction-value": LocalJSX.DrtTransactionValue & JSXBase.HTMLAttributes<HTMLDrtTransactionValueElement>;
             "drt-transactions-table": LocalJSX.DrtTransactionsTable & JSXBase.HTMLAttributes<HTMLDrtTransactionsTableElement>;
             "drt-triangular-warning-icon": LocalJSX.DrtTriangularWarningIcon & JSXBase.HTMLAttributes<HTMLDrtTriangularWarningIconElement>;
-            "drt-trim-text": LocalJSX.DrtTrimText & JSXBase.HTMLAttributes<HTMLDrtTrimTextElement>;
+            "drt-trim": LocalJSX.DrtTrim & JSXBase.HTMLAttributes<HTMLDrtTrimElement>;
             "drt-unlock-button": LocalJSX.DrtUnlockButton & JSXBase.HTMLAttributes<HTMLDrtUnlockButtonElement>;
             "drt-unlock-panel": LocalJSX.DrtUnlockPanel & JSXBase.HTMLAttributes<HTMLDrtUnlockPanelElement>;
             "drt-unlock-panel-footer": LocalJSX.DrtUnlockPanelFooter & JSXBase.HTMLAttributes<HTMLDrtUnlockPanelFooterElement>;
             "drt-unlock-panel-group": LocalJSX.DrtUnlockPanelGroup & JSXBase.HTMLAttributes<HTMLDrtUnlockPanelGroupElement>;
             "drt-unlock-provider-button": LocalJSX.DrtUnlockProviderButton & JSXBase.HTMLAttributes<HTMLDrtUnlockProviderButtonElement>;
             "drt-wallet-connect": LocalJSX.DrtWalletConnect & JSXBase.HTMLAttributes<HTMLDrtWalletConnectElement>;
+            "drt-wallet-connect-app-gallery-icon": LocalJSX.DrtWalletConnectAppGalleryIcon & JSXBase.HTMLAttributes<HTMLDrtWalletConnectAppGalleryIconElement>;
+            "drt-wallet-connect-app-store-icon": LocalJSX.DrtWalletConnectAppStoreIcon & JSXBase.HTMLAttributes<HTMLDrtWalletConnectAppStoreIconElement>;
             "drt-wallet-connect-download": LocalJSX.DrtWalletConnectDownload & JSXBase.HTMLAttributes<HTMLDrtWalletConnectDownloadElement>;
+            "drt-wallet-connect-google-play-icon": LocalJSX.DrtWalletConnectGooglePlayIcon & JSXBase.HTMLAttributes<HTMLDrtWalletConnectGooglePlayIconElement>;
             "drt-wallet-connect-scan": LocalJSX.DrtWalletConnectScan & JSXBase.HTMLAttributes<HTMLDrtWalletConnectScanElement>;
             "drt-wallet-provider-icon": LocalJSX.DrtWalletProviderIcon & JSXBase.HTMLAttributes<HTMLDrtWalletProviderIconElement>;
             "drt-xalias-provider-icon": LocalJSX.DrtXaliasProviderIcon & JSXBase.HTMLAttributes<HTMLDrtXaliasProviderIconElement>;

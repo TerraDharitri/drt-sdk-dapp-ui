@@ -1,69 +1,37 @@
 .pagination-ellipsis-form {
-  text-align: left;
-  cursor: default;
-  display: flex;
-  flex-direction: column;
+  @apply drt:cursor-default drt:flex drt:flex-col drt:text-left;
 
   .pagination-ellipsis-form-field-label {
-    margin-bottom: 8px;
-    font-size: 12px;
-    color: #a3a3a3;
-    cursor: pointer;
+    @apply drt:cursor-pointer drt:mb-2 drt:text-xs;
+    color: var(--drt-text-color-secondary);
   }
 
   .pagination-ellipsis-form-field {
-    display: flex;
-    gap: 8px;
-    position: relative;
+    @apply drt:relative drt:gap-2 drt:flex;
 
     .pagination-ellipsis-form-field-input {
-      width: 88px;
-      height: calc(40px + 4px);
+      @apply drt:w-22 drt:h-11 drt:p-3 drt:text-center drt:transition-all drt:duration-200 drt:ease-in-out drt:pr-10 drt:m-0;
+      @apply drt:border drt:shadow-none drt:text-base drt:rounded-lg drt:border-transparent drt:appearance-none drt:outline-none;
+      background: var(--drt-bg-color-primary);
+      color: var(--drt-text-color-primary);
       border-width: 1px;
-      box-shadow: none;
-      font-size: 1rem;
-      padding: 12px;
-      padding-right: 40px;
-      text-align: center;
-      transition: all 200ms ease;
-      background: #171717;
-      border-radius: 8px;
-      border-color: transparent;
-      appearance: none;
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-      -moz-appearance: textfield;
-      margin: 0;
-      color: #fff;
 
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+        @apply drt:appearance-none drt:m-0;
       }
 
       &:focus {
-        border-color: #23f7dd;
+        border-color: var(--drt-text-accent-color);
       }
     }
 
     .pagination-ellipsis-form-button {
-      outline: none;
-      border: none;
-      background-color: transparent;
-      line-height: 1;
-      cursor: pointer;
-      position: absolute;
-      right: 4px;
-      display: flex;
-      height: 32px;
-      transform: translateY(-50%);
-      font-size: 12px;
-      top: 50%;
+      @apply drt:leading-none drt:h-8 drt:right-1 drt:absolute drt:cursor-pointer drt:flex drt:top-1/2 drt:text-xs;
+      @apply drt:outline-none drt:border-none drt:bg-transparent drt:transform drt:-translate-y-1/2 drt:translate-x-0;
 
       &:hover .pagination-ellipsis-form-button-icon {
-        fill: #23f7dd;
+        fill: var(--drt-text-accent-color);
       }
     }
   }

@@ -1,18 +1,25 @@
-.unlock-panel-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+:host {
+  @apply drt:overflow-hidden drt:flex;
 
-  .unlock-panel-group-label {
-    line-height: 1;
-    color: #a09a93;
+  @media (min-width: 640px) {
+    @apply drt:overflow-visible;
   }
 
-  .unlock-panel-group-providers {
-    display: flex;
-    border-radius: 12px;
-    overflow: hidden;
-    flex-direction: column;
-    gap: calc(4px / 2);
+  .unlock-panel-group {
+    @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden;
+
+    .unlock-panel-group-label {
+      @apply drt:leading-none drt:relative;
+      color: var(--drt-text-color-secondary);
+    }
+
+    .unlock-panel-group-providers {
+      @apply drt:flex drt:flex-col drt:gap-0.5 drt:rounded-tl-lg drt:rounded-tr-lg drt:overflow-auto;
+      @apply drt:pb-6 drt:mt-3;
+
+      &::-webkit-scrollbar {
+        @apply drt:hidden;
+      }
+    }
   }
 }

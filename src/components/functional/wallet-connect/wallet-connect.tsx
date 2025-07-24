@@ -1,6 +1,6 @@
 import { Component, Element, Fragment, h, Method, Prop, State, Watch } from '@stencil/core';
 import type { IEventBus, IWalletConnectPanelData } from 'components';
-import { SidePanelHeaderSlotEnum } from 'components/visual/side-panel/components/side-panel-header/side-panel-header.types';
+import { SidePanelHeaderSlotEnum } from 'components/visual/side-panel/components/side-panel-header/side-panel-header';
 import { providerLabels } from 'constants/providerFactory.constants';
 import QRCode from 'qrcode';
 import { EventBus } from 'utils/EventBus';
@@ -15,9 +15,11 @@ import { WalletConnectEventsEnum } from './wallet-connect.types';
 export class WalletConnect {
   private eventBus: IEventBus = new EventBus();
 
-  @Prop() data: IWalletConnectPanelData = { wcURI: '' };
   @State() showScanPage: boolean = true;
+  @State() walletConnectDeepLink: string = '';
   @Element() hostElement: HTMLElement;
+
+  @Prop() data: IWalletConnectPanelData = { wcURI: '' };
   @Prop() qrCodeSvg: string = '';
 
   @Watch('data')
@@ -42,6 +44,10 @@ export class WalletConnect {
   }
 
   private async dataUpdate(payload: IWalletConnectPanelData) {
+    if (payload.walletConnectDeepLink) {
+      this.walletConnectDeepLink = payload.walletConnectDeepLink;
+    }
+
     if (payload.wcURI) {
       this.qrCodeSvg = await this.generateSVG(payload.wcURI);
     }
@@ -69,11 +75,11 @@ export class WalletConnect {
     return (
       <Fragment>
         <drt-side-panel-header
-          panelTitle={providerLabels.walletConnect}
           hasRightButton={true}
           hasLeftButton={!this.showScanPage}
-          onRightButtonClick={() => this.eventBus.publish(WalletConnectEventsEnum.CLOSE)}
+          panelTitle={providerLabels.walletConnect}
           onLeftButtonClick={this.handlePageToggle.bind(this)}
+          onRightButtonClick={() => this.eventBus.publish(WalletConnectEventsEnum.CLOSE)}
         >
           {!this.showScanPage && <drt-back-arrow-icon slot={SidePanelHeaderSlotEnum.leftIcon} />}
           <drt-close-icon slot={SidePanelHeaderSlotEnum.rightIcon} />
@@ -81,7 +87,11 @@ export class WalletConnect {
 
         <div class="wallet-connect">
           {this.showScanPage ? (
-            <drt-wallet-connect-scan qrCodeSvg={this.qrCodeSvg} onDownloadClick={this.handlePageToggle.bind(this)} />
+            <drt-wallet-connect-scan
+              qrCodeSvg={this.qrCodeSvg}
+              onDownloadClick={this.handlePageToggle.bind(this)}
+              walletConnectDeepLink={this.walletConnectDeepLink}
+            />
           ) : (
             <drt-wallet-connect-download />
           )}
