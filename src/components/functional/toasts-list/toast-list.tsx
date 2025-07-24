@@ -1,4 +1,5 @@
 import { Component, h, Method, State } from '@stencil/core';
+import { ConnectionMonitor } from 'utils/ConnectionMonitor';
 import type { IEventBus } from 'utils/EventBus';
 import { EventBus } from 'utils/EventBus';
 
@@ -10,14 +11,17 @@ import { ToastEventsEnum } from './toast-list.types';
   styleUrl: 'toast-list.scss',
 })
 export class ToastList {
-  private eventBus: IEventBus = new EventBus();
+  private readonly eventBus: IEventBus = new EventBus();
   private unsubscribeFunctions: (() => void)[] = [];
+  private readonly connectionMonitor = new ConnectionMonitor();
 
   @State() transactionToasts: ITransactionToast[] = [];
   @State() customToasts: CustomToastType[] = [];
+  @State() isVisible: boolean = true;
 
   @Method()
   async getEventBus() {
+    await this.connectionMonitor.waitForConnection();
     return this.eventBus;
   }
 
@@ -29,7 +33,13 @@ export class ToastList {
 
     const unsubCustom = this.eventBus.subscribe(ToastEventsEnum.CUSTOM_TOAST_DATA_UPDATE, this.customToastsUpdate);
 
-    this.unsubscribeFunctions.push(unsubTransaction, unsubCustom);
+    const unsubHide = this.eventBus.subscribe(ToastEventsEnum.HIDE, this.handleHide);
+
+    const unsubShow = this.eventBus.subscribe(ToastEventsEnum.SHOW, this.handleShow);
+
+    this.unsubscribeFunctions.push(unsubTransaction, unsubCustom, unsubHide, unsubShow);
+
+    this.connectionMonitor.connect();
   }
 
   disconnectedCallback() {
@@ -42,29 +52,38 @@ export class ToastList {
     this.unsubscribeFunctions = [];
   }
 
-  private handleCustomToastDelete = (toastId: string) => {
+  private readonly handleHide = () => {
+    this.isVisible = false;
+  };
+
+  private readonly handleShow = () => {
+    this.isVisible = true;
+  };
+
+  private readonly handleCustomToastDelete = (toastId: string) => {
     this.eventBus.publish(ToastEventsEnum.CLOSE, toastId);
   };
 
-  private handleTransactionToastDelete = (toastId: string) => {
+  private readonly handleTransactionToastDelete = (toastId: string) => {
     this.eventBus.publish(ToastEventsEnum.CLOSE, toastId);
   };
 
-  private handleViewAllClick = () => {
+  private readonly handleViewAllClick = () => {
     this.eventBus.publish(ToastEventsEnum.OPEN_NOTIFICATIONS_FEED);
   };
 
-  private transactionToastUpdate = (payload: ITransactionToast[]) => {
+  private readonly transactionToastUpdate = (payload: ITransactionToast[]) => {
     this.transactionToasts = [...payload];
   };
 
-  private customToastsUpdate = (payload: CustomToastType[]) => {
+  private readonly customToastsUpdate = (payload: CustomToastType[]) => {
     this.customToasts = [...payload];
   };
 
   private resetState() {
     this.transactionToasts = [];
     this.customToasts = [];
+    this.isVisible = true;
   }
 
   render() {
@@ -75,6 +94,7 @@ export class ToastList {
         class={{
           'toast-list': true,
           'toast-list-bottom': hasTransactionToasts,
+          'hidden': !this.isVisible,
         }}
         id="toast-list"
       >

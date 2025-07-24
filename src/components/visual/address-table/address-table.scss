@@ -1,10 +1,10 @@
 :host {
   @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden;
 
-  .ledger-addresses {
+  .address-table {
     @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden drt:py-6;
 
-    .ledger-addresses-label-wrapper {
+    .address-table-label-wrapper {
       @apply drt:relative drt:z-2;
 
       &:after {
@@ -14,20 +14,20 @@
         box-shadow: 0px 8px 12px 16px var(--drt-bg-color-primary);
       }
 
-      .ledger-addresses-label {
+      .address-table-label {
         @apply drt:leading-none drt:relative drt:z-1;
         color: var(--drt-text-color-primary);
       }
     }
 
-    .ledger-addresses-wrapper {
+    .address-table-wrapper {
       @apply drt:relative drt:mb-auto drt:py-5 drt:overflow-auto;
 
       &::-webkit-scrollbar {
         @apply drt:hidden;
       }
 
-      .ledger-addresses-preloader {
+      .address-table-preloader {
         @apply drt:flex drt:flex-col drt:pointer-events-none drt:absolute drt:opacity-0 drt:z-1 drt:gap-1;
         @apply drt:transition-all drt:duration-200 drt:ease-in-out drt:left-0 drt:right-0 drt:bottom-0 drt:top-5;
 
@@ -36,7 +36,7 @@
         }
       }
 
-      .ledger-addresses-list {
+      .address-table-list {
         @apply drt:flex drt:flex-col drt:gap-1 drt:pointer-events-none drt:transition-all drt:ease-in-out;
         @apply drt:duration-200 drt:opacity-0;
 
@@ -44,7 +44,7 @@
           @apply drt:opacity-100 drt:pointer-events-auto;
         }
 
-        .ledger-addresses-list-item {
+        .address-table-list-item {
           @apply drt:rounded-lg drt:flex drt:items-center drt:p-4 drt:h-16 drt:w-full;
           @apply drt:cursor-pointer drt:transition-all drt:duration-200 drt:ease-in-out;
           border: 1px solid transparent;
@@ -56,7 +56,7 @@
             border-color: var(--drt-text-accent-color);
           }
 
-          .ledger-addresses-list-item-checkbox {
+          .address-table-list-item-checkbox {
             @apply drt:relative drt:z-1 drt:cursor-pointer drt:transition-all drt:duration-200 drt:rounded-full;
             @apply drt:ease-in-out drt:mr-2 drt:min-w-4 drt:max-w-4 drt:h-4;
             border: 1px solid var(--drt-text-color-primary);
@@ -77,7 +77,7 @@
             }
           }
 
-          .ledger-addresses-list-item-index {
+          .address-table-list-item-index {
             @apply drt:relative drt:z-1 drt:text-base drt:font-medium drt:transition-all drt:duration-200 drt:mr-4 drt:ease-in-out;
             color: var(--drt-text-color-secondary);
 
@@ -102,7 +102,7 @@
             }
           }
 
-          .ledger-addresses-list-item-address {
+          .address-table-list-item-address {
             @apply drt:relative drt:z-1 drt:max-w-40 drt:text-base drt:mr-auto drt:min-w-0;
 
             .trim-wrapper {
@@ -110,14 +110,14 @@
             }
           }
 
-          .ledger-addresses-list-item-balance {
+          .address-table-list-item-balance {
             @apply drt:relative drt:ml-4 drt:font-medium drt:text-base drt:z-1;
           }
         }
       }
     }
 
-    .ledger-addresses-pagination {
+    .address-table-pagination {
       @apply drt:relative drt:z-1;
 
       &:after {
@@ -128,20 +128,20 @@
       }
     }
 
-    .ledger-addresses-button-wrapper {
+    .address-table-button-wrapper {
       @apply drt:relative drt:z-2 drt:mt-4;
 
-      .ledger-addresses-button-tooltip-wrapper {
+      .address-table-button-tooltip-wrapper {
         @apply drt:text-xs drt:text-center;
         color: var(--drt-neutral-500);
       }
 
-      .ledger-addresses-button {
+      .address-table-button {
         @apply drt:w-full drt:flex drt:items-center drt:justify-center drt:font-bold drt:h-12 drt:leading-none drt:text-base;
         @apply drt:rounded-lg drt:cursor-pointer drt:transition-all drt:duration-200 drt:ease-in-out drt:gap-2;
         color: var(--drt-button-text-primary);
         background-color: var(--drt-button-bg-primary);
-        border: 1px solid var(---drt-button-bg-primary);
+        border: 1px solid var(--drt-button-bg-primary);
 
         &:hover {
           @apply drt:opacity-75;

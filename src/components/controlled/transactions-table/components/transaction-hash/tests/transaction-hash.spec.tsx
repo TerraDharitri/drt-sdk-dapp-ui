@@ -52,7 +52,7 @@ describe('TransactionHash', () => {
       <drt-transaction-hash>
           <div class="transaction-hash">
             <drt-transaction-icon></drt-transaction-icon>
-            <drt-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/123"><span>0x123456789abcdef</span></drt-explorer-link>
+            <drt-explorer-link class="drt:text-blue-link!" dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/123"><span>0x123456789abcdef</span></drt-explorer-link>
           </div>
       </drt-transaction-hash>
     `);
@@ -90,7 +90,7 @@ describe('TransactionHash', () => {
       <drt-transaction-hash>
           <div class="transaction-hash">
             <drt-transaction-icon></drt-transaction-icon>
-            <drt-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/initial"><span>0xInitialHash</span></drt-explorer-link>
+            <drt-explorer-link class="drt:text-blue-link!" dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/initial"><span>0xInitialHash</span></drt-explorer-link>
           </div>
       </drt-transaction-hash>
     `);
@@ -124,7 +124,7 @@ describe('TransactionHash', () => {
       <drt-transaction-hash>
           <div class="transaction-hash">
             <drt-transaction-icon></drt-transaction-icon>
-            <drt-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/updated"><span>0xUpdatedHash</span></drt-explorer-link>
+            <drt-explorer-link class="drt:text-blue-link!" dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/updated"><span>0xUpdatedHash</span></drt-explorer-link>
           </div>
       </drt-transaction-hash>
     `);

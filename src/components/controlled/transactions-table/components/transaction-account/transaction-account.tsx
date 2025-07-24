@@ -6,6 +6,10 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 
 import type { TransactionAccountType } from '../../transactions-table.type';
 
+const transactionAccountClasses: Record<string, string> = {
+  explorerLink: 'drt:text-blue-link!',
+};
+
 @Component({
   tag: 'drt-transaction-account',
   styleUrl: 'transaction-account.scss',
@@ -29,7 +33,13 @@ export class TransactionAccount {
 
         {this.account.isContract && <drt-fa-icon icon={faFileAlt} description="Smart Contract" />}
         {this.account.showLink ? (
-          <drt-explorer-link link={this.account.link} data-testid={explorerLinkDataTestId} />
+          <drt-explorer-link
+            link={this.account.link}
+            data-testid={explorerLinkDataTestId}
+            class={transactionAccountClasses.explorerLink}
+          >
+            <span>{this.account.address}</span>
+          </drt-explorer-link>
         ) : (
           <drt-transaction-account-name
             name={this.account.name}

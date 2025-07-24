@@ -20,7 +20,7 @@
     }
 
     .transaction-details-list-item-copy {
-      @apply drt:visible;
+      @apply drt:visible!;
     }
   }
 
@@ -48,7 +48,7 @@
 
 .transaction-details-list-item-icon-success {
   background-color: var(--drt-success-bg-color);
-  
+
   svg,
   .svg-inline--fa {
     color: var(--drt-success-color) !important;
@@ -85,10 +85,10 @@
 }
 
 .transaction-details-list-item-copy {
-  @apply drt:flex drt:invisible;
+  @apply drt:flex drt:invisible!;
 
   .transaction-details-list-item-copy-icon {
-    @apply drt:h-4 drt:w-4 drt:flex drt:flex-col drt:justify-end drt:shrink-0 drt:transition-opacity drt:duration-200 drt:ease-in-out ;
+    @apply drt:h-4 drt:w-4 drt:flex drt:flex-col drt:justify-end drt:shrink-0 drt:transition-opacity drt:duration-200 drt:ease-in-out;
     color: var(--drt-text-color-tertiary);
 
     &:hover {

@@ -13,7 +13,12 @@
 }
 
 .transaction-icon {
-  @apply drt:w-10 drt:h-10 drt:rounded-full drt:flex drt:items-center drt:justify-center drt:shrink-0 drt:overflow-hidden;
+  @apply drt:w-8 drt:h-8 drt:rounded-full;
+  color: var(--drt-text-color-primary);
+
+  &.transaction-icon-failed {
+    color: var(--drt-error-color);
+  }
 
   img {
     @apply drt:w-full drt:h-full drt:object-cover;

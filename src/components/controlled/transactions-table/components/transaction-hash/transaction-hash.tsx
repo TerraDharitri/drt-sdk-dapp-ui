@@ -3,6 +3,10 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 
 import type { TransactionRowType } from '../../transactions-table.type';
 
+const transactionHashClasses: Record<string, string> = {
+  explorerLink: 'drt:text-blue-link!',
+};
+
 @Component({
   tag: 'drt-transaction-hash',
 })
@@ -19,7 +23,11 @@ export class TransactionHash {
       <div class={{ 'transaction-hash': true, [this.class]: Boolean(this.class) }}>
         <drt-transaction-icon iconInfo={this.transaction.iconInfo} />
 
-        <drt-explorer-link dataTestId={DataTestIdsEnum.transactionLink} link={this.transaction.link}>
+        <drt-explorer-link
+          dataTestId={DataTestIdsEnum.transactionLink}
+          link={this.transaction.link}
+          class={transactionHashClasses.explorerLink}
+        >
           <span>{this.transaction.txHash}</span>
         </drt-explorer-link>
       </div>

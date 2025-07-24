@@ -23,12 +23,15 @@ export class TransactionToast {
   }
 
   render() {
+    const isStatusPending = this.transactions.every(tx => tx.status === 'pending');
+
     return (
       <div class="transaction-toast">
         <drt-transaction-toast-progress
           key={this.toastId}
           startTime={this.transactionProgressState?.startTime}
           endTime={this.transactionProgressState?.endTime}
+          isStatusPending={isStatusPending}
         >
           <drt-transaction-toast-content
             fullWidth={this.fullWidth}
