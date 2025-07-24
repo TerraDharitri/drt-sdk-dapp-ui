@@ -5,7 +5,8 @@ import { handleAmountResize } from '../../helpers';
 
 @Component({
   tag: 'drt-sign-transactions-overview',
-  styleUrl: 'sign-transactions-overview.css',
+  styleUrl: 'sign-transactions-overview.scss',
+  shadow: true,
 })
 export class SignTransactionsOverview {
   @Prop() identifier: string;
@@ -66,7 +67,7 @@ export class SignTransactionsOverview {
                   <img src={this.interactorIconUrl} alt={this.interactor} />
                 </div>
               )}
-              {this.interactor && <drt-trim-text class="interactor-name" text={this.interactor}></drt-trim-text>}
+              {this.interactor && <drt-trim class="interactor-name" text={this.interactor}></drt-trim>}
             </div>
           </div>
 

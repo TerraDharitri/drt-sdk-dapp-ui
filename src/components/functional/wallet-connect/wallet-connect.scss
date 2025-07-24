@@ -1,19 +1,13 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  font-family: 'Satoshi', sans-serif;
-  flex: 1;
+  @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden;
 
   .wallet-connect {
-    display: flex;
-    flex-direction: column;
+    @apply drt:flex drt:flex-col drt:transition-all drt:duration-400 drt:flex-1 drt:py-6 drt:ease-in-out drt:overflow-auto;
     transform-style: preserve-3d;
-    transition: all 400ms ease;
     height: max(100%, 680px);
-    flex: 1;
 
-    &.flipped {
-      transform: rotateY(180deg);
+    &::-webkit-scrollbar {
+      @apply drt:hidden;
     }
   }
 }

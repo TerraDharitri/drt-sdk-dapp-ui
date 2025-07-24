@@ -2,11 +2,11 @@ import { h } from '@stencil/core';
 import { newSpecPage } from '@stencil/core/testing';
 import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 
-import type { ITransactionsTableRow } from '../../../transactions-table.type';
+import type { TransactionRowType } from '../../../transactions-table.type';
 import { TransactionShards } from '../transaction-shards';
 
 describe('TransactionShards', () => {
-  const createMockTransaction = (senderShard: string, receiverShard: string): ITransactionsTableRow => ({
+  const createMockTransaction = (senderShard: string, receiverShard: string): TransactionRowType => ({
     age: { timeAgo: '1 min ago', tooltip: '1 minute ago' },
     method: { name: 'transfer' },
     iconInfo: { tooltip: 'Transfer' },
@@ -54,11 +54,11 @@ describe('TransactionShards', () => {
       <drt-transaction-shards>
           <div class="transaction-shards">
             <drt-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardFromLink}" link="/blocks?shard=0">
-              <span data-testid="${DataTestIdsEnum.senderShard}" slot="content">0</span>
+              <span data-testid="${DataTestIdsEnum.senderShard}">0</span>
             </drt-explorer-link>
             <span class="transaction-shards-arrow">&#10132;</span>
             <drt-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardToLink}" link="/blocks?shard=1">
-              <span data-testid="${DataTestIdsEnum.receiverShard}" slot="content">1</span>
+              <span data-testid="${DataTestIdsEnum.receiverShard}">1</span>
             </drt-explorer-link>
           </div>
       </drt-transaction-shards>
@@ -77,11 +77,11 @@ describe('TransactionShards', () => {
       <drt-transaction-shards class="custom-class">
           <div class="custom-class transaction-shards">
             <drt-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardFromLink}" link="/blocks?shard=0">
-              <span data-testid="${DataTestIdsEnum.senderShard}" slot="content">0</span>
+              <span data-testid="${DataTestIdsEnum.senderShard}">0</span>
             </drt-explorer-link>
             <span class="transaction-shards-arrow">&#10132;</span>
             <drt-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardToLink}" link="/blocks?shard=1">
-              <span data-testid="${DataTestIdsEnum.receiverShard}" slot="content">1</span>
+              <span data-testid="${DataTestIdsEnum.receiverShard}">1</span>
             </drt-explorer-link>
           </div>
       </drt-transaction-shards>

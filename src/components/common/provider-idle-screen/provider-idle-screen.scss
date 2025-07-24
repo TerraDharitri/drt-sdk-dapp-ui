@@ -1,40 +1,21 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden;
 
   .unlock-provider-intro {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    font-family: 'Satoshi', sans-serif;
-    padding: 48px;
-    gap: 16px;
+    @apply drt:flex drt:flex-col drt:flex-1 drt:justify-center drt:items-center drt:text-center drt:p-12 drt:gap-4;
+    color: var(--drt-text-color-primary);
 
     .unlock-provider-intro-icon {
-      margin-bottom: 24px;
-      height: 150px;
-      align-items: flex-end;
-      display: flex;
-      justify-content: flex-start;
-      width: 150px;
+      @apply drt:mb-6 drt:h-37.5 drt:items-end drt:flex drt:justify-start drt:w-37.5;
     }
 
     .unlock-provider-intro-title {
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 1;
+      @apply drt:text-xl drt:font-medium drt:leading-none;
     }
 
     .unlock-provider-intro-text {
-      font-size: 16px;
-      color: #a09a93;
-      font-weight: 500;
-      line-height: 1.25;
+      @apply drt:text-base drt:font-medium drt:leading-5;
+      color: var(--drt-text-color-secondary);
     }
   }
 }

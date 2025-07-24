@@ -9,6 +9,7 @@ import { NotificationsFeedEventsEnum } from './notifications-feed.types';
 @Component({
   tag: 'drt-notifications-feed',
   styleUrl: 'notifications-feed.scss',
+  shadow: true,
 })
 export class NotificationsFeed {
   private eventBus: IEventBus = new EventBus();

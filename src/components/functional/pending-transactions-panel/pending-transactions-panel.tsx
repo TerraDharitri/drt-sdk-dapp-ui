@@ -24,9 +24,10 @@ const getProviderIntroText = (providerType?: IProviderBase['type']) => {
 
 @Component({
   tag: 'drt-pending-transactions-panel',
-  styleUrl: 'pending-transactions-panel.css',
+  styleUrl: 'pending-transactions-panel.scss',
+  shadow: true,
 })
-export class PendingTransactionstPanel {
+export class PendingTransactionsPanel {
   private eventBus: IEventBus = new EventBus();
   private unsubscribeFunctions: (() => void)[] = [];
 
@@ -70,12 +71,7 @@ export class PendingTransactionstPanel {
 
   render() {
     return (
-      <drt-side-panel
-        isOpen={this.isOpen}
-        panelTitle={this?.provider?.name}
-        panelClassName="pending-transactions-panel"
-        showHeader={false}
-      >
+      <drt-side-panel isOpen={this.isOpen} panelTitle={this?.provider?.name} showHeader={false}>
         <drt-provider-idle-screen
           provider={this.provider}
           onClose={this.handleClose}

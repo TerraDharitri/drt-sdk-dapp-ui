@@ -1,21 +1,19 @@
 .unlock-panel-anchor {
-  display: flex;
-  font-family: 'Satoshi', sans-serif;
-  flex-direction: column;
-  flex: 1;
+  @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden;
 }
 
 .unlock-panel {
-  display: flex;
-  font-family: 'Satoshi', sans-serif;
-  flex-direction: column;
-  flex: 1;
-  justify-content: space-between;
+  @apply drt:flex drt:flex-col drt:flex-1 drt:justify-between drt:overflow-hidden drt:pb-6;
 
   .unlock-panel-groups {
-    display: flex;
-    margin-bottom: 24px;
-    flex-direction: column;
-    gap: 16px;
+    @apply drt:flex drt:flex-col drt:gap-4 drt:pt-6 drt:overflow-hidden;
+
+    @media (min-width: 640px) {
+      @apply drt:overflow-auto;
+    }
+
+    &::-webkit-scrollbar {
+      @apply drt:hidden;
+    }
   }
 }

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 @Component({
   tag: 'drt-transaction-account-name',
-  styleUrl: 'transaction-account-name.css',
+  styleUrl: 'transaction-account-name.scss',
 })
 export class TransactionAccountName {
   @Prop() address: string;
@@ -15,12 +15,22 @@ export class TransactionAccountName {
   render() {
     if (this.name) {
       return (
-        <div class={classNames('text-truncate', this.class, 'transaction-account-name')} data-testid={this.dataTestId} title={this.description}>
+        <div
+          class={classNames('text-truncate', this.class, 'transaction-account-name')}
+          data-testid={this.dataTestId}
+          title={this.description}
+        >
           {this.name}
         </div>
       );
     }
 
-    return <drt-trim-text text={this.address} class={classNames(this.class, 'transaction-account-name')} dataTestId={this.dataTestId}></drt-trim-text>;
+    return (
+      <drt-trim
+        text={this.address}
+        class={classNames(this.class, 'transaction-account-name')}
+        dataTestId={this.dataTestId}
+      ></drt-trim>
+    );
   }
 }

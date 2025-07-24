@@ -1,37 +1,47 @@
-import type { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Component, Element, h, Prop, State } from '@stencil/core';
-import { getIconHtmlFromIconDefinition } from 'utils/icons/getIconHtmlFromIconDefinition';
-import { getIconHtmlFromIconName } from 'utils/icons/getIconHtmlFromIconName';
+import classNames from 'classnames';
+
+const explorerLinkClasses: Record<string, string> = {
+  icon: 'drt:flex drt:justify-center drt:transition-opacity drt:duration-200 drt:ease-in-out drt:hover:opacity-80',
+};
 
 @Component({
   tag: 'drt-explorer-link',
-  styleUrl: 'explorer-link.css',
+  styleUrl: 'explorer-link.scss',
+  shadow: true,
 })
 export class ExplorerLink {
   @Prop() class?: string;
-  @Prop() iconClass?: string = 'explorer-link-icon';
+  @Prop() iconClass?: string;
   @Prop() dataTestId?: string;
-  @Prop() icon?: IconDefinition | string;
   @Prop() link: string;
-  @Prop() text?: string;
 
   @Element() hostElement: HTMLElement;
   @State() hasSlotContent: boolean = false;
 
-  componentWillLoad() {
-    this.hasSlotContent = !!this.hostElement.querySelector('[slot="content"]');
+  componentDidLoad() {
+    this.hasSlotContent = this.hostElement.childNodes.length > 0;
   }
 
   render() {
-    let icon = 'faArrowUpRightFromSquare';
-
-    if (this.icon) {
-      icon = typeof this.icon === 'string' ? getIconHtmlFromIconName(this.icon) : getIconHtmlFromIconDefinition(this.icon);
-    }
-
     return (
-      <a data-testid={this.dataTestId} href={this.link} target="_blank" class={{ 'drt:explorer-link': true, [this.class]: Boolean(this.class) }} rel="noreferrer">
-        {this.hasSlotContent ? <slot name="content"></slot> : this.text ?? <drt-fa-icon icon={icon} class={this.iconClass}></drt-fa-icon>}
+      <a
+        target="_blank"
+        rel="noreferrer"
+        href={this.link}
+        data-testid={this.dataTestId}
+        class={{ 'explorer-link': true, [this.class]: Boolean(this.class) }}
+      >
+        {this.hasSlotContent ? (
+          <slot />
+        ) : (
+          <drt-arrow-up-right-from-square-icon
+            class={classNames('explorer-link-icon', {
+              [explorerLinkClasses.icon]: true,
+              [this.iconClass]: Boolean(this.iconClass),
+            })}
+          />
+        )}
       </a>
     );
   }

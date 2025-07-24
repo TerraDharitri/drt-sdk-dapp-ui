@@ -7,7 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [[0.0.5](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/112)] - 2025-05-26
+## [[0.0.8](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/138)] - 2025-06-30
+
+- [Fixed images not displaying in the unlock panel.](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/137)
+- [Added deep link xPortal connection support on mobile](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/136)
+- [Added copy button for transaction hash in toasts.](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/135)
+- [Updated variables for switching the theme.](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/134)
+
+## [[0.0.7](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/130)] - 2025-06-23
+
+- [Fixed Ledger connect header close button not working](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/129)
+- [Fixed the ExplorerLink shadow DOM status and layout](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/128)
+- [Updated the Ledger mobile layout and converted styles to Tailwind](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/127)
+- [Unify colors in global variables for light / dark themes](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/126)
+- [Removed Satoshi font and allow custom fonts from dApp](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/125)
+- [Updated Unlock Panel to be responsive and mobile friendly](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/124)
+- [Mobile version for notifications feed](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/123)
+- [Updated the CSS to leverage on Tailwind classes in multiple elements](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/122)
+- [Added "data" field decoding methods support](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/121)
+- [Updated README](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/120)
+- [Migrate styles from css to tailwind](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/119)
+- [Added dynamic gas](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/118)
+
+## [[0.0.6](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/117)] - 2025-05-30
+
+- [Refactor Transactions Table types][https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/116]
+
+## [[0.0.5](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/115)] - 2025-05-29
 
 - [Updated Sign Transactions layout][https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/114]
 - [Disable sourceMap files][https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/113]

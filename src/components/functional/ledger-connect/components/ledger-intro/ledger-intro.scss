@@ -1,95 +1,66 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  flex: 1;
+  @apply drt:flex drt:flex-col drt:overflow-hidden drt:flex-1;
 
   .ledger-intro {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Satoshi', sans-serif;
+    @apply drt:flex-1 drt:flex drt:flex-col drt:py-6 drt:overflow-auto drt:overflow-x-hidden;
+
+    &::-webkit-scrollbar {
+      @apply drt:hidden;
+    }
 
     .ledger-intro-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
-      text-align: center;
-      font-size: 16px;
-      margin-bottom: auto;
+      @apply drt:flex drt:flex-col drt:items-center drt:gap-6 drt:text-center drt:text-base drt:mb-auto;
 
       .ledger-intro-icon {
-        margin-left: auto;
+        @apply drt:mx-auto drt:self-start drt:w-auto! drt:h-auto!;
       }
 
       .ledger-intro-description {
-        line-height: 1.5;
-        font-size: 16px;
-        color: #a09a93;
+        @apply drt:text-base drt:leading-6;
+        color: var(--drt-text-color-secondary);
       }
 
       .ledger-intro-button {
-        margin-top: 20px;
-        width: 192px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        height: 48px;
-        line-height: 1;
-        color: #000000;
-        border-radius: 12px;
-        background-color: #23f7dd;
-        cursor: pointer;
-        border: 1px solid #23f7dd;
-        transition: all 200ms ease;
-        gap: 8px;
+        @apply drt:w-48 drt:flex drt:items-center drt:justify-center drt:font-bold drt:h-12 drt:leading-none;
+        @apply drt:rounded-lg drt:cursor-pointer drt:transition-all drt:duration-200 drt:gap-2 drt:ease-in-out;
+        color: var(--drt-button-text-primary);
+        background-color: var(--drt-button-bg-primary);
+        border: 1px solid var(--drt-button-bg-primary);
+
+        @media (min-width: 480px) {
+          @apply drt:mt-5;
+        }
 
         &:hover {
-          opacity: 0.75;
+          @apply drt:opacity-75;
         }
 
         &.loading {
-          pointer-events: none;
-          background-color: transparent;
-          border-color: #a09a93;
-          cursor: default;
-          color: #a09a93;
+          @apply drt:pointer-events-none drt:bg-transparent drt:cursor-default;
+          border-color: var(--drt-text-color-secondary);
+          color: var(--drt-text-color-secondary);
         }
       }
 
       .ledger-intro-error {
-        font-size: 16px;
-        color: #dc2626;
-        max-width: 240px;
-        margin-bottom: 24px;
-        line-height: 1.5;
+        @apply drt:text-base drt:max-w-60 drt:mb-6 drt:leading-6;
+        color: var(--drt-error-color);
       }
     }
 
     .ledger-intro-issues {
-      font-size: 16px;
-      margin: 40px auto 0;
-      text-align: center;
-      color: #a09a93;
-      position: relative;
-      padding-bottom: 4px;
+      @apply drt:text-base drt:mt-10 drt:mx-auto drt:text-center drt:relative drt:pb-1;
+      color: var(--drt-text-color-secondary);
 
       &:after {
-        bottom: 0;
-        left: 8px;
-        right: 8px;
-        transition: all 200ms ease;
-        opacity: 0;
+        @apply drt:absolute drt:bottom-0 drt:left-8 drt:right-8 drt:h-px drt:transition-all drt:duration-200;
+        @apply drt:opacity-0 drt:ease-in-out;
+        background-color: var(--drt-text-color-secondary);
         content: '';
-        background-color: #a09a93;
-        position: absolute;
-        height: 1px;
       }
 
       &:hover:after {
-        opacity: 0.5;
+        @apply drt:opacity-50;
       }
     }
   }

@@ -57,11 +57,7 @@ export class LedgerConfirm {
                   />
 
                   {ledgerConfirmationItem.explorerLink && (
-                    <drt-explorer-link
-                      link={ledgerConfirmationItem.explorerLink}
-                      class="ledger-confirm-item-value-explorer"
-                      iconClass="ledger-confirm-item-value-explorer-icon"
-                    />
+                    <drt-explorer-link link={ledgerConfirmationItem.explorerLink} />
                   )}
                 </div>
               </div>

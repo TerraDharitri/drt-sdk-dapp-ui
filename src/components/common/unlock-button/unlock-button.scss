@@ -1,63 +1,42 @@
 .unlock-button {
-  padding: 0 12px;
-  padding-right: 16px;
-  height: 60px;
-  background: rgba(53, 53, 53, 0.3);
-  display: flex;
-  transition: all 200ms ease;
-  cursor: pointer;
-  font-family: 'Satoshi', sans-serif;
-  align-items: center;
-  gap: 16px;
+  @apply drt:pl-3 drt:pr-4 drt:h-15 drt:flex! drt:gap-4 drt:cursor-pointer drt:items-center;
+  @apply drt:transition-all drt:duration-200 drt:ease-in-out;
+  background: var(--drt-bg-color-secondary);
 
   &:hover {
-    background: rgba(53, 53, 53, 1);
+    background: var(--drt-hover-color-primary);
   }
 
   .unlock-button-icon {
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
+    @apply drt:h-10 drt:flex drt:relative drt:z-1 drt:items-center drt:justify-center drt:w-10;
     order: -1;
 
     &.clipped {
-      align-items: flex-end;
-      justify-content: flex-start;
+      @apply drt:items-end drt:justify-start;
     }
   }
 
   .unlock-button-label {
-    color: #e8e8e8;
-    font-size: 16px;
-    line-height: 1;
+    @apply drt:text-base drt:relative drt:z-1 drt:leading-none;
+    color: var(--drt-text-color-primary);
   }
 
   .unlock-button-status {
-    margin-left: auto;
-    font-weight: 500;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1;
-    display: flex;
-    align-items: center;
+    @apply drt:ml-auto drt:relative drt:z-1 drt:leading-none drt:flex drt:items-center drt:py-1 drt:px-2 drt:font-medium drt:gap-1;
+    @apply drt:text-xs;
     border-radius: 20px;
-    padding: 4px 8px;
-    border: 1px solid rgba(64, 64, 64, 0.4);
-    background: rgba(11, 11, 11, 0.8);
-    gap: 4px;
+    border: 1px solid var(--drt-border-color-primary);
+    background: var(--drt-bg-color-primary);
 
     .unlock-button-status-text {
-      color: #23f7dd;
+      color: var(--drt-text-accent-color);
     }
 
     .unlock-button-status-icon {
-      display: flex;
-      align-items: center;
+      @apply drt:flex drt:items-center;
 
       svg path {
-        fill: #23f7dd;
+        fill: var(--drt-teal-400);
       }
     }
   }

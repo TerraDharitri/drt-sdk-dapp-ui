@@ -4,6 +4,7 @@ import { reactOutputTarget } from '@stencil/react-output-target';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
 import tailwind from 'stencil-tailwind-plugin';
 import { getExcludedComponentTags } from './src/global/scripts/exclude-react-components';
+import image from '@rollup/plugin-image';
 
 /**
  * A list of component tags to be excluded from the build process.
@@ -22,7 +23,7 @@ const isDev = process.argv.includes('--dev');
 
 export const config: Config = {
   namespace: 'sdk-dapp-ui',
-  globalScript: './src/global/scripts/fonts-loader.ts',
+  globalStyle: './src/global/style.css',
   plugins: [
     sass(),
     tailwind({
@@ -50,7 +51,7 @@ export const config: Config = {
     },
   ],
   rollupPlugins: {
-    before: [nodePolyfills()],
+    before: [nodePolyfills(), image()],
   },
   extras: {
     enableImportInjection: true,

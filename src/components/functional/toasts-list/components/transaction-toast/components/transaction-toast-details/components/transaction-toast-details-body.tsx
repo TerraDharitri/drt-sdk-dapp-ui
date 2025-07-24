@@ -11,9 +11,13 @@ const iconData: Record<string, IconDefinition> = {
   invalid: faTimes,
 };
 
+const transactionToastDetailsBodyClasses: Record<string, string> = {
+  explorerLinkIcon: 'drt:fill-primary!',
+};
+
 @Component({
   tag: 'drt-transaction-toast-details-body',
-  styleUrl: 'transaction-toast-details-body.css',
+  styleUrl: 'transaction-toast-details-body.scss',
 })
 export class TransactionDetailsBody {
   @Prop() transactionClass?: string = 'transaction-details-list-item';
@@ -41,10 +45,17 @@ export class TransactionDetailsBody {
         )}
         <div class="transaction-details-list-item-hash-index">{this.index}</div>
         <div class="transaction-details-list-item-hash-value">
-          <drt-trim-text text={this.hash} />
+          <drt-trim text={this.hash} />
         </div>
+
+        <drt-copy-button
+          text={this.hash}
+          class="transaction-details-list-item-copy"
+          iconClass="transaction-details-list-item-copy-icon"
+        />
+
         <div class="transaction-details-list-item-explorer-link-icon">
-          <drt-explorer-link link={this.link} />
+          <drt-explorer-link link={this.link} class={transactionToastDetailsBodyClasses.explorerLinkIcon} />
         </div>
       </div>
     );

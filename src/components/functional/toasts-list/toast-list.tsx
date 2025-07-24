@@ -7,7 +7,7 @@ import { ToastEventsEnum } from './toast-list.types';
 
 @Component({
   tag: 'drt-toast-list',
-  styleUrl: 'toast-list.css',
+  styleUrl: 'toast-list.scss',
 })
 export class ToastList {
   private eventBus: IEventBus = new EventBus();

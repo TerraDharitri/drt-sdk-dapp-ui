@@ -1,132 +1,102 @@
 @import '../../../global/variables.css';
 
 .feed-content {
-  font-family: 'Satoshi', sans-serif;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  gap: 20px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  @apply drt:h-full drt:w-full drt:flex drt:flex-col drt:relative drt:gap-5 drt:overflow-x-hidden drt:overflow-y-scroll drt:pt-6;
 
   .transaction-toast-content-wrapper {
-    width: 100%;
-    background: var(--mx-tx-bg-transparent);
-    border-color: var(--mx-tx-bg-transparent);
+    @apply drt:w-full;
+    background: var(--drt-bg-color-secondary);
+    border-color: var(--drt-bg-color-secondary);
+  }
+
+  @media (min-width: 375px) {
+    @apply drt:max-w-110;
   }
 }
 
 .notifications-info {
-  display: flex;
-  align-items: start;
-  gap: 10px;
-
-  color: var(--mx-warning-text);
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16.8px;
+  @apply drt:flex drt:items-start drt:gap-2.5 drt:text-xs drt:font-normal drt:leading-4;
+  color: var(--drt-warning-text);
 
   .info-icon {
-    color: var(--mx-warning-text) !important;
-    text-align: center;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    width: 18.8px;
-    height: 18.8px;
+    @apply drt:text-center drt:text-base drt:font-normal drt:leading-none drt:w-5 drt:h-5;
+    color: var(--drt-warning-text) !important;
   }
 }
 
 .notifications-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  @apply drt:flex drt:flex-col drt:gap-3;
 
   .processing-status {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 22.4px;
-    letter-spacing: -0.16px;
-    color: var(--mx-body-label-color);
+    @apply drt:text-base drt:font-normal drt:leading-6 drt:tracking-tight;
+    color: var(--drt-text-color-secondary);
   }
 }
 
 .activity-section {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  @apply drt:flex drt:flex-col drt:gap-3;
 }
 
 .activity-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding-top: 12px;
+  @apply drt:flex drt:items-center drt:justify-between drt:gap-2.5 drt:pt-3;
 
   .activity-title {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 22.4px;
-    letter-spacing: -0.16px;
-    margin: 0;
-    color: var(--mx-body-label-color);
+    @apply drt:text-base drt:font-normal drt:m-0 drt:leading-6 drt:tracking-tight;
+    color: var(--drt-text-color-secondary);
   }
 
   .clear-button {
-    color: #fff;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16.8px;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
+    @apply drt:text-xs drt:font-normal drt:underline drt:cursor-pointer drt:leading-4;
+    color: var(--drt-text-color-primary);
     text-decoration-skip-ink: none;
-    text-decoration-thickness: auto;
-    text-underline-offset: auto;
     text-underline-position: from-font;
-    cursor: pointer;
   }
 }
 
 .activity-list {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  @apply drt:flex drt:flex-col drt:gap-1 drt:flex-1 drt:overflow-y-auto drt:overflow-x-hidden drt:min-h-0;
 
   .no-activity {
-    padding: 16px;
-    text-align: center;
-    color: #666666;
+    @apply drt:p-4 drt:text-center;
+    color: var(--drt-neutral-500);
+  }
+
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track:hover,
+  &::-webkit-scrollbar-corner {
+    @apply drt:bg-transparent;
   }
 
   &::-webkit-scrollbar {
-    width: 4px;
+    @apply drt:w-4;
   }
 
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 2px;
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track:hover {
+    @apply drt:bg-transparent drt:bg-clip-padding;
+    border: 4px solid transparent;
+    border-radius: 9999px;
   }
 
-  &::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 2px;
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-thumb:hover {
+    @apply drt:bg-clip-padding;
+    border: 4px solid transparent;
+    background-color: var(--drt-neutral-700);
+    border-radius: 9999px;
+  }
+
+  &::-webkit-scrollbar-button {
+    @apply drt:hidden;
+  }
+
+  &::-webkit-resizer {
+    @apply drt:bg-transparent;
   }
 
   // Ensure children don't cause horizontal scroll
   > * {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+    @apply drt:w-full drt:max-w-full drt:box-border;
   }
 }

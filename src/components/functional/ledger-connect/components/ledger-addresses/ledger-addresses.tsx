@@ -57,13 +57,14 @@ export class LedgerAddresses {
     const isIndexInTheThousands = lastIndexOfPage >= 1000;
 
     const ledgerAddressesClasses: Record<string, string> = {
+      pagination: 'drt:relative drt:z-1',
       buttonTooltip: 'drt:absolute drt:top-0 drt:h-12 drt:left-0 drt:right-0',
       preloaderItem:
         'drt:h-16! drt:border drt:border-solid drt:border-transparent drt:rounded-lg! drt:flex drt:items-center drt:w-full! drt:p-4',
-      preloaderItemCheckbox: 'drt:h-4! drt:mr-2 drt:min-w-4! drt:w-4! drt:rounded-full! drt:bg-neutral-700!',
-      preloaderItemAddress: 'drt:w-40! drt:h-4! drt:bg-neutral-700! drt:rounded-lg! drt:mr-auto',
-      preloaderItemBalance: 'drt:w-24! drt:h-4! drt:bg-neutral-700! drt:rounded-lg! drt:ml-2',
-      preloaderItemIndex: classNames('drt:mr-2 drt:h-4! drt:bg-neutral-700! drt:rounded-lg!', {
+      preloaderItemCheckbox: 'drt:h-4! drt:mr-2 drt:min-w-4! drt:w-4! drt:rounded-full! drt:bg-preloader!',
+      preloaderItemAddress: 'drt:w-40! drt:h-4! drt:bg-preloader! drt:rounded-lg! drt:mr-auto',
+      preloaderItemBalance: 'drt:w-24! drt:h-4! drt:bg-preloader! drt:rounded-lg! drt:ml-2',
+      preloaderItemIndex: classNames('drt:mr-2 drt:h-4! drt:bg-preloader! drt:rounded-lg!', {
         'drt:w-9!': isSingleDigitIndex,
         'drt:w-10!': isIndexBelowOneHundred,
         'drt:w-13!': isIndexInTheHundreds,
@@ -77,7 +78,9 @@ export class LedgerAddresses {
 
     return (
       <div class="ledger-addresses">
-        <div class="ledger-addresses-label">Choose the wallet you want to access</div>
+        <div class="ledger-addresses-label-wrapper">
+          <div class="ledger-addresses-label">Choose the wallet you want to access</div>
+        </div>
 
         <div class="ledger-addresses-wrapper">
           <div class={{ 'ledger-addresses-preloader': true, 'visible': isPageChanging }}>
@@ -138,19 +141,22 @@ export class LedgerAddresses {
                   #{this.processLedgerAddressIndex(accountDerivation)}
                 </div>
 
-                <drt-trim-text text={accountDerivation.address} class="ledger-addresses-list-item-address" />
+                <drt-trim text={accountDerivation.address} class="ledger-addresses-list-item-address" />
                 <div class="ledger-addresses-list-item-balance">{accountDerivation.usdValue}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <drt-pagination
-          totalPages={totalPages}
-          isDisabled={isPageChanging}
-          onPageChange={(event: CustomEvent) => this.handlePageChange(event)}
-          currentPage={this.accountScreenData.startIndex / this.accountScreenData.addressesPerPage + 1}
-        />
+        <div class="ledger-addresses-pagination">
+          <drt-pagination
+            totalPages={totalPages}
+            isDisabled={isPageChanging}
+            class={ledgerAddressesClasses.pagination}
+            onPageChange={(event: CustomEvent) => this.handlePageChange(event)}
+            currentPage={this.accountScreenData.startIndex / this.accountScreenData.addressesPerPage + 1}
+          />
+        </div>
 
         <div class="ledger-addresses-button-wrapper">
           {isAccessWalletDisabled && (

@@ -1,5 +1,5 @@
 :host {
-  display: flex;
+  @apply drt:flex;
 
   .extension-provider-icon {
     fill: none;
