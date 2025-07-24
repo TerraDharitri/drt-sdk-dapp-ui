@@ -4,11 +4,11 @@
   align-items: center;
   padding: 20px 16px;
   gap: 16px;
-  background: var(--drt-tx-bg-transparent);
+  background: var(--mx-tx-bg-transparent);
   border-radius: 8px;
 
   &:hover {
-    background-color: var(--drt-tx-bg);
+    background-color: var(--mx-tx-bg);
   }
 }
 
@@ -30,7 +30,7 @@
 
   span, i {
     font-size: 20px;
-    color: var(--drt-tx-text-primary);
+    color: var(--mx-tx-text-primary);
     width: 40px;
     height: 40px;
   }
@@ -58,7 +58,7 @@
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.16px;
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
   margin: 0;
 }
 
@@ -72,11 +72,11 @@
   font-weight: 500;
   line-height: 16px;
   letter-spacing: -0.14px;
-  color: var(--drt-tx-text-secondary);
+  color: var(--mx-tx-text-secondary);
 }
 
 .transaction-details-info-text {
-  color: var(--drt-tx-text-secondary);
+  color: var(--mx-tx-text-secondary);
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -85,7 +85,7 @@
   max-width: 250px;
 
   span {
-    color: var(--drt-tx-text-secondary);
+    color: var(--mx-tx-text-secondary);
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -101,7 +101,7 @@
 
   .left,
   .right {
-    color: var(--drt-tx-text-secondary);
+    color: var(--mx-tx-text-secondary);
     margin-top: 4px;
     font-style: normal;
     font-weight: 400;
@@ -110,7 +110,7 @@
   }
 
   .ellipsis {
-    color: var(--drt-tx-text-secondary);
+    color: var(--mx-tx-text-secondary);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -144,14 +144,14 @@
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.16px;
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
 
   &.amount-positive{
-    color: var(--drt-tx-success);
+    color: var(--mx-tx-success);
   }
 
   &.transaction-failed {
-    color: var(--drt-tx-fail);
+    color: var(--mx-tx-fail);
   }
 
   .transaction-amount-decimal {
@@ -173,12 +173,12 @@
   width: 1.75rem;
   height: 1.75rem;
   border-radius: 50%;
-  background-color: var(--drt-dapp-core-bg-secondary, #f3f4f6);
+  background-color: var(--mx-dapp-core-bg-secondary, #f3f4f6);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: -0.5rem;
-  border: 2px solid var(--drt-dapp-core-bg-primary, white);
+  border: 2px solid var(--mx-dapp-core-bg-primary, white);
   overflow: hidden;
 
   &:first-child {
@@ -193,7 +193,7 @@
 }
 
 .asset-more {
-  background-color: var(--drt-dapp-core-color-indigo, #5045e4);
+  background-color: var(--mx-dapp-core-color-indigo, #5045e4);
   font-weight: 600;
   color: white;
 }

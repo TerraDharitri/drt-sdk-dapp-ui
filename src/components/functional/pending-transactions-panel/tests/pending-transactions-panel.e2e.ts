@@ -1,7 +1,9 @@
-import { newE2EPage } from '@stencil/core/testing';
+import { newE2EPage, newSpecPage } from '@stencil/core/testing';
+
+import { PendingTransactionstPanel } from '../pending-transactions-panel';
 
 const tag = 'drt-pending-transactions-panel';
-const title = 'Confirm on Dharitri DeFi wallet';
+const title = 'Confirm on DharitrI DeFi wallet';
 
 describe('pending-transactions-panel', () => {
   it(`renders ${tag}`, async () => {
@@ -13,15 +15,18 @@ describe('pending-transactions-panel', () => {
   });
 
   it('check title & subtitle', async () => {
-    const page = await newE2EPage();
+    const page = await newSpecPage({
+      components: [PendingTransactionstPanel],
+      html: `<${tag}></${tag}>`,
+    });
 
-    await page.setContent(`<${tag}></${tag}>`);
-    const component = await page.find(tag);
-    component.setProperty('data', { provider: { name: title }, shouldClose: false });
-
+    page.rootInstance.provider = { name: title };
     await page.waitForChanges();
-    const panel = await page.find('drt-side-panel');
-    const titleAttr = await panel.getProperty('panelTitle');
-    expect(titleAttr).toBe(title);
+
+    const panel = page.root.querySelector('drt-side-panel');
+    expect(panel).toBeTruthy();
+
+    const panelTitle = panel.getAttribute('panelTitle');
+    expect(panelTitle).toBe(title);
   });
 });

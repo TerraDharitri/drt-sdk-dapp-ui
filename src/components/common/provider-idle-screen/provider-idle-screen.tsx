@@ -1,14 +1,13 @@
 import type { EventEmitter } from '@stencil/core';
 import { Component, Event, Fragment, h, Prop } from '@stencil/core';
 import { getProviderButtonIcon } from 'components/functional/unlock-panel/helpers';
-import { SidePanelHeaderSlotEnum } from 'components/visual/side-panel/components/side-panel-header/side-panel-header.types';
 import type { IProviderBase } from 'types/provider.types';
 import { ProviderTypeEnum } from 'types/provider.types';
 
 const getProviderIntroText = (providerType?: IProviderBase['type']) => {
   switch (providerType) {
     case ProviderTypeEnum.extension:
-      return 'Open the Dharitri Browser Extension to sign the transaction.';
+      return 'Open the DharitrI Browser Extension to sign the transaction.';
     case ProviderTypeEnum.metamask:
       return 'Open the Metamask Browser Extension to sign the transaction.';
     case ProviderTypeEnum.passkey:
@@ -16,7 +15,7 @@ const getProviderIntroText = (providerType?: IProviderBase['type']) => {
     case ProviderTypeEnum.walletConnect:
       return 'Open Xportal to sign the transaction.';
     case ProviderTypeEnum.crossWindow:
-      return 'Go to Dharitri Web Wallet to sign the transaction.';
+      return 'Go to DharitrI Web Wallet to sign the transaction.';
     default:
       return 'Go to your connected provider to sign the transaction.';
   }
@@ -29,13 +28,18 @@ const getProviderIntroText = (providerType?: IProviderBase['type']) => {
 })
 export class ProviderIdleScreen {
   @Prop() provider: IProviderBase | null = null;
+  @Prop() introTitle: string = 'Requesting Connection';
   @Prop() introText: string = '';
 
   @Event({ composed: false, bubbles: false }) close: EventEmitter;
   @Event({ composed: false, bubbles: false }) access: EventEmitter;
 
   render() {
-    const providerType = this.provider ? this.provider.type : null;
+    if (!this.provider) {
+      return null;
+    }
+
+    const providerType = this.provider.type;
     const isExtensionProvider = providerType === ProviderTypeEnum.extension;
     const extensionProviderIconBaseSize = 150;
     const extensionProviderIconWidth = extensionProviderIconBaseSize + (15 / 100) * extensionProviderIconBaseSize;
@@ -44,20 +48,15 @@ export class ProviderIdleScreen {
     const providerIntroIcon = getProviderButtonIcon(providerType);
     const providerIntroText = this.introText || getProviderIntroText(providerType);
 
-    if (!this.provider) {
-      return null;
-    }
-
-    const header = (
-      <drt-side-panel-header panelTitle={this.provider.name} hasRightButton={false} onLeftButtonClick={this.close.emit.bind(this)}>
-        <drt-close-icon slot={SidePanelHeaderSlotEnum.leftIcon} />
-      </drt-side-panel-header>
-    );
-
     if (this.provider.type === ProviderTypeEnum.ledger) {
       return (
         <Fragment>
-          {header}
+          <drt-side-panel-header
+            hasLeftButton={false}
+            panelTitle={this.provider.name}
+            onRightButtonClick={this.close.emit}
+          />
+
           <drt-ledger-intro onConnect={this.access.emit} />
         </Fragment>
       );
@@ -65,7 +64,12 @@ export class ProviderIdleScreen {
 
     return (
       <Fragment>
-        {header}
+        <drt-side-panel-header
+          hasLeftButton={false}
+          panelTitle={this.provider.name}
+          onRightButtonClick={this.close.emit}
+        />
+
         <div class="unlock-provider-intro">
           {isExtensionProvider ? (
             <div class="unlock-provider-intro-icon">
@@ -75,7 +79,7 @@ export class ProviderIdleScreen {
             <div class="unlock-provider-intro-icon">{providerIntroIcon}</div>
           )}
 
-          <div class="unlock-provider-intro-title">{this.introText ? 'Sign transaction' : 'Requesting Connection'}</div>
+          <div class="unlock-provider-intro-title">{this.introTitle}</div>
           {providerIntroText && <div class="unlock-provider-intro-text">{providerIntroText}</div>}
           <slot name="close-button" />
         </div>

@@ -5,7 +5,7 @@ import { Component, h, Prop } from '@stencil/core';
   styleUrl: 'dharitri-logo-icon.scss',
   shadow: true,
 })
-export class DharitriLogoIcon {
+export class DharitrILogoIcon {
   @Prop() class?: string;
 
   render() {

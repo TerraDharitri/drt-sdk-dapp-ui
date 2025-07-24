@@ -1,22 +1,12 @@
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { Component, h, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Method, State } from '@stencil/core';
+import { ANIMATION_DELAY_PROMISE } from 'components/visual/side-panel/side-panel.constants';
 import type { IEventBus } from 'utils/EventBus';
 import { EventBus } from 'utils/EventBus';
 
-import type { ISignTransactionsPanelData } from './sign-transactions-panel.types';
+import type { IOverviewProps, ISignTransactionsPanelData } from './sign-transactions-panel.types';
+import { TransactionTabsEnum } from './sign-transactions-panel.types';
 import { SignEventsEnum } from './sign-transactions-panel.types';
 import state, { resetState } from './signTransactionsPanelStore';
-interface IOverviewProps {
-  identifier: string;
-  usdValue: string;
-  amount: string;
-  tokenIconUrl: string;
-  interactor: string;
-  interactorIconUrl: string;
-  action: string;
-  networkFee: string;
-  isApp: boolean;
-}
 
 @Component({
   tag: 'drt-sign-transactions-panel',
@@ -25,37 +15,24 @@ interface IOverviewProps {
 })
 export class SignTransactionsPanel {
   private eventBus: IEventBus = new EventBus();
+  private unsubscribeFunctions: (() => void)[] = [];
 
-  @Prop() data: ISignTransactionsPanelData = {
-    commonData: {
-      rewaLabel: '',
-      feeLimit: '',
-      feeInFiatLimit: '',
-      transactionsCount: 0,
-      currentIndexToSign: 0,
-      currentIndex: 0,
-      ppuOptions: [],
-    },
-    tokenTransaction: null,
-    nftTransaction: null,
-    sftTransaction: null,
-  };
+  @Method() async closeWithAnimation() {
+    this.isOpen = false;
+    const animationDelay = await ANIMATION_DELAY_PROMISE;
+    return animationDelay;
+  }
 
   @State() isOpen: boolean = false;
-  @State() activeTab: 'overview' | 'advanced' = 'overview';
+  @State() activeTab: TransactionTabsEnum = TransactionTabsEnum.overview;
 
   @Method() async getEventBus() {
     return this.eventBus;
   }
 
-  @Watch('data')
-  updateData(newData: ISignTransactionsPanelData) {
-    this.dataUpdate(newData);
-  }
-
   componentWillLoad() {
     state.onCancel = () => {
-      this.onClose({ isUserClick: true });
+      this.handleClose();
     };
 
     state.onNext = () => {
@@ -76,39 +53,26 @@ export class SignTransactionsPanel {
   }
 
   componentDidLoad() {
-    this.updateData(this.data);
-    this.eventBus.subscribe(SignEventsEnum.DATA_UPDATE, this.dataUpdate.bind(this));
-    this.eventBus.subscribe(SignEventsEnum.OPEN_SIGN_TRANSACTIONS_PANEL, this.handleOpen.bind(this));
-    this.eventBus.subscribe(SignEventsEnum.CLOSE_SIGN_TRANSACTIONS_PANEL, this.onClose.bind(this, { isUserClick: false }));
-    this.eventBus.subscribe(SignEventsEnum.BACK, this.handleBack.bind(this));
+    const unsubDataUpdate = this.eventBus.subscribe(SignEventsEnum.DATA_UPDATE, this.dataUpdate);
+    const unsubBack = this.eventBus.subscribe(SignEventsEnum.BACK, this.handleBack);
+    this.unsubscribeFunctions.push(unsubDataUpdate, unsubBack);
   }
 
   disconnectedCallback() {
     resetState();
-    this.eventBus.unsubscribe(SignEventsEnum.DATA_UPDATE, this.dataUpdate.bind(this));
-    this.eventBus.unsubscribe(SignEventsEnum.OPEN_SIGN_TRANSACTIONS_PANEL, this.handleOpen.bind(this));
-    this.eventBus.unsubscribe(SignEventsEnum.CLOSE_SIGN_TRANSACTIONS_PANEL, this.onClose.bind(this, { isUserClick: false }));
-  }
-
-  private handleOpen() {
-    this.isOpen = true;
-  }
-
-  private handleClose() {
     this.isOpen = false;
-    this.onClose({ isUserClick: true });
+    this.unsubscribeFunctions.forEach(unsub => unsub());
+    this.unsubscribeFunctions = [];
   }
 
-  private onClose(props = { isUserClick: true }) {
+  private handleClose = () => {
     this.isOpen = false;
     resetState();
+    this.eventBus.publish(SignEventsEnum.CLOSE);
+  };
 
-    if (props.isUserClick) {
-      this.eventBus.publish(SignEventsEnum.CLOSE_SIGN_TRANSACTIONS_PANEL);
-    }
-  }
-
-  private dataUpdate(payload: ISignTransactionsPanelData) {
+  private dataUpdate = (payload: ISignTransactionsPanelData) => {
+    this.isOpen = true;
     for (const key in payload) {
       if (Object.prototype.hasOwnProperty.call(state, key)) {
         state[key] = payload[key];
@@ -116,21 +80,17 @@ export class SignTransactionsPanel {
     }
 
     state.isWaitingForSignature = false;
+  };
 
-    if (payload.shouldClose) {
-      this.onClose({ isUserClick: false });
-    }
-  }
-
-  private setActiveTab(tab: 'overview' | 'advanced') {
+  private setActiveTab(tab: TransactionTabsEnum) {
     this.activeTab = tab;
   }
 
-  private handleBack() {
+  private handleBack = () => {
     if (state.commonData.currentIndex > 0) {
       state.commonData.currentIndex -= 1;
     }
-  }
+  };
 
   get overviewProps(): IOverviewProps {
     const { tokenTransaction, sftTransaction, nftTransaction } = state;
@@ -150,59 +110,37 @@ export class SignTransactionsPanel {
   }
 
   render() {
-    const { commonData, onNext, onBack } = state;
-    const { currentIndex, transactionsCount, origin, data, highlight } = commonData;
+    const transactionTabs = Object.values(TransactionTabsEnum);
+
+    const { commonData } = state;
+    const { data, highlight } = commonData;
 
     return (
-      <drt-side-panel isOpen={this.isOpen} onClose={this.handleClose.bind(this)} panelTitle="Confirm Transaction">
+      <drt-side-panel
+        isOpen={this.isOpen}
+        onClose={this.handleClose}
+        panelTitle="Confirm Transaction"
+        hasBackButton={false}
+      >
         <div class="sign-transactions-panel">
-          {transactionsCount > 1 && (
-            <div class="transaction-navigation">
-              <div class="transaction-switcher">
-                <div class="navigation-icon" onClick={onBack}>
-                  <drt-fa-icon icon={faChevronLeft} class="icon-angle-left" />
-                </div>
-                <div class="transaction-counter">
-                  <div class="counter-label-container">
-                    <span class="transaction">Transaction</span>
-                  </div>
-                  <div class="counter-value-container">
-                    <span class="counter-text">
-                      {currentIndex + 1} of {transactionsCount}
-                    </span>
-                  </div>
-                </div>
-                <div class="navigation-icon" onClick={onNext}>
-                  <drt-fa-icon icon={faChevronRight} class="icon-angle-right" />
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div class="origin-container">
-            <span class="request-from">Request from</span>
-            <div class="origin-details">
-              <div class="origin-logo-container">
-                <img class="origin-logo" src={`${origin}/favicon.ico`} alt="favicon" />
-              </div>
-              <span class="origin-name">{origin}</span>
-            </div>
-          </div>
+          <drt-sign-transactions-header />
 
           <div class="sign-transaction-content">
-            <div class="tab-selector">
-              <div class={`tab-item ${this.activeTab === 'overview' ? 'active' : ''}`} onClick={() => this.setActiveTab('overview')}>
-                <span class="tab-text">Overview</span>
-              </div>
-              <div class={`tab-item ${this.activeTab === 'advanced' ? 'active' : ''}`} onClick={() => this.setActiveTab('advanced')}>
-                <span class="tab-text">Advanced</span>
-              </div>
+            <div class="sign-transactions-tabs">
+              {transactionTabs.map(transactionTab => (
+                <div
+                  class={{ 'sign-transactions-tab': true, 'active': transactionTab === this.activeTab }}
+                  onClick={() => this.setActiveTab(transactionTab)}
+                >
+                  <div class="sign-transactions-tab-text">{transactionTab}</div>
+                </div>
+              ))}
             </div>
 
-            {this.activeTab === 'overview' ? (
-              <drt-sign-transactions-overview style={{ width: '100%' }} {...this.overviewProps}></drt-sign-transactions-overview>
+            {this.activeTab === TransactionTabsEnum.overview ? (
+              <drt-sign-transactions-overview style={{ width: '100%' }} {...this.overviewProps} />
             ) : (
-              <drt-sign-transactions-advanced style={{ width: '100%' }} data={data} highlight={highlight}></drt-sign-transactions-advanced>
+              <drt-sign-transactions-advanced style={{ width: '100%' }} data={data} highlight={highlight} />
             )}
           </div>
 

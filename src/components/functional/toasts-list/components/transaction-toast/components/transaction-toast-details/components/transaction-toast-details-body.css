@@ -41,16 +41,16 @@
 }
 
 .transaction-details-list-item-icon-fail {
-  background-color: var(--drt-toast-error-bg);
+  background-color: var(--mx-toast-error-bg);
 }
 
 .transaction-details-list-item-icon-fail svg,
 .transaction-details-list-item-icon-fail .svg-inline--fa {
-  color: var(--drt-toast-error-icon) !important;
+  color: var(--mx-toast-error-icon) !important;
 }
 
 .transaction-details-list-item-hash-index {
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -58,7 +58,7 @@
 }
 
 .transaction-details-list-item-hash-value {
-  color: var(--drt-tx-text-secondary);
+  color: var(--mx-tx-text-secondary);
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -69,17 +69,17 @@
 }
 
 .transaction-details-list-item:hover .transaction-details-list-item-hash-value {
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
 }
 
 .transaction-details-list-item-copy-button-icon .svg-inline--fa {
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
   width: 12px;
   height: 12px;
 }
 
 .transaction-details-list-item-explorer-link-icon {
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
   display: flex;
   width: 16px;
   height: 16px;
@@ -96,7 +96,7 @@
 }
 
 .transaction-details-list-item-explorer-link-icon .svg-inline--fa {
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
   text-align: center;
   width: 14px;
   height: 14px;
