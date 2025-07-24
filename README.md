@@ -1,10 +1,10 @@
-# Dharitri UI library for Front-End DApps
+# DharitrI UI library for Front-End DApps
 
-Dharitri Front-End Library for JavaScript and TypeScript (written in TypeScript).
+DharitrI Front-End Library for JavaScript and TypeScript (written in TypeScript).
 
 ## Introduction
 
-`sdk-dapp-ui` is a library that holds components to display user information from the Dharitri blockchain.
+`sdk-dapp-ui` is a library that holds components to display user information from the DharitrI blockchain.
 
 Since the library is built using [Stencil](https://stenciljs.com/), it can be used in any front-end framework, such as React, Angular, or Vue, but also in back-end frameworks like Next.js.
 
@@ -21,25 +21,25 @@ See [Template dApp](https://template-dapp.dharitri.org/) for live demo or checko
 
 ## Distribution
 
-[npm](https://www.npmjs.com/package/@dharitri/sdk-dapp-ui)
+[npm](https://www.npmjs.com/package/@terradharitri/sdk-dapp-ui)
 
 ## Installation
 
 The library can be installed via npm or yarn.
 
 ```bash
-npm install @dharitri/sdk-dapp-ui
+npm install @terradharitri/sdk-dapp-ui
 ```
 
 or
 
 ```bash
-yarn add @dharitri/sdk-dapp-ui
+yarn add @terradharitri/sdk-dapp-ui
 ```
 
 ## Usage
 
-`sdk-dapp-ui` library is primarily designed to work with [@dharitri/sdk-dapp](https://www.npmjs.com/package/@dharitri/sdk-dapp), since components are designed to display data and emit user events, but do not hold any business logic.
+`sdk-dapp-ui` library is primarily designed to work with [@terradharitri/sdk-dapp](https://www.npmjs.com/package/@terradharitri/sdk-dapp), since components are designed to display data and emit user events, but do not hold any business logic.
 
 The library is divided into three main categories:
 There are three types of components in the library: 
@@ -56,8 +56,8 @@ The basic usage of the component would be importing the component and its corres
 React example where the component does not need any processed data:
 
 ```tsx
-import type { CopyButton as CopyButtonPropsType } from '@dharitri/sdk-dapp-ui/dist/types/components/visual/copy-button/copy-button.d.ts';
-export { CopyButton as ReactCopyButton } from '@dharitri/sdk-dapp-ui/react';
+import type { CopyButton as CopyButtonPropsType } from '@terradharitri/sdk-dapp-ui/dist/types/components/visual/copy-button/copy-button.d.ts';
+export { CopyButton as ReactCopyButton } from '@terradharitri/sdk-dapp-ui/react';
 
 export const CopyButton = (props: CopyButtonPropsType) => {
   return <ReactCopyButton {...props} />;
@@ -78,8 +78,8 @@ flowchart LR
 Vanilla example where the component makes use of a controller from `sdk-dapp`:
 
 ```tsx
-export { FormatAmountController } from "@dharitri/sdk-dapp/out/controllers/FormatAmountController";
-import { DIGITS, DECIMALS } from "@dharitri/sdk-dapp-utils/out/constants";
+export { FormatAmountController } from "@terradharitri/sdk-dapp/out/controllers/FormatAmountController";
+import { DIGITS, DECIMALS } from "@terradharitri/sdk-dapp-utils/out/constants";
 
 
 export const FormatAmount = (props: {
@@ -110,7 +110,7 @@ export const FormatAmount = (props: {
 
 ### 3. Functional components
 
-Functional components in the `sdk-dapp-ui` library are designed to create interactive UIs and handle user events effectively. Typically, these components are embedded in login or signing transactions flows. They typically leverage the functionality provided by the `@dharitri/sdk-dapp` library to manage state and actions.
+Functional components in the `sdk-dapp-ui` library are designed to create interactive UIs and handle user events effectively. Typically, these components are embedded in login or signing transactions flows. They typically leverage the functionality provided by the `@terradharitri/sdk-dapp` library to manage state and actions.
 
 The way functional components are controlled are trough a [pub-sub pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) called EventBus. Each webcomponent has a method of exposing its EventBus, thus allowing sdk-dapp to get a reference to it and use it for communication.
 

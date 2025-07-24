@@ -2,8 +2,8 @@
 import { ProviderTypeEnum } from 'types/provider.types';
 
 export const providerLabels: Record<string, string> = {
-  [ProviderTypeEnum.crossWindow]: 'Dharitri Web Wallet',
-  [ProviderTypeEnum.extension]: 'Dharitri Wallet Extension',
+  [ProviderTypeEnum.crossWindow]: 'DharitrI Web Wallet',
+  [ProviderTypeEnum.extension]: 'DharitrI Wallet Extension',
   [ProviderTypeEnum.walletConnect]: 'xPortal App',
   [ProviderTypeEnum.ledger]: 'Ledger',
   [ProviderTypeEnum.metamask]: 'MetaMask Snap',

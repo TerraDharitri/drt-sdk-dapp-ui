@@ -1,4 +1,5 @@
-import { Component, Element, h, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, h, Method, State } from '@stencil/core';
+import { ANIMATION_DELAY_PROMISE } from 'components/visual/side-panel/side-panel.constants';
 import type { IProviderBase } from 'types/provider.types';
 import { ProviderTypeEnum } from 'types/provider.types';
 import type { IEventBus } from 'utils/EventBus';
@@ -14,46 +15,44 @@ import { UnlockPanelEventsEnum } from './unlock-panel.types';
 })
 export class UnlockPanel {
   private eventBus: IEventBus = new EventBus();
+  private unsubscribeFunctions: (() => void)[] = [];
+
   @Element() hostElement: HTMLElement;
 
-  @Prop() isOpen: boolean = false;
-  @Prop() allowedProviders: IProviderBase[] = [];
+  @State() isOpen: boolean = false;
+  @State() allowedProviders: IProviderBase[] = [];
 
   @State() isLoggingIn: boolean = false;
   @State() isIntroScreenVisible: boolean = false;
   @State() selectedMethod: IProviderBase | null = null;
-  @State() panelState = {
-    isOpen: this.isOpen,
-    allowedProviders: this.allowedProviders,
-  };
+
   @Method() async getEventBus() {
     return this.eventBus;
   }
 
-  @Watch('isOpen')
-  handleIsOpenChange(newValue: boolean) {
-    this.panelState = { ...this.panelState, isOpen: newValue };
-  }
-
-  @Watch('allowedProviders')
-  handleAllowedProvidersChange(newValue: IProviderBase[]) {
-    this.panelState = { ...this.panelState, allowedProviders: newValue };
+  @Method() async closeWithAnimation() {
+    this.isOpen = false;
+    const animationDelay = await ANIMATION_DELAY_PROMISE;
+    return animationDelay;
   }
 
   componentDidLoad() {
-    this.eventBus.subscribe(UnlockPanelEventsEnum.OPEN, this.unlockPanelUpdate.bind(this));
-    this.eventBus.subscribe(UnlockPanelEventsEnum.CANCEL_IN_PROVIDER, this.handleResetLoginState.bind(this));
+    const unsubDataUpdate = this.eventBus.subscribe(UnlockPanelEventsEnum.OPEN, this.unlockPanelUpdate);
+    const unsubCancelInProvider = this.eventBus.subscribe(
+      UnlockPanelEventsEnum.CANCEL_IN_PROVIDER,
+      this.handleResetLoginState,
+    );
+    this.unsubscribeFunctions.push(unsubDataUpdate, unsubCancelInProvider);
   }
 
   async disconnectedCallback() {
-    this.eventBus.unsubscribe(UnlockPanelEventsEnum.OPEN, this.unlockPanelUpdate.bind(this));
-    this.eventBus.unsubscribe(UnlockPanelEventsEnum.CANCEL_IN_PROVIDER, this.handleResetLoginState.bind(this));
+    this.unsubscribeFunctions.forEach(unsub => unsub());
+    this.unsubscribeFunctions = [];
     this.isLoggingIn = false;
     this.selectedMethod = null;
-    this.panelState = { isOpen: false, allowedProviders: [] };
-
-    const delayClosingAnimation = new Promise(resolve => setTimeout(resolve, 300));
-    return delayClosingAnimation;
+    this.isOpen = false;
+    this.isIntroScreenVisible = false;
+    this.allowedProviders = [];
   }
 
   private isExtensionInstalled(currentProvider: IProviderBase['type']) {
@@ -76,15 +75,13 @@ export class UnlockPanel {
     }
 
     this.anchor = element;
-    this.anchor.addEventListener(UnlockPanelEventsEnum.ANCHOR_CLOSE, this.handleResetLoginState.bind(this));
+    this.anchor.addEventListener(UnlockPanelEventsEnum.ANCHOR_CLOSE, this.handleResetLoginState);
   }
 
-  private unlockPanelUpdate(payload: { isOpen: boolean; allowedProviders: IProviderBase[] }) {
-    this.panelState = {
-      ...payload,
-      allowedProviders: payload.allowedProviders,
-    };
-  }
+  private unlockPanelUpdate = (allowedProviders: IProviderBase[]) => {
+    this.isOpen = true;
+    this.allowedProviders = allowedProviders;
+  };
 
   private handleLogin(provider: IProviderBase) {
     this.selectedMethod = provider;
@@ -106,8 +103,7 @@ export class UnlockPanel {
     }
   }
 
-  private handleResetLoginState(event?: MouseEvent) {
-    event?.preventDefault?.();
+  private handleResetLoginState = () => {
     this.isLoggingIn = false;
     this.isIntroScreenVisible = false;
     this.selectedMethod = null;
@@ -120,29 +116,32 @@ export class UnlockPanel {
       this.anchor.removeChild(this.anchor.firstChild);
     }
     this.eventBus.publish(UnlockPanelEventsEnum.CANCEL_LOGIN);
-  }
+  };
 
-  private handleClose(event: MouseEvent) {
-    event.preventDefault();
+  private handleClose = () => {
     if (this.selectedMethod) {
       this.eventBus.publish(UnlockPanelEventsEnum.CANCEL_LOGIN);
     }
 
     this.eventBus.publish(UnlockPanelEventsEnum.CLOSE);
-  }
+  };
 
-  private handleAccess() {
+  private handleAccess = () => {
     this.isIntroScreenVisible = false;
     this.isLoggingIn = true;
     this.eventBus.publish(UnlockPanelEventsEnum.LOGIN, { type: this.selectedMethod.type, anchor: this.anchor });
-  }
+  };
 
   render() {
-    const detectedProviders: IProviderBase[] = this.panelState.allowedProviders.filter(
-      allowedProvider => this.isExtensionInstalled(allowedProvider.type) || this.isMetaMaskInstalled(allowedProvider.type),
+    const detectedProviders: IProviderBase[] = this.allowedProviders.filter(
+      allowedProvider =>
+        this.isExtensionInstalled(allowedProvider.type) || this.isMetaMaskInstalled(allowedProvider.type),
     );
 
-    const otherProviders = this.panelState.allowedProviders.filter(allowedProvider => !detectedProviders.includes(allowedProvider));
+    const otherProviders = this.allowedProviders.filter(
+      allowedProvider => !detectedProviders.includes(allowedProvider),
+    );
+
     const panelTitle = this.selectedMethod ? this.selectedMethod.name : 'Connect your wallet';
     const hasDetectedProviders = detectedProviders.length > 0;
 
@@ -151,28 +150,48 @@ export class UnlockPanel {
 
     return (
       <drt-side-panel
-        isOpen={this.panelState.isOpen}
+        isOpen={this.isOpen}
         panelTitle={panelTitle}
-        onClose={this.handleClose.bind(this)}
-        onBack={this.handleResetLoginState.bind(this)}
+        onClose={this.handleClose}
+        onBack={this.handleResetLoginState}
         hasBackButton={isCustomProviderActive}
         showHeader={isProviderScreenVisible || isCustomProviderActive}
         panelClassName="unlock-panel"
       >
-        <div id="anchor" ref={element => this.setAnchor(element)} class={{ 'unlock-panel-anchor': this.isLoggingIn }}>
+        <div
+          id="anchor"
+          ref={(element: HTMLDivElement) => this.setAnchor(element)}
+          class={{ 'unlock-panel-anchor': this.isLoggingIn || this.isIntroScreenVisible }}
+        >
           {this.isIntroScreenVisible && (
-            <drt-provider-idle-screen provider={this.selectedMethod} onAccess={this.handleAccess.bind(this)} onClose={this.handleResetLoginState.bind(this)} />
+            <drt-provider-idle-screen
+              onAccess={this.handleAccess}
+              provider={this.selectedMethod}
+              onClose={this.handleResetLoginState}
+            />
           )}
         </div>
 
         {isProviderScreenVisible && (
           <div class="unlock-panel">
             <div class="unlock-panel-groups">
-              {hasDetectedProviders && <drt-unlock-panel-group groupTitle="Detected" providers={detectedProviders} onLogin={event => this.handleLogin(event.detail)} />}
-              <drt-unlock-panel-group groupTitle={hasDetectedProviders ? 'Other Options' : 'Options'} providers={otherProviders} onLogin={event => this.handleLogin(event.detail)}>
+              {hasDetectedProviders && (
+                <drt-unlock-panel-group
+                  groupTitle="Detected"
+                  providers={detectedProviders}
+                  onLogin={(event: CustomEvent) => this.handleLogin(event.detail)}
+                />
+              )}
+
+              <drt-unlock-panel-group
+                providers={otherProviders}
+                groupTitle={hasDetectedProviders ? 'Other Options' : 'Options'}
+                onLogin={(event: CustomEvent) => this.handleLogin(event.detail)}
+              >
                 <slot />
               </drt-unlock-panel-group>
             </div>
+
             <drt-unlock-panel-footer />
           </div>
         )}

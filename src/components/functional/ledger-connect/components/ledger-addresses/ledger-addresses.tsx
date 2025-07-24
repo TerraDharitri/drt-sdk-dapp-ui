@@ -3,7 +3,7 @@ import { Component, Event, h, Prop } from '@stencil/core';
 import classNames from 'classnames';
 import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 
-import type { IAccountScreenData, ILedgerAccount } from '../ledger.types';
+import type { IAccountScreenData, ILedgerAccount } from '../../ledger-connect.types';
 
 const TOTAL_ADDRESSES_COUNT = 5000;
 
@@ -46,7 +46,9 @@ export class LedgerAddresses {
     const isPageChanging = this.accountScreenData.isLoading;
     const isAddressesLoadingInitially = this.accountScreenData.accounts.length === 0;
     const totalPages = Math.ceil(TOTAL_ADDRESSES_COUNT / this.accountScreenData.addressesPerPage);
-    const isSelectedWalletOnPage = this.accountScreenData.accounts.some(accountDerivation => accountDerivation.index === this.selectedIndex);
+    const isSelectedWalletOnPage = this.accountScreenData.accounts.some(
+      accountDerivation => accountDerivation.index === this.selectedIndex,
+    );
     const isAccessWalletDisabled = !isSelectedWalletOnPage && !isPageChanging;
     const lastIndexOfPage = this.accountScreenData.startIndex + this.accountScreenData.addressesPerPage;
     const isSingleDigitIndex = lastIndexOfPage <= 10;
@@ -56,7 +58,8 @@ export class LedgerAddresses {
 
     const ledgerAddressesClasses: Record<string, string> = {
       buttonTooltip: 'drt:absolute drt:top-0 drt:h-12 drt:left-0 drt:right-0',
-      preloaderItem: 'drt:h-16! drt:border drt:border-solid drt:border-transparent drt:rounded-lg! drt:flex drt:items-center drt:w-full! drt:p-4',
+      preloaderItem:
+        'drt:h-16! drt:border drt:border-solid drt:border-transparent drt:rounded-lg! drt:flex drt:items-center drt:w-full! drt:p-4',
       preloaderItemCheckbox: 'drt:h-4! drt:mr-2 drt:min-w-4! drt:w-4! drt:rounded-full! drt:bg-neutral-700!',
       preloaderItemAddress: 'drt:w-40! drt:h-4! drt:bg-neutral-700! drt:rounded-lg! drt:mr-auto',
       preloaderItemBalance: 'drt:w-24! drt:h-4! drt:bg-neutral-700! drt:rounded-lg! drt:ml-2',
@@ -79,11 +82,30 @@ export class LedgerAddresses {
         <div class="ledger-addresses-wrapper">
           <div class={{ 'ledger-addresses-preloader': true, 'visible': isPageChanging }}>
             {Array.from({ length: this.accountScreenData.addressesPerPage }, () => (
-              <drt-preloader class={classNames('ledger-addresses-preloader-item', ledgerAddressesClasses.preloaderItem)}>
-                <drt-preloader class={classNames('ledger-addresses-preloader-item-checkbox', ledgerAddressesClasses.preloaderItemCheckbox)} />
-                <drt-preloader class={classNames('ledger-addresses-preloader-item-index', ledgerAddressesClasses.preloaderItemIndex)} />
-                <drt-preloader class={classNames('ledger-addresses-preloader-item-address', ledgerAddressesClasses.preloaderItemAddress)} />
-                <drt-preloader class={classNames('ledger-addresses-preloader-item-balance', ledgerAddressesClasses.preloaderItemBalance)} />
+              <drt-preloader
+                class={classNames('ledger-addresses-preloader-item', ledgerAddressesClasses.preloaderItem)}
+              >
+                <drt-preloader
+                  class={classNames(
+                    'ledger-addresses-preloader-item-checkbox',
+                    ledgerAddressesClasses.preloaderItemCheckbox,
+                  )}
+                />
+                <drt-preloader
+                  class={classNames('ledger-addresses-preloader-item-index', ledgerAddressesClasses.preloaderItemIndex)}
+                />
+                <drt-preloader
+                  class={classNames(
+                    'ledger-addresses-preloader-item-address',
+                    ledgerAddressesClasses.preloaderItemAddress,
+                  )}
+                />
+                <drt-preloader
+                  class={classNames(
+                    'ledger-addresses-preloader-item-balance',
+                    ledgerAddressesClasses.preloaderItemBalance,
+                  )}
+                />
               </drt-preloader>
             ))}
           </div>
@@ -91,10 +113,18 @@ export class LedgerAddresses {
           <div class={{ 'ledger-addresses-list': true, 'visible': !isPageChanging }}>
             {this.accountScreenData.accounts.map(accountDerivation => (
               <div
-                class={{ 'ledger-addresses-list-item': true, 'checked': accountDerivation.index === this.selectedIndex }}
+                class={{
+                  'ledger-addresses-list-item': true,
+                  'checked': accountDerivation.index === this.selectedIndex,
+                }}
                 onClick={this.handleSelectAccount(accountDerivation.index)}
               >
-                <div class={{ 'ledger-addresses-list-item-checkbox': true, 'checked': accountDerivation.index === this.selectedIndex }} />
+                <div
+                  class={{
+                    'ledger-addresses-list-item-checkbox': true,
+                    'checked': accountDerivation.index === this.selectedIndex,
+                  }}
+                />
                 <div
                   class={{
                     'ledger-addresses-list-item-index': true,
@@ -125,7 +155,13 @@ export class LedgerAddresses {
         <div class="ledger-addresses-button-wrapper">
           {isAccessWalletDisabled && (
             <div class="ledger-addresses-button-tooltip-wrapper">
-              <drt-tooltip trigger={<div class={{ 'ledger-addresses-button-tooltip': true, [ledgerAddressesClasses.buttonTooltip]: true }} />}>
+              <drt-tooltip
+                trigger={
+                  <div
+                    class={{ 'ledger-addresses-button-tooltip': true, [ledgerAddressesClasses.buttonTooltip]: true }}
+                  />
+                }
+              >
                 You have to select a wallet from the list that you want to access.
               </drt-tooltip>
             </div>

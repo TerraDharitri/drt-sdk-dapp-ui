@@ -12,8 +12,8 @@
 
   .transaction-toast-content-wrapper {
     width: 100%;
-    background: var(--drt-tx-bg-transparent);
-    border-color: var(--drt-tx-bg-transparent);
+    background: var(--mx-tx-bg-transparent);
+    border-color: var(--mx-tx-bg-transparent);
   }
 }
 
@@ -22,14 +22,14 @@
   align-items: start;
   gap: 10px;
 
-  color: var(--drt-warning-text);
+  color: var(--mx-warning-text);
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 16.8px;
 
   .info-icon {
-    color: var(--drt-warning-text) !important;
+    color: var(--mx-warning-text) !important;
     text-align: center;
     font-size: 15px;
     font-style: normal;
@@ -51,7 +51,7 @@
     font-weight: 400;
     line-height: 22.4px;
     letter-spacing: -0.16px;
-    color: var(--drt-body-label-color);
+    color: var(--mx-body-label-color);
   }
 }
 
@@ -75,7 +75,7 @@
     line-height: 22.4px;
     letter-spacing: -0.16px;
     margin: 0;
-    color: var(--drt-body-label-color);
+    color: var(--mx-body-label-color);
   }
 
   .clear-button {

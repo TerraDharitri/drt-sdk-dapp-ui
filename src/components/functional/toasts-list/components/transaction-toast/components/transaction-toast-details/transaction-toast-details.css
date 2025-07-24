@@ -17,8 +17,8 @@
 }
 
 .transaction-details-status-icon {
-  color: var(--drt-tx-text-primary);
-  transition: transform var(--drt-transition);
+  color: var(--mx-tx-text-primary);
+  transition: transform var(--mx-transition);
   align-items: center;
   display: flex;
   height: 20px;
@@ -28,7 +28,7 @@
   .svg-inline--fa {
     height: 14px;
     width: 14px;
-    color: var(--drt-tx-text-primary);
+    color: var(--mx-tx-text-primary);
   }
 }
 
@@ -37,7 +37,7 @@
 }
 
 .transaction-details-status-text {
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -52,7 +52,7 @@
   align-self: stretch;
   max-height: 0;
   overflow: hidden;
-  transition: max-height var(--drt-transition);
+  transition: max-height var(--mx-transition);
   width: 100%;
 }
 
@@ -72,13 +72,13 @@
 .show-more-button {
   background: none;
   border: none;
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
   font-size: 12px;
   font-weight: 400;
   line-height: 16.8px;
   cursor: pointer;
   border-radius: 4px;
-  transition: background-color var(--drt-transition);
+  transition: background-color var(--mx-transition);
 }
 
 .show-more-button:hover {

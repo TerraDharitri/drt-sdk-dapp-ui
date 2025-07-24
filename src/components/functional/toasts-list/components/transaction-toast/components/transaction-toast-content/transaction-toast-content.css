@@ -8,13 +8,13 @@
   align-items: flex-start;
   gap: 4px;
   border-radius: 12px;
-  border: 0.5px solid var(--drt-tx-bg);
-  background: var(--drt-tx-bg);
+  border: 0.5px solid var(--mx-tx-bg);
+  background: var(--mx-tx-bg);
   backdrop-filter: blur(38px);
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
 
   .svg-inline--fa {
-    color: var(--drt-tx-text-primary);
+    color: var(--mx-tx-text-primary);
   }
 }
 
@@ -60,7 +60,7 @@
 }
 
 .transaction-toast-title {
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -77,7 +77,7 @@
 
 
 .transaction-toast-amount {
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
   display: flex;
   font-size: 14px;
   font-style: normal;
@@ -103,7 +103,7 @@
 }
 
 .transaction-toast-details-info-text {
-  color: var(--drt-tx-text-secondary);
+  color: var(--mx-tx-text-secondary);
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -125,7 +125,7 @@
 }
 
 .transaction-toast-action-button {
-  color: var(--drt-tx-text-primary);
+  color: var(--mx-tx-text-primary);
   display: flex;
   width: 20px;
   height: 20px;
@@ -134,7 +134,7 @@
   flex-shrink: 0;
 
   .svg-inline--fa {
-    color: var(--drt-tx-text-primary);
+    color: var(--mx-tx-text-primary);
     text-align: center;
     height: 16px;
     width: 16px;

@@ -1,7 +1,7 @@
 import type { EventEmitter } from '@stencil/core';
 import { Component, Event, h, Prop } from '@stencil/core';
 
-import type { IConnectScreenData } from '../ledger.types';
+import type { IConnectScreenData } from '../../ledger-connect.types';
 
 @Component({
   tag: 'drt-ledger-intro',
@@ -44,10 +44,13 @@ export class LedgerIntro {
 
           <div class="ledger-intro-description">
             Connect your device <br />
-            and open the Dharitri App
+            and open the DharitrI App
           </div>
 
-          <button class={{ 'ledger-intro-button': true, 'loading': Boolean(this.isAwaiting) }} onClick={this.handleLedgerConnectClick.bind(this)}>
+          <button
+            class={{ 'ledger-intro-button': true, 'loading': Boolean(this.isAwaiting) }}
+            onClick={this.handleLedgerConnectClick.bind(this)}
+          >
             <span class="ledger-intro-button-label">{buttonLabel}</span>
             {this.isAwaiting && <drt-spinner-icon />}
           </button>
