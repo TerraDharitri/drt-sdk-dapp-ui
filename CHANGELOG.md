@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [[0.0.17](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/169)] - 2025-07-21
+
+- [Fixed typo in ledger confirm](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/169)
+
+## [[0.0.16](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/168)] - 2025-07-18
+
+- [Updated styles on close icon](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/167)
+
 ## [[0.0.15](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/165)] - 2025-07-15
 
 - [Removed cjs from bundle](https://github.com/TerraDharitri/drt-sdk-dapp-ui/pull/164)

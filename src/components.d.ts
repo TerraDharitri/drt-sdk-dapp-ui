@@ -62,6 +62,7 @@ export namespace Components {
     interface DrtCircleExclamationIcon {
     }
     interface DrtCloseIcon {
+        "class"?: string;
     }
     interface DrtCopyButton {
         "class"?: string;
@@ -1285,6 +1286,7 @@ declare namespace LocalJSX {
     interface DrtCircleExclamationIcon {
     }
     interface DrtCloseIcon {
+        "class"?: string;
     }
     interface DrtCopyButton {
         "class"?: string;

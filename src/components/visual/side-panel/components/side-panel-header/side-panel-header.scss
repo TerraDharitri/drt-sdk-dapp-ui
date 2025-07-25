@@ -30,6 +30,10 @@
         @apply drt:opacity-75;
       }
     }
+
+    .close-icon {
+      @apply drt:p-2;
+    }
   }
 
   .side-panel-heading-title {

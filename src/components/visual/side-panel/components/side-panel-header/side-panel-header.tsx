@@ -51,7 +51,7 @@ export class SidePanelHeader {
           onClick={this.handleRightIconClick.bind(this)}
         >
           <slot name={SidePanelHeaderSlotEnum.rightIcon}>
-            <drt-close-icon />
+            <drt-close-icon class="close-icon" />
           </slot>
         </div>
       </div>

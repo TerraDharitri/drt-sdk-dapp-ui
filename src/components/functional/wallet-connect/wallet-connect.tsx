@@ -87,7 +87,7 @@ export class WalletConnect {
           onRightButtonClick={() => this.eventBus.publish(WalletConnectEventsEnum.CLOSE)}
         >
           {!this.showScanPage && <drt-back-arrow-icon slot={SidePanelHeaderSlotEnum.leftIcon} />}
-          <drt-close-icon slot={SidePanelHeaderSlotEnum.rightIcon} />
+          <drt-close-icon slot={SidePanelHeaderSlotEnum.rightIcon} class="close-icon" />
         </drt-side-panel-header>
 
         <div class="wallet-connect">
