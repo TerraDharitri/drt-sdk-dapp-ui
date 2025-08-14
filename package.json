@@ -1,6 +1,6 @@
 {
   "name": "@terradharitri/sdk-dapp-ui",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A library to hold UI components for a dApp on the DharitrI blockchain",
   "author": "DharitrI",
   "license": "MIT",
