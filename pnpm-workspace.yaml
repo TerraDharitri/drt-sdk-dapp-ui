@@ -1,0 +1,5 @@
+packages:
+  - .
+
+onlyBuiltDependencies:
+  - postcss-combine-duplicated-selectors
