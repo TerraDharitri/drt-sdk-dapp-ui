@@ -53,11 +53,13 @@ describe('TransactionShards', () => {
     expect(page.root).toEqualHtml(`
       <drt-transaction-shards>
           <div class="transaction-shards">
-            <drt-explorer-link class="drt:text-blue-link!" data-testid="${DataTestIdsEnum.shardFromLink}" link="/blocks?shard=0">
+            <drt-explorer-link class="drt:text-primary!" data-testid="${DataTestIdsEnum.shardFromLink}" link="/blocks?shard=0">
               <span data-testid="${DataTestIdsEnum.senderShard}">0</span>
             </drt-explorer-link>
-            <span class="transaction-shards-arrow">&#10132;</span>
-            <drt-explorer-link class="drt:text-blue-link!" data-testid="${DataTestIdsEnum.shardToLink}" link="/blocks?shard=1">
+            <span class="transaction-shards-arrow">
+              <drt-arrow-right-icon />
+            </span>
+            <drt-explorer-link class="drt:text-primary!" data-testid="${DataTestIdsEnum.shardToLink}" link="/blocks?shard=1">
               <span data-testid="${DataTestIdsEnum.receiverShard}">1</span>
             </drt-explorer-link>
           </div>
@@ -76,11 +78,11 @@ describe('TransactionShards', () => {
     expect(page.root).toEqualHtml(`
       <drt-transaction-shards class="custom-class">
           <div class="custom-class transaction-shards">
-            <drt-explorer-link class="drt:text-blue-link!" data-testid="${DataTestIdsEnum.shardFromLink}" link="/blocks?shard=0">
+            <drt-explorer-link class="drt:text-primary!" data-testid="${DataTestIdsEnum.shardFromLink}" link="/blocks?shard=0">
               <span data-testid="${DataTestIdsEnum.senderShard}">0</span>
             </drt-explorer-link>
-            <span class="transaction-shards-arrow">&#10132;</span>
-            <drt-explorer-link class="drt:text-blue-link!" data-testid="${DataTestIdsEnum.shardToLink}" link="/blocks?shard=1">
+            <span class="transaction-shards-arrow"><drt-arrow-right-icon /></span>
+            <drt-explorer-link class="drt:text-primary!" data-testid="${DataTestIdsEnum.shardToLink}" link="/blocks?shard=1">
               <span data-testid="${DataTestIdsEnum.receiverShard}">1</span>
             </drt-explorer-link>
           </div>

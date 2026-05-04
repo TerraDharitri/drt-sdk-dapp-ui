@@ -1,4 +1,4 @@
-@keyframes XPortalQrCodePreloaderPulsation {
+@keyframes TDharitriQrCodePreloaderPulsation {
   0% {
     opacity: 1;
   }
@@ -23,9 +23,9 @@
     content: '';
   }
 
-  .xportal-qr-code-preloader {
+  .tdharitri-qr-code-preloader {
     @apply drt:transition-all drt:duration-200 drt:w-70 drt:h-70 drt:ease-in-out;
-    animation: XPortalQrCodePreloaderPulsation 1s infinite;
+    animation: TDharitriQrCodePreloaderPulsation 1s infinite;
     fill: none;
   }
 }

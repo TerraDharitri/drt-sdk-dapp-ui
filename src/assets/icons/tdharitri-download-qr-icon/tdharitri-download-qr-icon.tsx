@@ -2,10 +2,10 @@ import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   shadow: true,
-  styleUrl: 'xportal-download-qr-icon.scss',
-  tag: 'drt-xportal-download-qr-icon',
+  styleUrl: 'tdharitri-download-qr-icon.scss',
+  tag: 'drt-tdharitri-download-qr-icon',
 })
-export class XPortalDownloadQrIcon {
+export class TDharitriDownloadQrIcon {
   @Prop() class?: string = '';
 
   render() {
@@ -13,7 +13,7 @@ export class XPortalDownloadQrIcon {
       <svg
         viewBox="0 0 195 196"
         xmlns="http://www.w3.org/2000/svg"
-        class={{ 'xportal-download-qr-icon': true, [this.class]: Boolean(this.class) }}
+        class={{ 'tdharitri-download-qr-icon': true, [this.class]: Boolean(this.class) }}
       >
         <path
           fill-rule="evenodd"

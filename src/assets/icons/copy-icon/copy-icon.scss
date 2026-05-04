@@ -1,0 +1,8 @@
+.copy-icon {
+  @apply drt:w-auto drt:h-full drt:fill-current;
+  color: var(--drt-text-color-primary);
+
+  .copy-icon-path {
+    @apply drt:origin-center drt:scale-125 drt:fill-current;
+  }
+}

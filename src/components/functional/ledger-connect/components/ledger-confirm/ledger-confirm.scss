@@ -90,17 +90,6 @@
         @apply drt:text-xs;
         color: var(--drt-white);
       }
-
-      .ledger-confirm-footer-button {
-        @apply drt:px-3 drt:py-3 drt:whitespace-nowrap drt:flex drt:items-center drt:font-bold drt:text-xs;
-        @apply drt:rounded-lg drt:transition-all drt:leading-none drt:duration-200 drt:ease-in-out;
-        color: var(--drt-neutral-925);
-        background: var(--drt-white);
-
-        &:hover {
-          @apply drt:opacity-75;
-        }
-      }
     }
   }
 }

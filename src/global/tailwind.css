@@ -4,7 +4,8 @@
   --breakpoint-xs: 30rem; /* 480px */
   --color-primary: var(--drt-text-color-primary);
   --color-link: var(--drt-link-color);
-  --color-blue-link: var(--drt-blue-600);
   --color-accent: var(--drt-text-accent-color);
   --color-preloader: var(--drt-preloader-item-bg);
+  --color-pending: var(--drt-pending-color);
+  --color-error: var(--drt-error-color);
 }

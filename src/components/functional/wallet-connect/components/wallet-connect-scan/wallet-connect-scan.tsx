@@ -25,7 +25,7 @@ export class WalletConnectScan {
     return (
       <div class={{ 'wallet-connect-scan': true, [this.class]: Boolean(this.class) }}>
         <div class="wallet-connect-scan-qr">
-          <drt-xportal-qr-code-preloader data-testid={DataTestIdsEnum.walletConnectLoading} />
+          <drt-tdharitri-qr-code-preloader data-testid={DataTestIdsEnum.walletConnectLoading} />
 
           <div
             class={{ 'wallet-connect-scan-qr-embed': true, 'visible': Boolean(this.qrCodeSvg) }}
@@ -43,14 +43,14 @@ export class WalletConnectScan {
             href={this.walletConnectDeepLink}
             class={{ 'wallet-connect-scan-connect': true, 'disabled': !this.qrCodeSvg }}
           >
-            Connect xPortal
+            Connect tDharitri
           </a>
         </div>
 
         <div class="wallet-connect-scan-download">
           <div class="wallet-connect-scan-download-wrapper">
             <div class="wallet-connect-scan-download-title">
-              Get the xPortal <br /> mobile app
+              Get the tDharitri <br /> mobile app
             </div>
 
             <div class="wallet-connect-scan-download-button" onClick={this.handleDownloadClick.bind(this)}>

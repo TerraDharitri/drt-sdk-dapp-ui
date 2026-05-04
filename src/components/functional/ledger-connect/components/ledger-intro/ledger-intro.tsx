@@ -6,6 +6,7 @@ import type { IConnectScreenData } from '../../ledger-connect.types';
 
 const ledgerIntroClasses: Record<string, string> = {
   icon: 'drt:w-50 drt:h-auto drt:xs:w-100 drt:xs:h-85',
+  button: 'drt:w-48 drt:xs:mt-5',
 };
 
 @Component({
@@ -30,18 +31,6 @@ export class LedgerIntro {
   render() {
     const showError = this.connectScreenData && this.connectScreenData.error;
 
-    const buttonLabel = (() => {
-      if (this.isAwaiting) {
-        return 'Connecting...';
-      }
-
-      if (showError) {
-        return 'Retry Connection';
-      }
-
-      return 'Connect Ledger';
-    })();
-
     return (
       <div class="ledger-intro">
         <div class="ledger-intro-wrapper">
@@ -56,13 +45,19 @@ export class LedgerIntro {
             and open the DharitrI App
           </div>
 
-          <button
-            class={{ 'ledger-intro-button': true, 'loading': Boolean(this.isAwaiting) }}
+          <drt-button
+            disabled={Boolean(this.isAwaiting)}
             onClick={this.handleLedgerConnectClick.bind(this)}
+            class={classNames('ledger-intro-button', ledgerIntroClasses.button)}
           >
-            <span class="ledger-intro-button-label">{buttonLabel}</span>
+            {this.isAwaiting ? (
+              <span class="ledger-intro-button-label">Connecting...</span>
+            ) : (
+              <span class="ledger-intro-button-label">{showError ? 'Retry Connection' : 'Connect Ledger'}</span>
+            )}
+
             {this.isAwaiting && <drt-spinner-icon />}
-          </button>
+          </drt-button>
 
           {showError && <div class="ledger-intro-error">{this.connectScreenData.error}</div>}
         </div>

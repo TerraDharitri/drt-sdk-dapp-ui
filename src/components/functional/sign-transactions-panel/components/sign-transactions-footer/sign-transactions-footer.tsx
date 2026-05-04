@@ -1,10 +1,12 @@
 import { Component, Fragment, h, State } from '@stencil/core';
+import classNames from 'classnames';
 import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 
 import state from '../../signTransactionsPanelStore';
 
 const signTransactionsFooterClasses: Record<string, string> = {
   buttonTooltip: 'drt:absolute drt:top-0 drt:h-12 drt:left-0 drt:right-0',
+  actionButton: 'drt:text-base! drt:w-full',
   explorerLinkIcon: 'drt:fill-link!',
 };
 
@@ -37,9 +39,7 @@ export class SignTransactionsFooter {
   private handleSignClick = () => {
     if (state.onConfirm) {
       this.isWaitingForSignature = true;
-      setTimeout(() => {
-        state.onConfirm();
-      }, 2000);
+      state.onConfirm();
     }
   };
 
@@ -52,29 +52,19 @@ export class SignTransactionsFooter {
     const currentIndexCannotBeSignedYet = currentIndex > currentIndexToSign;
     const showForwardAction = currentIndexNeedsSigning || currentIndexCannotBeSignedYet;
 
-    let confirmText = needsSigning ? 'Sign' : 'Confirm';
-    let icon = needsSigning ? <drt-pencil-icon /> : <drt-check-icon />;
-
-    if (this.isWaitingForSignature) {
-      confirmText = 'Check your device';
-      icon = <drt-spinner-icon />;
-    }
-
     return (
-      <div class="sign-transactions-footer">
-        <div class="sign-transactions-footer-buttons">
+      <div class="sign-transactions-footer" data-testid={DataTestIdsEnum.signTransactionsFooter}>
+        <div class="sign-transactions-footer-buttons" data-testid={DataTestIdsEnum.signTransactionsFooterButtons}>
           <div class="sign-transactions-footer-button-wrapper cancel">
-            <button
+            <drt-button
+              size="small"
+              onButtonClick={isFirstTransaction ? onCancel : onBack}
+              variant={currentIndexCannotBeSignedYet ? 'primary' : 'secondary'}
               data-testid={isFirstTransaction ? DataTestIdsEnum.signCancelBtn : DataTestIdsEnum.signBackBtn}
-              onClick={isFirstTransaction ? onCancel : onBack}
-              class={{
-                'sign-transactions-footer-button': true,
-                'cancel': !currentIndexCannotBeSignedYet,
-                'highlighted': currentIndexCannotBeSignedYet,
-              }}
+              class={classNames('sign-transactions-footer-button', signTransactionsFooterClasses.actionButton)}
             >
-              <span class="sign-transactions-footer-button-label">{isFirstTransaction ? 'Cancel' : 'Back'}</span>
-            </button>
+              {isFirstTransaction ? 'Cancel' : 'Back'}
+            </drt-button>
           </div>
 
           <div class="sign-transactions-footer-button-wrapper confirm">
@@ -107,47 +97,75 @@ export class SignTransactionsFooter {
               </div>
             )}
 
-            <button
+            <drt-button
+              size="small"
               data-testid={DataTestIdsEnum.signNextTransactionBtn}
               onClick={showForwardAction ? this.handleSignClick : onNext}
-              class={{
-                'sign-transactions-footer-button': true,
-                'highlighted': true,
-                'disabled': currentIndexCannotBeSignedYet || this.isWaitingForSignature,
-              }}
+              disabled={currentIndexCannotBeSignedYet || this.isWaitingForSignature}
+              class={classNames('sign-transactions-footer-button', signTransactionsFooterClasses.actionButton)}
             >
               {showForwardAction ? (
-                <span class="sign-transactions-footer-button-label">{confirmText}</span>
+                <span class="sign-transactions-footer-button-label-wrapper">
+                  {this.isWaitingForSignature ? (
+                    <span class="sign-transactions-footer-button-label">Check your device</span>
+                  ) : (
+                    <span class="sign-transactions-footer-button-label">{needsSigning ? 'Sign' : 'Confirm'}</span>
+                  )}
+                </span>
               ) : (
-                <span class="sign-transactions-footer-button-label">Next</span>
+                <span class="sign-transactions-footer-button-label-wrapper">
+                  <span class="sign-transactions-footer-button-label">Next</span>
+                </span>
               )}
 
               {showForwardAction ? (
                 <span
-                  class={{ 'sign-transactions-footer-button-icon': true, 'lighter': currentIndexCannotBeSignedYet }}
+                  class={{
+                    'sign-transactions-footer-button-icon-wrapper': true,
+                    'lighter': currentIndexCannotBeSignedYet,
+                  }}
                 >
-                  {icon}
+                  {this.isWaitingForSignature ? (
+                    <span class="sign-transactions-footer-button-icon">
+                      <drt-spinner-icon />
+                    </span>
+                  ) : (
+                    <span class="sign-transactions-footer-button-icon">
+                      {needsSigning ? <drt-pencil-icon /> : <drt-check-icon />}
+                    </span>
+                  )}
                 </span>
               ) : (
-                <span class="sign-transactions-footer-button-icon">
-                  <drt-arrow-right-icon />
+                <span class="sign-transactions-footer-button-icon-wrapper">
+                  <span class="sign-transactions-footer-button-icon">
+                    <drt-arrow-right-icon />
+                  </span>
                 </span>
               )}
-            </button>
+            </drt-button>
           </div>
         </div>
 
-        <div class="sign-transactions-footer-identity">
+        <div class="sign-transactions-footer-identity" data-testid={DataTestIdsEnum.signTransactionsFooterIdentity}>
           <div class="sign-transactions-footer-identity-label">Sign with</div>
 
           {username && (
-            <div class="sign-transactions-footer-identity-username">
+            <div
+              class="sign-transactions-footer-identity-username"
+              data-testid={DataTestIdsEnum.signTransactionsFooterIdentityUsername}
+            >
               <span class="sign-transactions-footer-identity-username-prefix">@</span>
               <span class="sign-transactions-footer-identity-username-text">{username}</span>
             </div>
           )}
 
-          {!username && address && <drt-trim text={address} class="sign-transactions-footer-identity-address" />}
+          {!username && address && (
+            <drt-trim
+              text={address}
+              class="sign-transactions-footer-identity-address"
+              data-testid={DataTestIdsEnum.signTransactionsFooterIdentityAddress}
+            />
+          )}
 
           <drt-copy-button
             text={username ?? address}
