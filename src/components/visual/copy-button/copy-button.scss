@@ -1,3 +1,11 @@
 .copy-button {
-  color: var(--drt-text-color-primary);
+  @apply drt:flex;
+
+  .copy-button-icon {
+    @apply drt:flex drt:cursor-pointer drt:justify-center drt:transition-opacity drt:duration-200 drt:ease-in-out drt:hover:opacity-80 drt:w-4 drt:h-4;
+
+    &.check {
+      @apply drt:hover:opacity-100 drt:cursor-default;
+    }
+  }
 }

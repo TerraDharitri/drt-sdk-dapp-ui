@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+import classNames from 'classnames';
 import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 
 import type { IConfirmScreenData } from '../../ledger-connect.types';
@@ -10,6 +11,10 @@ interface LedgerConfirmationItemType {
   explorerLink?: string;
 }
 
+const ledgerConfirmClasses: Record<string, string> = {
+  button: 'drt:whitespace-nowrap drt:rounded-lg!',
+};
+
 @Component({
   tag: 'drt-ledger-confirm',
   styleUrl: 'ledger-confirm.scss',
@@ -17,6 +22,11 @@ interface LedgerConfirmationItemType {
 })
 export class LedgerConfirm {
   @Prop() confirmScreenData: IConfirmScreenData;
+
+  handleSupportButtonClick(event: MouseEvent) {
+    event.preventDefault();
+    window.open('https://help.dharitri.org/en/');
+  }
 
   render() {
     const ledgerConfirmationItems: LedgerConfirmationItemType[] = [
@@ -75,14 +85,14 @@ export class LedgerConfirm {
             If the address does not match, close this page and contact support.
           </div>
 
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://help.dharitri.org/en/"
-            class="ledger-confirm-footer-button"
+          <drt-button
+            size="small"
+            variant="neutral"
+            onButtonClick={this.handleSupportButtonClick.bind(this)}
+            class={classNames('ledger-confirm-footer-button', ledgerConfirmClasses.button)}
           >
             Contact Support
-          </a>
+          </drt-button>
         </div>
       </div>
     );

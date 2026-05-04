@@ -7,7 +7,7 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 import type { TransactionAccountType } from '../../transactions-table.type';
 
 const transactionAccountClasses: Record<string, string> = {
-  explorerLink: 'drt:text-blue-link!',
+  explorerLink: 'drt:text-primary!',
 };
 
 @Component({

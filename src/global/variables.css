@@ -26,10 +26,12 @@
   --drt-gray-725: #343a40;
   --drt-gray-750: #3a3a3a;
   --drt-gray-925: #212529;
+  --drt-stone-75: #faf9f8;
   --drt-stone-125: #f3efed;
   --drt-stone-150: #e2dedc;
   --drt-stone-350: #b6b3af;
   --drt-stone-450: #88817a;
+  --drt-stone-950: #1B1B1B;
   --drt-slate-550: #545b62;
   --drt-green-400: #4ade80;
   --drt-green-650: #14aa3e;
@@ -45,7 +47,7 @@
   --drt-teal-150: #a5fcf0;
   --drt-teal-350: #23f7dd;
   --drt-teal-925: #143736;
-  --drt-blue-600: #2563EB;
+  --drt-blue-600: #2563eb;
   --drt-blue-650: #007bff;
   --drt-blue-750: #0062cc;
   --drt-cyan-550: #17a2b8;
@@ -53,7 +55,8 @@
 
 /* Dark Theme Variables */
 :root,
-:root[data-theme='drt:dark-theme'] {
+:root[data-drt-theme='drt:dark-theme'],
+[data-drt-theme='drt:dark-theme'] {
   --drt-text-color-primary: var(--drt-white);
   --drt-text-color-secondary: var(--drt-stone-350);
   --drt-text-color-tertiary: var(--drt-neutral-225);
@@ -67,11 +70,13 @@
   --drt-hover-color-primary: var(--drt-neutral-800);
   --drt-hover-bg-primary: var(--drt-white);
   --drt-border-color-primary: var(--drt-neutral-800);
+  --drt-border-color-secondary: var(--drt-neutral-750);
   --drt-button-bg-primary: var(--drt-teal-350);
   --drt-button-text-primary: var(--drt-black);
   --drt-button-bg-secondary: var(--drt-neutral-800);
   --drt-button-text-secondary: var(--drt-neutral-225);
   --drt-button-bg-hover-secondary: var(--drt-teal-350);
+  --drt-button-bg-variant: var(--drt-stone-950);
   --drt-select-bg: var(--drt-neutral-800);
   --drt-select-color: var(--drt-gray-200);
   --drt-select-option-color: var(--drt-teal-150);
@@ -93,10 +98,12 @@
   --drt-progress-accent-color: var(--drt-teal-350);
   --drt-icon-bg: var(--drt-gray-750);
   --drt-scrollbar-thumb: var(--drt-neutral-750);
+  --drt-transaction-method: var(--drt-green-400);
 }
 
 /* Light Theme Variables */
-:root[data-theme='drt:light-theme'] {
+:root[data-drt-theme='drt:light-theme'],
+[data-drt-theme='drt:light-theme'] {
   --drt-text-color-primary: var(--drt-black);
   --drt-text-color-secondary: var(--drt-stone-450);
   --drt-text-color-tertiary: var(--drt-neutral-800);
@@ -110,10 +117,13 @@
   --drt-hover-color-primary: var(--drt-neutral-225);
   --drt-hover-bg-primary: var(--drt-black);
   --drt-border-color-primary: var(--drt-neutral-225);
+  --drt-border-color-secondary: var(--drt-neutral-300);
   --drt-button-bg-primary: var(--drt-black);
   --drt-button-text-primary: var(--drt-white);
   --drt-button-bg-secondary: var(--drt-white);
   --drt-button-text-secondary: var(--drt-neutral-800);
+  --drt-button-bg-hover-secondary: var(--drt-black);
+  --drt-button-bg-variant: var(--drt-stone-75);
   --drt-select-bg: var(--drt-white);
   --drt-select-color: var(--drt-neutral-700);
   --drt-select-option-color: var(--drt-black);
@@ -135,4 +145,5 @@
   --drt-progress-accent-color: var(--drt-black);
   --drt-icon-bg: var(--drt-neutral-250);
   --drt-scrollbar-thumb: var(--drt-neutral-400);
+  --drt-transaction-method: var(--drt-green-650);
 }

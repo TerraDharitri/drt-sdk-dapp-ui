@@ -1,11 +1,11 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'drt-xportal-qr-code-preloader',
-  styleUrl: 'xportal-qr-code-preloader.scss',
+  tag: 'drt-tdharitri-qr-code-preloader',
+  styleUrl: 'tdharitri-qr-code-preloader.scss',
   shadow: true,
 })
-export class XPortalQrCodePreloader {
+export class TDharitriQrCodePreloader {
   @Prop() class?: string;
 
   render() {
@@ -13,7 +13,7 @@ export class XPortalQrCodePreloader {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 302 300"
-        class={{ 'xportal-qr-code-preloader': true, [this.class]: Boolean(this.class) }}
+        class={{ 'tdharitri-qr-code-preloader': true, [this.class]: Boolean(this.class) }}
       >
         <g opacity="0.5">
           <path d="M108.94 0H96.9403V12.0001H108.94V0Z" fill="url(#paint0_linear_8712_31655)" />
