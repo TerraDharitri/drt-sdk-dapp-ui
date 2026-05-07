@@ -1,9 +1,0 @@
-packages:
-  - .
-onlyBuiltDependencies:
-  - postcss-combine-duplicated-selectors
-  - "@parcel/watcher"
-  - esbuild
-  - puppeteer
-allowBuilds:
-  postcss-combine-duplicated-selectors: true
