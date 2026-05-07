@@ -59,8 +59,10 @@
 }
 
 .badge-secondary {
-  color: var(--drt-white);
-  background-color: var(--drt-gray-500);
+  color: var(--drt-transaction-method);
+  border-width: 1px;
+  border-color: var(--drt-transaction-method);
+  background-color: transparent;
 }
 
 .badge-danger {
@@ -85,4 +87,15 @@
 
 .text-white {
   color: var(--drt-white);
+}
+
+
+.amount {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.amount-symbol {
+  color: var(--drt-text-color-primary);
 }

@@ -6,8 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IAddressTableData } from "./types/address-table.types";
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { ButtonSizeEnum, ButtonVariantEnum } from "./components/visual/button/button.types";
 import { CustomToastType, IComponentToast, ISimpleToast } from "./components/functional/toasts-list/components/transaction-toast/transaction-toast.type";
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { IConfirmScreenData, IConnectScreenData, ILedgerConnectPanelData } from "./components/functional/ledger-connect/ledger-connect.types";
 import { IEventBus } from "./utils/EventBus";
 import { IProviderBase, ProviderTypeEnum } from "./types/provider.types";
@@ -21,8 +22,9 @@ import { IToastDataState, ITransactionProgressState } from "./components/functio
 import { TransactionValueType } from "./components/controlled/transactions-table/transactions-table.type";
 import { IEventBus as IEventBus1, unknown as IWalletConnectPanelData } from "./components.d";
 export { IAddressTableData } from "./types/address-table.types";
-export { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+export { ButtonSizeEnum, ButtonVariantEnum } from "./components/visual/button/button.types";
 export { CustomToastType, IComponentToast, ISimpleToast } from "./components/functional/toasts-list/components/transaction-toast/transaction-toast.type";
+export { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 export { IConfirmScreenData, IConnectScreenData, ILedgerConnectPanelData } from "./components/functional/ledger-connect/ledger-connect.types";
 export { IEventBus } from "./utils/EventBus";
 export { IProviderBase, ProviderTypeEnum } from "./types/provider.types";
@@ -44,6 +46,11 @@ export namespace Components {
     }
     interface DrtAnglesRightIcon {
     }
+    interface DrtArcExtensionProviderIcon {
+        "class"?: string;
+        "height"?: number;
+        "width"?: number;
+    }
     interface DrtArrowRightIcon {
         "class"?: string;
     }
@@ -56,6 +63,33 @@ export namespace Components {
     interface DrtBackArrowIcon {
         "class"?: string;
     }
+    interface DrtBraveExtensionProviderIcon {
+        "class"?: string;
+        "height"?: number;
+        "width"?: number;
+    }
+    interface DrtButton {
+        /**
+          * @default ''
+         */
+        "class"?: string;
+        /**
+          * @default ''
+         */
+        "dataTestId"?: string;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default 'large'
+         */
+        "size"?: `${ButtonSizeEnum}`;
+        /**
+          * @default 'primary'
+         */
+        "variant"?: `${ButtonVariantEnum}`;
+    }
     interface DrtCheckIcon {
         "class"?: string;
     }
@@ -66,13 +100,32 @@ export namespace Components {
     }
     interface DrtCopyButton {
         "class"?: string;
-        "copyIcon"?: IconDefinition | string;
         "iconClass"?: string;
-        "successIcon"?: IconDefinition | string;
         "text": string;
+    }
+    interface DrtCopyIcon {
+        "class"?: string;
     }
     interface DrtCustomToast {
         "toast": IComponentToast;
+    }
+    interface DrtDataWithExplorerLink {
+        "class"?: string;
+        "data": string;
+        "dataTestId"?: string;
+        "explorerLink": string;
+        /**
+          * @default true
+         */
+        "showCopyButton"?: boolean;
+        /**
+          * @default true
+         */
+        "showExplorerButton"?: boolean;
+        /**
+          * @default false
+         */
+        "withTooltip"?: boolean;
     }
     interface DrtDefaultTransactionIconLarge {
         "class"?: string;
@@ -82,6 +135,16 @@ export namespace Components {
     }
     interface DrtDharitriLogoIcon {
         "class"?: string;
+    }
+    interface DrtDharitriSymbolIcon {
+        "class"?: string;
+    }
+    interface DrtDharitriliteProviderIcon {
+    }
+    interface DrtEdgeExtensionProviderIcon {
+        "class"?: string;
+        "height"?: number;
+        "width"?: number;
     }
     interface DrtExplorerLink {
         "class"?: string;
@@ -95,9 +158,17 @@ export namespace Components {
         "width"?: number;
     }
     interface DrtFaIcon {
+        /**
+          * @default 'fa-icon'
+         */
         "class"?: string;
         "description"?: string;
         "icon": IconDefinition | string;
+    }
+    interface DrtFirefoxExtensionProviderIcon {
+        "class"?: string;
+        "height"?: number;
+        "width"?: number;
     }
     interface DrtFormatAmount {
         "class"?: string;
@@ -106,6 +177,9 @@ export namespace Components {
         "isValid": boolean;
         "label"?: string;
         "labelClass"?: string;
+        /**
+          * @default true
+         */
         "showLabel"?: boolean;
         "valueDecimal": string;
         "valueInteger": string;
@@ -117,6 +191,9 @@ export namespace Components {
         "confirmScreenData": IConfirmScreenData;
     }
     interface DrtLedgerConnect {
+        /**
+          * @default {     accountScreenData: null,     confirmScreenData: null,     connectScreenData: {},   }
+         */
         "data": ILedgerConnectPanelData;
         "getEventBus": () => Promise<IEventBus>;
     }
@@ -125,6 +202,9 @@ export namespace Components {
     }
     interface DrtLedgerIntro {
         "connectScreenData"?: IConnectScreenData;
+        /**
+          * @default false
+         */
         "isAwaiting"?: boolean;
     }
     interface DrtLedgerProviderIcon {
@@ -142,14 +222,26 @@ export namespace Components {
     }
     interface DrtPagination {
         "class"?: string;
+        /**
+          * @default 1
+         */
         "currentPage": number;
+        /**
+          * @default false
+         */
         "isDisabled"?: boolean;
         "totalPages": number;
     }
     interface DrtPaginationEllipsis {
+        /**
+          * @default false
+         */
         "isActive": boolean;
     }
     interface DrtPaginationEllipsisForm {
+        /**
+          * @default false
+         */
         "isVisible": boolean;
         "maxPageToSearchFor": number;
     }
@@ -167,27 +259,54 @@ export namespace Components {
         "class"?: string;
     }
     interface DrtProviderIdleScreen {
+        /**
+          * @default ''
+         */
         "introText": string;
+        /**
+          * @default 'Requesting Connection'
+         */
         "introTitle": string;
+        /**
+          * @default null
+         */
         "provider": IProviderBase | null;
     }
     interface DrtSidePanel {
         "hasBackButton"?: boolean;
+        /**
+          * @default false
+         */
         "isOpen": boolean;
         "panelClassName"?: string;
         "panelTitle": string;
+        /**
+          * @default true
+         */
         "showHeader"?: boolean;
     }
     interface DrtSidePanelHeader {
+        /**
+          * @default true
+         */
         "hasLeftButton"?: boolean;
+        /**
+          * @default true
+         */
         "hasRightButton"?: boolean;
         "panelClassName"?: string;
         "panelTitle": string;
     }
     interface DrtSidePanelSwiper {
         "close": () => Promise<void>;
+        /**
+          * @default false
+         */
         "open": boolean;
         "openToSnapPoint": (snapIndex?: number) => Promise<void>;
+        /**
+          * @default ''
+         */
         "sidePanelIdentifier": string;
     }
     interface DrtSignTransactionsAdvanced {
@@ -199,7 +318,13 @@ export namespace Components {
         "highlight"?: string;
     }
     interface DrtSignTransactionsAdvancedDataDecode {
+        /**
+          * @default DecodeMethodEnum.decimal
+         */
         "currentDecodeMethod": DecodeMethodEnum;
+        /**
+          * @default false
+         */
         "isToggled": boolean;
     }
     interface DrtSignTransactionsFooter {
@@ -212,7 +337,13 @@ export namespace Components {
         "identifier": string;
         "interactor": string;
         "interactorIconUrl": string;
+        /**
+          * @default false
+         */
         "isApp": boolean;
+        /**
+          * @default '~$0.00078'
+         */
         "networkFee": string;
         "tokenIconUrl": string;
         "usdValue": string;
@@ -236,13 +367,28 @@ export namespace Components {
     interface DrtSpinnerIcon {
         "class"?: string;
     }
+    interface DrtTdharitriDownloadQrIcon {
+        /**
+          * @default ''
+         */
+        "class"?: string;
+    }
+    interface DrtTdharitriQrCodePreloader {
+        "class"?: string;
+    }
     interface DrtToastList {
         "getEventBus": () => Promise<IEventBus>;
     }
     interface DrtTooltip {
         "class"?: string;
+        /**
+          * @default 'top'
+         */
         "position": 'top' | 'bottom';
         "trigger": HTMLElement;
+        /**
+          * @default false
+         */
         "triggerOnClick"?: boolean;
     }
     interface DrtTransactionAccount {
@@ -250,6 +396,9 @@ export namespace Components {
         "class"?: string;
         "dataTestId"?: string;
         "scope": 'receiver' | 'sender';
+        /**
+          * @default false
+         */
         "showLockedAccounts": boolean;
     }
     interface DrtTransactionAccountName {
@@ -294,10 +443,19 @@ export namespace Components {
     }
     interface DrtTransactionToast {
         "fullWidth"?: boolean;
+        /**
+          * @default ''
+         */
         "processedTransactionsStatus": string | JSX.Element;
         "toastDataState": IToastDataState;
+        /**
+          * @default ''
+         */
         "toastId": string;
         "transactionProgressState"?: ITransactionProgressState;
+        /**
+          * @default []
+         */
         "transactions": ITransactionListItem[];
         "wrapperClass": string;
     }
@@ -308,6 +466,9 @@ export namespace Components {
         "transactions": ITransactionListItem[];
     }
     interface DrtTransactionToastDetails {
+        /**
+          * @default 5
+         */
         "maxShownTransactions": number;
         "processedTransactionsStatus"?: string | JSX.Element;
         "transactionClass": string;
@@ -318,6 +479,9 @@ export namespace Components {
         "index": string;
         "link": string;
         "status"?: string;
+        /**
+          * @default 'transaction-details-list-item'
+         */
         "transactionClass"?: string;
     }
     interface DrtTransactionToastProgress {
@@ -337,6 +501,9 @@ export namespace Components {
     }
     interface DrtTrim {
         "class"?: string;
+        /**
+          * @default DataTestIdsEnum.trim
+         */
         "dataTestId"?: string;
         "text": string;
     }
@@ -357,6 +524,9 @@ export namespace Components {
     }
     interface DrtUnlockPanelGroup {
         "class"?: string;
+        /**
+          * @default []
+         */
         "providers": IProviderBase[];
     }
     interface DrtUnlockProviderButton {
@@ -364,8 +534,14 @@ export namespace Components {
         "provider": IProviderBase<ProviderTypeEnum>;
     }
     interface DrtWalletConnect {
+        /**
+          * @default { wcURI: '' }
+         */
         "data": IWalletConnectPanelData;
         "getEventBus": () => Promise<IEventBus>;
+        /**
+          * @default ''
+         */
         "qrCodeSvg": string;
     }
     interface DrtWalletConnectAppGalleryIcon {
@@ -382,24 +558,26 @@ export namespace Components {
     }
     interface DrtWalletConnectScan {
         "class"?: string;
+        /**
+          * @default ''
+         */
         "qrCodeSvg": string;
+        /**
+          * @default ''
+         */
         "walletConnectDeepLink"?: string;
     }
     interface DrtWalletProviderIcon {
-        "class"?: string;
-    }
-    interface DrtXaliasProviderIcon {
-    }
-    interface DrtXportalDownloadQrIcon {
-        "class"?: string;
-    }
-    interface DrtXportalQrCodePreloader {
         "class"?: string;
     }
 }
 export interface DrtAddressTableCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDrtAddressTableElement;
+}
+export interface DrtButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDrtButtonElement;
 }
 export interface DrtCustomToastCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -493,6 +671,12 @@ declare global {
         prototype: HTMLDrtAnglesRightIconElement;
         new (): HTMLDrtAnglesRightIconElement;
     };
+    interface HTMLDrtArcExtensionProviderIconElement extends Components.DrtArcExtensionProviderIcon, HTMLStencilElement {
+    }
+    var HTMLDrtArcExtensionProviderIconElement: {
+        prototype: HTMLDrtArcExtensionProviderIconElement;
+        new (): HTMLDrtArcExtensionProviderIconElement;
+    };
     interface HTMLDrtArrowRightIconElement extends Components.DrtArrowRightIcon, HTMLStencilElement {
     }
     var HTMLDrtArrowRightIconElement: {
@@ -516,6 +700,29 @@ declare global {
     var HTMLDrtBackArrowIconElement: {
         prototype: HTMLDrtBackArrowIconElement;
         new (): HTMLDrtBackArrowIconElement;
+    };
+    interface HTMLDrtBraveExtensionProviderIconElement extends Components.DrtBraveExtensionProviderIcon, HTMLStencilElement {
+    }
+    var HTMLDrtBraveExtensionProviderIconElement: {
+        prototype: HTMLDrtBraveExtensionProviderIconElement;
+        new (): HTMLDrtBraveExtensionProviderIconElement;
+    };
+    interface HTMLDrtButtonElementEventMap {
+        "buttonClick": MouseEvent;
+    }
+    interface HTMLDrtButtonElement extends Components.DrtButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDrtButtonElementEventMap>(type: K, listener: (this: HTMLDrtButtonElement, ev: DrtButtonCustomEvent<HTMLDrtButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDrtButtonElementEventMap>(type: K, listener: (this: HTMLDrtButtonElement, ev: DrtButtonCustomEvent<HTMLDrtButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDrtButtonElement: {
+        prototype: HTMLDrtButtonElement;
+        new (): HTMLDrtButtonElement;
     };
     interface HTMLDrtCheckIconElement extends Components.DrtCheckIcon, HTMLStencilElement {
     }
@@ -541,6 +748,12 @@ declare global {
         prototype: HTMLDrtCopyButtonElement;
         new (): HTMLDrtCopyButtonElement;
     };
+    interface HTMLDrtCopyIconElement extends Components.DrtCopyIcon, HTMLStencilElement {
+    }
+    var HTMLDrtCopyIconElement: {
+        prototype: HTMLDrtCopyIconElement;
+        new (): HTMLDrtCopyIconElement;
+    };
     interface HTMLDrtCustomToastElementEventMap {
         "deleteToast": string;
     }
@@ -557,6 +770,12 @@ declare global {
     var HTMLDrtCustomToastElement: {
         prototype: HTMLDrtCustomToastElement;
         new (): HTMLDrtCustomToastElement;
+    };
+    interface HTMLDrtDataWithExplorerLinkElement extends Components.DrtDataWithExplorerLink, HTMLStencilElement {
+    }
+    var HTMLDrtDataWithExplorerLinkElement: {
+        prototype: HTMLDrtDataWithExplorerLinkElement;
+        new (): HTMLDrtDataWithExplorerLinkElement;
     };
     interface HTMLDrtDefaultTransactionIconLargeElement extends Components.DrtDefaultTransactionIconLarge, HTMLStencilElement {
     }
@@ -576,6 +795,24 @@ declare global {
         prototype: HTMLDrtDharitriLogoIconElement;
         new (): HTMLDrtDharitriLogoIconElement;
     };
+    interface HTMLDrtDharitriSymbolIconElement extends Components.DrtDharitriSymbolIcon, HTMLStencilElement {
+    }
+    var HTMLDrtDharitriSymbolIconElement: {
+        prototype: HTMLDrtDharitriSymbolIconElement;
+        new (): HTMLDrtDharitriSymbolIconElement;
+    };
+    interface HTMLDrtDharitriliteProviderIconElement extends Components.DrtDharitriliteProviderIcon, HTMLStencilElement {
+    }
+    var HTMLDrtDharitriliteProviderIconElement: {
+        prototype: HTMLDrtDharitriliteProviderIconElement;
+        new (): HTMLDrtDharitriliteProviderIconElement;
+    };
+    interface HTMLDrtEdgeExtensionProviderIconElement extends Components.DrtEdgeExtensionProviderIcon, HTMLStencilElement {
+    }
+    var HTMLDrtEdgeExtensionProviderIconElement: {
+        prototype: HTMLDrtEdgeExtensionProviderIconElement;
+        new (): HTMLDrtEdgeExtensionProviderIconElement;
+    };
     interface HTMLDrtExplorerLinkElement extends Components.DrtExplorerLink, HTMLStencilElement {
     }
     var HTMLDrtExplorerLinkElement: {
@@ -593,6 +830,12 @@ declare global {
     var HTMLDrtFaIconElement: {
         prototype: HTMLDrtFaIconElement;
         new (): HTMLDrtFaIconElement;
+    };
+    interface HTMLDrtFirefoxExtensionProviderIconElement extends Components.DrtFirefoxExtensionProviderIcon, HTMLStencilElement {
+    }
+    var HTMLDrtFirefoxExtensionProviderIconElement: {
+        prototype: HTMLDrtFirefoxExtensionProviderIconElement;
+        new (): HTMLDrtFirefoxExtensionProviderIconElement;
     };
     interface HTMLDrtFormatAmountElement extends Components.DrtFormatAmount, HTMLStencilElement {
     }
@@ -895,6 +1138,18 @@ declare global {
         prototype: HTMLDrtSpinnerIconElement;
         new (): HTMLDrtSpinnerIconElement;
     };
+    interface HTMLDrtTdharitriDownloadQrIconElement extends Components.DrtTdharitriDownloadQrIcon, HTMLStencilElement {
+    }
+    var HTMLDrtTdharitriDownloadQrIconElement: {
+        prototype: HTMLDrtTdharitriDownloadQrIconElement;
+        new (): HTMLDrtTdharitriDownloadQrIconElement;
+    };
+    interface HTMLDrtTdharitriQrCodePreloaderElement extends Components.DrtTdharitriQrCodePreloader, HTMLStencilElement {
+    }
+    var HTMLDrtTdharitriQrCodePreloaderElement: {
+        prototype: HTMLDrtTdharitriQrCodePreloaderElement;
+        new (): HTMLDrtTdharitriQrCodePreloaderElement;
+    };
     interface HTMLDrtToastListElement extends Components.DrtToastList, HTMLStencilElement {
     }
     var HTMLDrtToastListElement: {
@@ -1148,43 +1403,34 @@ declare global {
         prototype: HTMLDrtWalletProviderIconElement;
         new (): HTMLDrtWalletProviderIconElement;
     };
-    interface HTMLDrtXaliasProviderIconElement extends Components.DrtXaliasProviderIcon, HTMLStencilElement {
-    }
-    var HTMLDrtXaliasProviderIconElement: {
-        prototype: HTMLDrtXaliasProviderIconElement;
-        new (): HTMLDrtXaliasProviderIconElement;
-    };
-    interface HTMLDrtXportalDownloadQrIconElement extends Components.DrtXportalDownloadQrIcon, HTMLStencilElement {
-    }
-    var HTMLDrtXportalDownloadQrIconElement: {
-        prototype: HTMLDrtXportalDownloadQrIconElement;
-        new (): HTMLDrtXportalDownloadQrIconElement;
-    };
-    interface HTMLDrtXportalQrCodePreloaderElement extends Components.DrtXportalQrCodePreloader, HTMLStencilElement {
-    }
-    var HTMLDrtXportalQrCodePreloaderElement: {
-        prototype: HTMLDrtXportalQrCodePreloaderElement;
-        new (): HTMLDrtXportalQrCodePreloaderElement;
-    };
     interface HTMLElementTagNameMap {
         "drt-address-table": HTMLDrtAddressTableElement;
         "drt-angles-left-icon": HTMLDrtAnglesLeftIconElement;
         "drt-angles-right-icon": HTMLDrtAnglesRightIconElement;
+        "drt-arc-extension-provider-icon": HTMLDrtArcExtensionProviderIconElement;
         "drt-arrow-right-icon": HTMLDrtArrowRightIconElement;
         "drt-arrow-up-right-from-square-icon": HTMLDrtArrowUpRightFromSquareIconElement;
         "drt-arrow-up-right-icon": HTMLDrtArrowUpRightIconElement;
         "drt-back-arrow-icon": HTMLDrtBackArrowIconElement;
+        "drt-brave-extension-provider-icon": HTMLDrtBraveExtensionProviderIconElement;
+        "drt-button": HTMLDrtButtonElement;
         "drt-check-icon": HTMLDrtCheckIconElement;
         "drt-circle-exclamation-icon": HTMLDrtCircleExclamationIconElement;
         "drt-close-icon": HTMLDrtCloseIconElement;
         "drt-copy-button": HTMLDrtCopyButtonElement;
+        "drt-copy-icon": HTMLDrtCopyIconElement;
         "drt-custom-toast": HTMLDrtCustomToastElement;
+        "drt-data-with-explorer-link": HTMLDrtDataWithExplorerLinkElement;
         "drt-default-transaction-icon-large": HTMLDrtDefaultTransactionIconLargeElement;
         "drt-default-transaction-icon-small": HTMLDrtDefaultTransactionIconSmallElement;
         "drt-dharitri-logo-icon": HTMLDrtDharitriLogoIconElement;
+        "drt-dharitri-symbol-icon": HTMLDrtDharitriSymbolIconElement;
+        "drt-dharitrilite-provider-icon": HTMLDrtDharitriliteProviderIconElement;
+        "drt-edge-extension-provider-icon": HTMLDrtEdgeExtensionProviderIconElement;
         "drt-explorer-link": HTMLDrtExplorerLinkElement;
         "drt-extension-provider-icon": HTMLDrtExtensionProviderIconElement;
         "drt-fa-icon": HTMLDrtFaIconElement;
+        "drt-firefox-extension-provider-icon": HTMLDrtFirefoxExtensionProviderIconElement;
         "drt-format-amount": HTMLDrtFormatAmountElement;
         "drt-generic-toast": HTMLDrtGenericToastElement;
         "drt-ledger-confirm": HTMLDrtLedgerConfirmElement;
@@ -1218,6 +1464,8 @@ declare global {
         "drt-single-angle-left-icon": HTMLDrtSingleAngleLeftIconElement;
         "drt-single-angle-right-icon": HTMLDrtSingleAngleRightIconElement;
         "drt-spinner-icon": HTMLDrtSpinnerIconElement;
+        "drt-tdharitri-download-qr-icon": HTMLDrtTdharitriDownloadQrIconElement;
+        "drt-tdharitri-qr-code-preloader": HTMLDrtTdharitriQrCodePreloaderElement;
         "drt-toast-list": HTMLDrtToastListElement;
         "drt-tooltip": HTMLDrtTooltipElement;
         "drt-transaction-account": HTMLDrtTransactionAccountElement;
@@ -1251,9 +1499,6 @@ declare global {
         "drt-wallet-connect-google-play-icon": HTMLDrtWalletConnectGooglePlayIconElement;
         "drt-wallet-connect-scan": HTMLDrtWalletConnectScanElement;
         "drt-wallet-provider-icon": HTMLDrtWalletProviderIconElement;
-        "drt-xalias-provider-icon": HTMLDrtXaliasProviderIconElement;
-        "drt-xportal-download-qr-icon": HTMLDrtXportalDownloadQrIconElement;
-        "drt-xportal-qr-code-preloader": HTMLDrtXportalQrCodePreloaderElement;
     }
 }
 declare namespace LocalJSX {
@@ -1268,6 +1513,11 @@ declare namespace LocalJSX {
     }
     interface DrtAnglesRightIcon {
     }
+    interface DrtArcExtensionProviderIcon {
+        "class"?: string;
+        "height"?: number;
+        "width"?: number;
+    }
     interface DrtArrowRightIcon {
         "class"?: string;
     }
@@ -1280,6 +1530,34 @@ declare namespace LocalJSX {
     interface DrtBackArrowIcon {
         "class"?: string;
     }
+    interface DrtBraveExtensionProviderIcon {
+        "class"?: string;
+        "height"?: number;
+        "width"?: number;
+    }
+    interface DrtButton {
+        /**
+          * @default ''
+         */
+        "class"?: string;
+        /**
+          * @default ''
+         */
+        "dataTestId"?: string;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        "onButtonClick"?: (event: DrtButtonCustomEvent<MouseEvent>) => void;
+        /**
+          * @default 'large'
+         */
+        "size"?: `${ButtonSizeEnum}`;
+        /**
+          * @default 'primary'
+         */
+        "variant"?: `${ButtonVariantEnum}`;
+    }
     interface DrtCheckIcon {
         "class"?: string;
     }
@@ -1290,14 +1568,33 @@ declare namespace LocalJSX {
     }
     interface DrtCopyButton {
         "class"?: string;
-        "copyIcon"?: IconDefinition | string;
         "iconClass"?: string;
-        "successIcon"?: IconDefinition | string;
         "text"?: string;
+    }
+    interface DrtCopyIcon {
+        "class"?: string;
     }
     interface DrtCustomToast {
         "onDeleteToast"?: (event: DrtCustomToastCustomEvent<string>) => void;
         "toast"?: IComponentToast;
+    }
+    interface DrtDataWithExplorerLink {
+        "class"?: string;
+        "data"?: string;
+        "dataTestId"?: string;
+        "explorerLink"?: string;
+        /**
+          * @default true
+         */
+        "showCopyButton"?: boolean;
+        /**
+          * @default true
+         */
+        "showExplorerButton"?: boolean;
+        /**
+          * @default false
+         */
+        "withTooltip"?: boolean;
     }
     interface DrtDefaultTransactionIconLarge {
         "class"?: string;
@@ -1307,6 +1604,16 @@ declare namespace LocalJSX {
     }
     interface DrtDharitriLogoIcon {
         "class"?: string;
+    }
+    interface DrtDharitriSymbolIcon {
+        "class"?: string;
+    }
+    interface DrtDharitriliteProviderIcon {
+    }
+    interface DrtEdgeExtensionProviderIcon {
+        "class"?: string;
+        "height"?: number;
+        "width"?: number;
     }
     interface DrtExplorerLink {
         "class"?: string;
@@ -1320,9 +1627,17 @@ declare namespace LocalJSX {
         "width"?: number;
     }
     interface DrtFaIcon {
+        /**
+          * @default 'fa-icon'
+         */
         "class"?: string;
         "description"?: string;
         "icon"?: IconDefinition | string;
+    }
+    interface DrtFirefoxExtensionProviderIcon {
+        "class"?: string;
+        "height"?: number;
+        "width"?: number;
     }
     interface DrtFormatAmount {
         "class"?: string;
@@ -1331,6 +1646,9 @@ declare namespace LocalJSX {
         "isValid"?: boolean;
         "label"?: string;
         "labelClass"?: string;
+        /**
+          * @default true
+         */
         "showLabel"?: boolean;
         "valueDecimal"?: string;
         "valueInteger"?: string;
@@ -1343,6 +1661,9 @@ declare namespace LocalJSX {
         "confirmScreenData"?: IConfirmScreenData;
     }
     interface DrtLedgerConnect {
+        /**
+          * @default {     accountScreenData: null,     confirmScreenData: null,     connectScreenData: {},   }
+         */
         "data"?: ILedgerConnectPanelData;
     }
     interface DrtLedgerIcon {
@@ -1350,6 +1671,9 @@ declare namespace LocalJSX {
     }
     interface DrtLedgerIntro {
         "connectScreenData"?: IConnectScreenData;
+        /**
+          * @default false
+         */
         "isAwaiting"?: boolean;
         "onConnect"?: (event: DrtLedgerIntroCustomEvent<any>) => void;
     }
@@ -1366,15 +1690,27 @@ declare namespace LocalJSX {
     }
     interface DrtPagination {
         "class"?: string;
+        /**
+          * @default 1
+         */
         "currentPage"?: number;
+        /**
+          * @default false
+         */
         "isDisabled"?: boolean;
         "onPageChange"?: (event: DrtPaginationCustomEvent<number>) => void;
         "totalPages"?: number;
     }
     interface DrtPaginationEllipsis {
+        /**
+          * @default false
+         */
         "isActive"?: boolean;
     }
     interface DrtPaginationEllipsisForm {
+        /**
+          * @default false
+         */
         "isVisible"?: boolean;
         "maxPageToSearchFor"?: number;
         "onSearch"?: (event: DrtPaginationEllipsisFormCustomEvent<number>) => void;
@@ -1391,23 +1727,44 @@ declare namespace LocalJSX {
         "class"?: string;
     }
     interface DrtProviderIdleScreen {
+        /**
+          * @default ''
+         */
         "introText"?: string;
+        /**
+          * @default 'Requesting Connection'
+         */
         "introTitle"?: string;
         "onAccess"?: (event: DrtProviderIdleScreenCustomEvent<any>) => void;
         "onClose"?: (event: DrtProviderIdleScreenCustomEvent<any>) => void;
+        /**
+          * @default null
+         */
         "provider"?: IProviderBase | null;
     }
     interface DrtSidePanel {
         "hasBackButton"?: boolean;
+        /**
+          * @default false
+         */
         "isOpen"?: boolean;
         "onBack"?: (event: DrtSidePanelCustomEvent<void>) => void;
         "onClose"?: (event: DrtSidePanelCustomEvent<void>) => void;
         "panelClassName"?: string;
         "panelTitle"?: string;
+        /**
+          * @default true
+         */
         "showHeader"?: boolean;
     }
     interface DrtSidePanelHeader {
+        /**
+          * @default true
+         */
         "hasLeftButton"?: boolean;
+        /**
+          * @default true
+         */
         "hasRightButton"?: boolean;
         "onLeftButtonClick"?: (event: DrtSidePanelHeaderCustomEvent<any>) => void;
         "onRightButtonClick"?: (event: DrtSidePanelHeaderCustomEvent<any>) => void;
@@ -1417,7 +1774,13 @@ declare namespace LocalJSX {
     interface DrtSidePanelSwiper {
         "onSheetDismiss"?: (event: DrtSidePanelSwiperCustomEvent<void>) => void;
         "onSheetSnapChange"?: (event: DrtSidePanelSwiperCustomEvent<{ index: number; snapPoint: string }>) => void;
+        /**
+          * @default false
+         */
         "open"?: boolean;
+        /**
+          * @default ''
+         */
         "sidePanelIdentifier"?: string;
     }
     interface DrtSignTransactionsAdvanced {
@@ -1429,7 +1792,13 @@ declare namespace LocalJSX {
         "highlight"?: string;
     }
     interface DrtSignTransactionsAdvancedDataDecode {
+        /**
+          * @default DecodeMethodEnum.decimal
+         */
         "currentDecodeMethod"?: DecodeMethodEnum;
+        /**
+          * @default false
+         */
         "isToggled"?: boolean;
     }
     interface DrtSignTransactionsFooter {
@@ -1442,7 +1811,13 @@ declare namespace LocalJSX {
         "identifier"?: string;
         "interactor"?: string;
         "interactorIconUrl"?: string;
+        /**
+          * @default false
+         */
         "isApp"?: boolean;
+        /**
+          * @default '~$0.00078'
+         */
         "networkFee"?: string;
         "tokenIconUrl"?: string;
         "usdValue"?: string;
@@ -1465,13 +1840,28 @@ declare namespace LocalJSX {
     interface DrtSpinnerIcon {
         "class"?: string;
     }
+    interface DrtTdharitriDownloadQrIcon {
+        /**
+          * @default ''
+         */
+        "class"?: string;
+    }
+    interface DrtTdharitriQrCodePreloader {
+        "class"?: string;
+    }
     interface DrtToastList {
     }
     interface DrtTooltip {
         "class"?: string;
         "onTriggerRender"?: (event: DrtTooltipCustomEvent<boolean>) => void;
+        /**
+          * @default 'top'
+         */
         "position"?: 'top' | 'bottom';
         "trigger"?: HTMLElement;
+        /**
+          * @default false
+         */
         "triggerOnClick"?: boolean;
     }
     interface DrtTransactionAccount {
@@ -1479,6 +1869,9 @@ declare namespace LocalJSX {
         "class"?: string;
         "dataTestId"?: string;
         "scope"?: 'receiver' | 'sender';
+        /**
+          * @default false
+         */
         "showLockedAccounts"?: boolean;
     }
     interface DrtTransactionAccountName {
@@ -1524,10 +1917,19 @@ declare namespace LocalJSX {
     interface DrtTransactionToast {
         "fullWidth"?: boolean;
         "onDeleteToast"?: (event: DrtTransactionToastCustomEvent<void>) => void;
+        /**
+          * @default ''
+         */
         "processedTransactionsStatus"?: string | JSX.Element;
         "toastDataState"?: IToastDataState;
+        /**
+          * @default ''
+         */
         "toastId"?: string;
         "transactionProgressState"?: ITransactionProgressState;
+        /**
+          * @default []
+         */
         "transactions"?: ITransactionListItem[];
         "wrapperClass"?: string;
     }
@@ -1539,6 +1941,9 @@ declare namespace LocalJSX {
         "transactions"?: ITransactionListItem[];
     }
     interface DrtTransactionToastDetails {
+        /**
+          * @default 5
+         */
         "maxShownTransactions"?: number;
         "processedTransactionsStatus"?: string | JSX.Element;
         "transactionClass"?: string;
@@ -1549,6 +1954,9 @@ declare namespace LocalJSX {
         "index"?: string;
         "link"?: string;
         "status"?: string;
+        /**
+          * @default 'transaction-details-list-item'
+         */
         "transactionClass"?: string;
     }
     interface DrtTransactionToastProgress {
@@ -1568,6 +1976,9 @@ declare namespace LocalJSX {
     }
     interface DrtTrim {
         "class"?: string;
+        /**
+          * @default DataTestIdsEnum.trim
+         */
         "dataTestId"?: string;
         "text"?: string;
     }
@@ -1587,6 +1998,9 @@ declare namespace LocalJSX {
     interface DrtUnlockPanelGroup {
         "class"?: string;
         "onLogin"?: (event: DrtUnlockPanelGroupCustomEvent<IProviderBase>) => void;
+        /**
+          * @default []
+         */
         "providers"?: IProviderBase[];
     }
     interface DrtUnlockProviderButton {
@@ -1594,7 +2008,13 @@ declare namespace LocalJSX {
         "provider"?: IProviderBase<ProviderTypeEnum>;
     }
     interface DrtWalletConnect {
+        /**
+          * @default { wcURI: '' }
+         */
         "data"?: IWalletConnectPanelData;
+        /**
+          * @default ''
+         */
         "qrCodeSvg"?: string;
     }
     interface DrtWalletConnectAppGalleryIcon {
@@ -1612,39 +2032,46 @@ declare namespace LocalJSX {
     interface DrtWalletConnectScan {
         "class"?: string;
         "onDownloadClick"?: (event: DrtWalletConnectScanCustomEvent<any>) => void;
+        /**
+          * @default ''
+         */
         "qrCodeSvg"?: string;
+        /**
+          * @default ''
+         */
         "walletConnectDeepLink"?: string;
     }
     interface DrtWalletProviderIcon {
-        "class"?: string;
-    }
-    interface DrtXaliasProviderIcon {
-    }
-    interface DrtXportalDownloadQrIcon {
-        "class"?: string;
-    }
-    interface DrtXportalQrCodePreloader {
         "class"?: string;
     }
     interface IntrinsicElements {
         "drt-address-table": DrtAddressTable;
         "drt-angles-left-icon": DrtAnglesLeftIcon;
         "drt-angles-right-icon": DrtAnglesRightIcon;
+        "drt-arc-extension-provider-icon": DrtArcExtensionProviderIcon;
         "drt-arrow-right-icon": DrtArrowRightIcon;
         "drt-arrow-up-right-from-square-icon": DrtArrowUpRightFromSquareIcon;
         "drt-arrow-up-right-icon": DrtArrowUpRightIcon;
         "drt-back-arrow-icon": DrtBackArrowIcon;
+        "drt-brave-extension-provider-icon": DrtBraveExtensionProviderIcon;
+        "drt-button": DrtButton;
         "drt-check-icon": DrtCheckIcon;
         "drt-circle-exclamation-icon": DrtCircleExclamationIcon;
         "drt-close-icon": DrtCloseIcon;
         "drt-copy-button": DrtCopyButton;
+        "drt-copy-icon": DrtCopyIcon;
         "drt-custom-toast": DrtCustomToast;
+        "drt-data-with-explorer-link": DrtDataWithExplorerLink;
         "drt-default-transaction-icon-large": DrtDefaultTransactionIconLarge;
         "drt-default-transaction-icon-small": DrtDefaultTransactionIconSmall;
         "drt-dharitri-logo-icon": DrtDharitriLogoIcon;
+        "drt-dharitri-symbol-icon": DrtDharitriSymbolIcon;
+        "drt-dharitrilite-provider-icon": DrtDharitriliteProviderIcon;
+        "drt-edge-extension-provider-icon": DrtEdgeExtensionProviderIcon;
         "drt-explorer-link": DrtExplorerLink;
         "drt-extension-provider-icon": DrtExtensionProviderIcon;
         "drt-fa-icon": DrtFaIcon;
+        "drt-firefox-extension-provider-icon": DrtFirefoxExtensionProviderIcon;
         "drt-format-amount": DrtFormatAmount;
         "drt-generic-toast": DrtGenericToast;
         "drt-ledger-confirm": DrtLedgerConfirm;
@@ -1678,6 +2105,8 @@ declare namespace LocalJSX {
         "drt-single-angle-left-icon": DrtSingleAngleLeftIcon;
         "drt-single-angle-right-icon": DrtSingleAngleRightIcon;
         "drt-spinner-icon": DrtSpinnerIcon;
+        "drt-tdharitri-download-qr-icon": DrtTdharitriDownloadQrIcon;
+        "drt-tdharitri-qr-code-preloader": DrtTdharitriQrCodePreloader;
         "drt-toast-list": DrtToastList;
         "drt-tooltip": DrtTooltip;
         "drt-transaction-account": DrtTransactionAccount;
@@ -1711,9 +2140,6 @@ declare namespace LocalJSX {
         "drt-wallet-connect-google-play-icon": DrtWalletConnectGooglePlayIcon;
         "drt-wallet-connect-scan": DrtWalletConnectScan;
         "drt-wallet-provider-icon": DrtWalletProviderIcon;
-        "drt-xalias-provider-icon": DrtXaliasProviderIcon;
-        "drt-xportal-download-qr-icon": DrtXportalDownloadQrIcon;
-        "drt-xportal-qr-code-preloader": DrtXportalQrCodePreloader;
     }
 }
 export { LocalJSX as JSX };
@@ -1723,21 +2149,30 @@ declare module "@stencil/core" {
             "drt-address-table": LocalJSX.DrtAddressTable & JSXBase.HTMLAttributes<HTMLDrtAddressTableElement>;
             "drt-angles-left-icon": LocalJSX.DrtAnglesLeftIcon & JSXBase.HTMLAttributes<HTMLDrtAnglesLeftIconElement>;
             "drt-angles-right-icon": LocalJSX.DrtAnglesRightIcon & JSXBase.HTMLAttributes<HTMLDrtAnglesRightIconElement>;
+            "drt-arc-extension-provider-icon": LocalJSX.DrtArcExtensionProviderIcon & JSXBase.HTMLAttributes<HTMLDrtArcExtensionProviderIconElement>;
             "drt-arrow-right-icon": LocalJSX.DrtArrowRightIcon & JSXBase.HTMLAttributes<HTMLDrtArrowRightIconElement>;
             "drt-arrow-up-right-from-square-icon": LocalJSX.DrtArrowUpRightFromSquareIcon & JSXBase.HTMLAttributes<HTMLDrtArrowUpRightFromSquareIconElement>;
             "drt-arrow-up-right-icon": LocalJSX.DrtArrowUpRightIcon & JSXBase.HTMLAttributes<HTMLDrtArrowUpRightIconElement>;
             "drt-back-arrow-icon": LocalJSX.DrtBackArrowIcon & JSXBase.HTMLAttributes<HTMLDrtBackArrowIconElement>;
+            "drt-brave-extension-provider-icon": LocalJSX.DrtBraveExtensionProviderIcon & JSXBase.HTMLAttributes<HTMLDrtBraveExtensionProviderIconElement>;
+            "drt-button": LocalJSX.DrtButton & JSXBase.HTMLAttributes<HTMLDrtButtonElement>;
             "drt-check-icon": LocalJSX.DrtCheckIcon & JSXBase.HTMLAttributes<HTMLDrtCheckIconElement>;
             "drt-circle-exclamation-icon": LocalJSX.DrtCircleExclamationIcon & JSXBase.HTMLAttributes<HTMLDrtCircleExclamationIconElement>;
             "drt-close-icon": LocalJSX.DrtCloseIcon & JSXBase.HTMLAttributes<HTMLDrtCloseIconElement>;
             "drt-copy-button": LocalJSX.DrtCopyButton & JSXBase.HTMLAttributes<HTMLDrtCopyButtonElement>;
+            "drt-copy-icon": LocalJSX.DrtCopyIcon & JSXBase.HTMLAttributes<HTMLDrtCopyIconElement>;
             "drt-custom-toast": LocalJSX.DrtCustomToast & JSXBase.HTMLAttributes<HTMLDrtCustomToastElement>;
+            "drt-data-with-explorer-link": LocalJSX.DrtDataWithExplorerLink & JSXBase.HTMLAttributes<HTMLDrtDataWithExplorerLinkElement>;
             "drt-default-transaction-icon-large": LocalJSX.DrtDefaultTransactionIconLarge & JSXBase.HTMLAttributes<HTMLDrtDefaultTransactionIconLargeElement>;
             "drt-default-transaction-icon-small": LocalJSX.DrtDefaultTransactionIconSmall & JSXBase.HTMLAttributes<HTMLDrtDefaultTransactionIconSmallElement>;
             "drt-dharitri-logo-icon": LocalJSX.DrtDharitriLogoIcon & JSXBase.HTMLAttributes<HTMLDrtDharitriLogoIconElement>;
+            "drt-dharitri-symbol-icon": LocalJSX.DrtDharitriSymbolIcon & JSXBase.HTMLAttributes<HTMLDrtDharitriSymbolIconElement>;
+            "drt-dharitrilite-provider-icon": LocalJSX.DrtDharitriliteProviderIcon & JSXBase.HTMLAttributes<HTMLDrtDharitriliteProviderIconElement>;
+            "drt-edge-extension-provider-icon": LocalJSX.DrtEdgeExtensionProviderIcon & JSXBase.HTMLAttributes<HTMLDrtEdgeExtensionProviderIconElement>;
             "drt-explorer-link": LocalJSX.DrtExplorerLink & JSXBase.HTMLAttributes<HTMLDrtExplorerLinkElement>;
             "drt-extension-provider-icon": LocalJSX.DrtExtensionProviderIcon & JSXBase.HTMLAttributes<HTMLDrtExtensionProviderIconElement>;
             "drt-fa-icon": LocalJSX.DrtFaIcon & JSXBase.HTMLAttributes<HTMLDrtFaIconElement>;
+            "drt-firefox-extension-provider-icon": LocalJSX.DrtFirefoxExtensionProviderIcon & JSXBase.HTMLAttributes<HTMLDrtFirefoxExtensionProviderIconElement>;
             "drt-format-amount": LocalJSX.DrtFormatAmount & JSXBase.HTMLAttributes<HTMLDrtFormatAmountElement>;
             "drt-generic-toast": LocalJSX.DrtGenericToast & JSXBase.HTMLAttributes<HTMLDrtGenericToastElement>;
             "drt-ledger-confirm": LocalJSX.DrtLedgerConfirm & JSXBase.HTMLAttributes<HTMLDrtLedgerConfirmElement>;
@@ -1771,6 +2206,8 @@ declare module "@stencil/core" {
             "drt-single-angle-left-icon": LocalJSX.DrtSingleAngleLeftIcon & JSXBase.HTMLAttributes<HTMLDrtSingleAngleLeftIconElement>;
             "drt-single-angle-right-icon": LocalJSX.DrtSingleAngleRightIcon & JSXBase.HTMLAttributes<HTMLDrtSingleAngleRightIconElement>;
             "drt-spinner-icon": LocalJSX.DrtSpinnerIcon & JSXBase.HTMLAttributes<HTMLDrtSpinnerIconElement>;
+            "drt-tdharitri-download-qr-icon": LocalJSX.DrtTdharitriDownloadQrIcon & JSXBase.HTMLAttributes<HTMLDrtTdharitriDownloadQrIconElement>;
+            "drt-tdharitri-qr-code-preloader": LocalJSX.DrtTdharitriQrCodePreloader & JSXBase.HTMLAttributes<HTMLDrtTdharitriQrCodePreloaderElement>;
             "drt-toast-list": LocalJSX.DrtToastList & JSXBase.HTMLAttributes<HTMLDrtToastListElement>;
             "drt-tooltip": LocalJSX.DrtTooltip & JSXBase.HTMLAttributes<HTMLDrtTooltipElement>;
             "drt-transaction-account": LocalJSX.DrtTransactionAccount & JSXBase.HTMLAttributes<HTMLDrtTransactionAccountElement>;
@@ -1804,9 +2241,6 @@ declare module "@stencil/core" {
             "drt-wallet-connect-google-play-icon": LocalJSX.DrtWalletConnectGooglePlayIcon & JSXBase.HTMLAttributes<HTMLDrtWalletConnectGooglePlayIconElement>;
             "drt-wallet-connect-scan": LocalJSX.DrtWalletConnectScan & JSXBase.HTMLAttributes<HTMLDrtWalletConnectScanElement>;
             "drt-wallet-provider-icon": LocalJSX.DrtWalletProviderIcon & JSXBase.HTMLAttributes<HTMLDrtWalletProviderIconElement>;
-            "drt-xalias-provider-icon": LocalJSX.DrtXaliasProviderIcon & JSXBase.HTMLAttributes<HTMLDrtXaliasProviderIconElement>;
-            "drt-xportal-download-qr-icon": LocalJSX.DrtXportalDownloadQrIcon & JSXBase.HTMLAttributes<HTMLDrtXportalDownloadQrIconElement>;
-            "drt-xportal-qr-code-preloader": LocalJSX.DrtXportalQrCodePreloader & JSXBase.HTMLAttributes<HTMLDrtXportalQrCodePreloaderElement>;
         }
     }
 }

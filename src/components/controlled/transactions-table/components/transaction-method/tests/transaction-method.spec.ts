@@ -98,10 +98,9 @@ describe('transaction-method', () => {
         html: '<drt-transaction-method></drt-transaction-method>',
       });
 
-      const innerDiv = page.root.querySelector('div > div');
+      const innerDiv = page.root.querySelector('span > div');
       expect(innerDiv).toHaveClass('text-truncate');
       expect(innerDiv).toHaveClass('text-capitalize');
-      expect(innerDiv).toHaveClass('text-white');
     });
   });
 });
