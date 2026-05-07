@@ -2,3 +2,7 @@ packages:
   - .
 allowBuilds:
   postcss-combine-duplicated-selectors: true
+onlyBuiltDependencies:
+  - "@parcel/watcher"
+  - esbuild
+  - puppeteer
