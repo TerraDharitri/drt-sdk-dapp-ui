@@ -3,4 +3,4 @@ packages:
 onlyBuiltDependencies:
   - postcss-combine-duplicated-selectors
 allowBuilds:
-  - postcss-combine-duplicated-selectors
+  postcss-combine-duplicated-selectors: true
