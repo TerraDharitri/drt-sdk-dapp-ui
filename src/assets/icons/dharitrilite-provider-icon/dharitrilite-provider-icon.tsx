@@ -1,10 +1,10 @@
 import { Component, h } from '@stencil/core';
 
 @Component({
-  tag: 'drt-xalias-provider-icon',
+  tag: 'drt-dharitrilite-provider-icon',
   shadow: true,
 })
-export class XAliasProviderIcon {
+export class DharitriLiteProviderIcon {
   render() {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" fill="none">

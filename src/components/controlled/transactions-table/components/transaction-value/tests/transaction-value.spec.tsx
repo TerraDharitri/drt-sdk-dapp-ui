@@ -76,7 +76,10 @@ describe('TransactionValue', () => {
     expect(page.root).toEqualHtml(`
       <drt-transaction-value>
           <div class="transaction-value">
-            <drt-format-amount class="mr-1" datatestid="transactionActionFormattedAmount" isvalid="" label="xREWA" valuedecimal="123" valueinteger="123"></drt-format-amount>
+           <div class="amount">
+            <drt-dharitri-symbol-icon class="amount-symbol"></drt-dharitri-symbol-icon>
+            <drt-format-amount class="mr-1 drt:text-primary" datatestid="transactionActionFormattedAmount" decimalclass="opacity-70" isvalid="" label="xREWA" labelclass="opacity-70" valuedecimal="123" valueinteger="123"></drt-format-amount>
+            </div>
           </div>
       </drt-transaction-value>
     `);

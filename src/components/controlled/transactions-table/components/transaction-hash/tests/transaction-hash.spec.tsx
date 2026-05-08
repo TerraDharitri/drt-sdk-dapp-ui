@@ -51,8 +51,8 @@ describe('TransactionHash', () => {
     expect(page.root).toEqualHtml(`
       <drt-transaction-hash>
           <div class="transaction-hash">
-            <drt-transaction-icon></drt-transaction-icon>
-            <drt-explorer-link class="drt:text-blue-link!" dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/123"><span>0x123456789abcdef</span></drt-explorer-link>
+            <drt-transaction-icon class="drt:flex drt:items-center drt:justify-center"></drt-transaction-icon>
+            <drt-explorer-link class="drt:text-primary!" dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/123"><drt-trim text="0x123456789abcdef"></drt-trim></drt-explorer-link>
           </div>
       </drt-transaction-hash>
     `);
@@ -89,8 +89,8 @@ describe('TransactionHash', () => {
     expect(page.root).toEqualHtml(`
       <drt-transaction-hash>
           <div class="transaction-hash">
-            <drt-transaction-icon></drt-transaction-icon>
-            <drt-explorer-link class="drt:text-blue-link!" dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/initial"><span>0xInitialHash</span></drt-explorer-link>
+            <drt-transaction-icon class="drt:flex drt:items-center drt:justify-center"></drt-transaction-icon>
+            <drt-explorer-link class="drt:text-primary!" dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/initial"><drt-trim text="0xInitialHash"></drt-trim></drt-explorer-link>
           </div>
       </drt-transaction-hash>
     `);
@@ -123,8 +123,8 @@ describe('TransactionHash', () => {
     expect(page.root).toEqualHtml(`
       <drt-transaction-hash>
           <div class="transaction-hash">
-            <drt-transaction-icon></drt-transaction-icon>
-            <drt-explorer-link class="drt:text-blue-link!" dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/updated"><span>0xUpdatedHash</span></drt-explorer-link>
+            <drt-transaction-icon class="drt:flex drt:items-center drt:justify-center"></drt-transaction-icon>
+            <drt-explorer-link class="drt:text-primary!" dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/updated"><drt-trim text="0xUpdatedHash"></drt-trim></drt-explorer-link>
           </div>
       </drt-transaction-hash>
     `);

@@ -25,14 +25,20 @@ export class TransactionValue {
         )}
 
         {this.value.showFormattedAmount && (
-          <drt-format-amount
-            class={classNames('mr-1', { 'text-truncate': this.value.svgUrl })}
-            dataTestId={DataTestIdsEnum.transactionActionFormattedAmount}
-            isValid={true}
-            label={this.value.rewaLabel}
-            valueDecimal={this.value.valueDecimal}
-            valueInteger={this.value.valueInteger}
-          />
+          <div class="amount">
+            {this.value.rewaLabel && <drt-dharitri-symbol-icon class="amount-symbol" />}
+
+            <drt-format-amount
+              class={classNames('mr-1 drt:text-primary', { 'text-truncate': this.value.svgUrl })}
+              dataTestId={DataTestIdsEnum.transactionActionFormattedAmount}
+              isValid={true}
+              label={this.value.rewaLabel}
+              valueDecimal={this.value.valueDecimal}
+              valueInteger={this.value.valueInteger}
+              decimalClass="opacity-70"
+              labelClass="opacity-70"
+            />
+          </div>
         )}
 
         {this.value.link && (

@@ -19,50 +19,7 @@
         }
 
         .sign-transactions-footer-button {
-          @apply drt:rounded-xl drt:px-4 drt:py-2 drt:flex drt:justify-center drt:items-center drt:max-h-10 drt:min-h-10;
-          @apply drt:leading-none drt:text-base drt:font-bold drt:transition-all drt:duration-200 drt:cursor-pointer;
-          @apply drt:ease-in-out drt:gap-2 drt:w-full;
-          border: 1px solid transparent;
-
-          &.cancel {
-            @apply drt:relative;
-            color: var(--drt-button-text-secondary);
-
-            &:after {
-              @apply drt:absolute drt:inset-0 drt:rounded-xl drt:opacity-40 drt:transition-all drt:duration-200 drt:ease-in-out;
-              background-color: var(--drt-button-bg-secondary);
-              content: '';
-            }
-
-            &:hover {
-              color: var(--drt-button-text-primary);
-
-              &:after {
-                @apply drt:opacity-100;
-                background-color: var(--drt-button-bg-primary);
-              }
-            }
-          }
-
-          &.highlighted {
-            @apply drt:flex-1;
-            color: var(--drt-button-text-primary);
-            background-color: var(--drt-button-bg-primary);
-
-            &:hover {
-              @apply drt:opacity-75;
-            }
-          }
-
-          &.disabled {
-            @apply drt:bg-transparent drt:cursor-default drt:pointer-events-none;
-            border-color: var(--drt-text-color-secondary);
-            color: var(--drt-text-color-secondary);
-          }
-
-          .sign-transactions-footer-button-label {
-            @apply drt:relative drt:z-1;
-          }
+          @apply drt:flex;
 
           .sign-transactions-footer-button-icon {
             @apply drt:flex drt:transition-all drt:duration-200 drt:ease-in-out;

@@ -61,7 +61,7 @@
   }
 
   .side-panel-content {
-    @apply drt:flex-1 drt:flex drt:flex-col drt:overflow-hidden;
+    @apply drt:flex-1 drt:flex drt:flex-col drt:overflow-auto;
 
     &::-webkit-scrollbar {
       @apply drt:hidden;
