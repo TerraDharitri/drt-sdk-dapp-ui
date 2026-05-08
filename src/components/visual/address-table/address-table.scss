@@ -137,22 +137,7 @@
       }
 
       .address-table-button {
-        @apply drt:w-full drt:flex drt:items-center drt:justify-center drt:font-bold drt:h-12 drt:leading-none drt:text-base;
-        @apply drt:rounded-lg drt:cursor-pointer drt:transition-all drt:duration-200 drt:ease-in-out drt:gap-2;
-        color: var(--drt-button-text-primary);
-        background-color: var(--drt-button-bg-primary);
-        border: 1px solid var(--drt-button-bg-primary);
-
-        &:hover {
-          @apply drt:opacity-75;
-        }
-
-        &.loading,
-        &.disabled {
-          @apply drt:pointer-events-none drt:bg-transparent drt:cursor-default;
-          border: 1px solid var(--drt-text-color-secondary);
-          color: var(--drt-text-color-secondary);
-        }
+        @apply drt:w-full;
       }
     }
   }

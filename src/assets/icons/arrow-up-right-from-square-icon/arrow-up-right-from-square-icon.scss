@@ -1,8 +1,8 @@
-:host {
-  @apply drt:flex;
+.arrow-up-right-from-square-icon {
+  @apply drt:w-auto drt:h-full drt:fill-current;
+  color: var(--drt-text-color-primary);
 
-  .arrow-up-right-from-square-icon {
-    @apply drt:w-4 drt:h-4 drt:flex;
-    fill: var(--drt-text-color-primary);
+  .arrow-up-right-from-square-icon-path {
+    @apply drt:fill-current;
   }
 }

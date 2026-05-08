@@ -20,28 +20,6 @@
         color: var(--drt-text-color-secondary);
       }
 
-      .ledger-intro-button {
-        @apply drt:w-48 drt:flex drt:items-center drt:justify-center drt:font-bold drt:h-12 drt:leading-none;
-        @apply drt:rounded-lg drt:cursor-pointer drt:transition-all drt:duration-200 drt:gap-2 drt:ease-in-out;
-        color: var(--drt-button-text-primary);
-        background-color: var(--drt-button-bg-primary);
-        border: 1px solid var(--drt-button-bg-primary);
-
-        @media (min-width: 480px) {
-          @apply drt:mt-5;
-        }
-
-        &:hover {
-          @apply drt:opacity-75;
-        }
-
-        &.loading {
-          @apply drt:pointer-events-none drt:bg-transparent drt:cursor-default;
-          border-color: var(--drt-text-color-secondary);
-          color: var(--drt-text-color-secondary);
-        }
-      }
-
       .ledger-intro-error {
         @apply drt:text-base drt:max-w-60 drt:mb-6 drt:leading-6;
         color: var(--drt-error-color);

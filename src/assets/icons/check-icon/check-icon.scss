@@ -1,7 +1,8 @@
-:host {
-  @apply drt:flex;
+.check-icon {
+  @apply drt:w-auto drt:h-full drt:fill-current;
+  color: var(--drt-text-color-primary);
 
-  .check-icon {
-    @apply drt:w-4 drt:h-4;
+  .check-icon-path {
+    @apply drt:fill-current;
   }
 }

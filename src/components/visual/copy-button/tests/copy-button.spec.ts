@@ -12,9 +12,9 @@ describe('CopyButton', () => {
 
     expect(page.root).toEqualHtml(`
       <drt-copy-button text="Copy me">
-        <a href="/#" class="copy-button">
-          <drt-fa-icon class="copy-button-icon" icon="faCopy"></drt-fa-icon>
-        </a>
+        <div class="copy-button">
+          <drt-copy-icon class="copy-button-icon"></drt-copy-icon>
+        </div>
       </drt-copy-button>
     `);
   });
@@ -27,9 +27,9 @@ describe('CopyButton', () => {
 
     expect(page.root).toEqualHtml(`
       <drt-copy-button class="custom-class" text="Copy me">
-        <a href="/#" class="custom-class">
-          <drt-fa-icon class="copy-button-icon" icon="faCopy"></drt-fa-icon>
-        </a>
+        <div class="copy-button custom-class">
+          <drt-copy-icon class="copy-button-icon"></drt-copy-icon>
+        </div>
       </drt-copy-button>
     `);
   });
@@ -43,16 +43,15 @@ describe('CopyButton', () => {
     });
 
     const copyButton = page.root;
-    const anchor = copyButton.querySelector('a');
-
-    await anchor.click();
+    const component = page.rootInstance as CopyButton;
+    await component.handleClick(new MouseEvent('click') as any);
     await page.waitForChanges();
 
     expect(copyButton).toEqualHtml(`
       <drt-copy-button text="Copy me">
-        <a href="/#" class="copy-button">
-          <drt-fa-icon class="copy-button-icon" icon="faCheck"></drt-fa-icon>
-        </a>
+        <div class="copy-button">
+          <drt-check-icon class="check copy-button-icon"></drt-check-icon>
+        </div>
       </drt-copy-button>
     `);
   });
@@ -66,16 +65,15 @@ describe('CopyButton', () => {
     });
 
     const copyButton = page.root;
-    const anchor = copyButton.querySelector('a');
-
-    await anchor.click();
+    const component = page.rootInstance as CopyButton;
+    await component.handleClick(new MouseEvent('click') as any);
     await page.waitForChanges();
 
     expect(copyButton).toEqualHtml(`
       <drt-copy-button text="Copy me">
-        <a href="/#" class="copy-button">
-          <drt-fa-icon class="copy-button-icon" icon="faCopy"></drt-fa-icon>
-        </a>
+        <div class="copy-button">
+          <drt-copy-icon class="copy-button-icon"></drt-copy-icon>
+        </div>
       </drt-copy-button>
     `);
   });
@@ -86,15 +84,13 @@ describe('CopyButton', () => {
       html: '<drt-copy-button text="Copy me"></drt-copy-button>',
     });
 
-    const copyButton = page.root;
-    const anchor = copyButton.querySelector('a');
-
     const mockEvent = {
       preventDefault: jest.fn(),
       stopPropagation: jest.fn(),
     };
 
-    anchor.dispatchEvent(new MouseEvent('click', mockEvent as any));
+    const component = page.rootInstance as CopyButton;
+    await component.handleClick(mockEvent as any);
 
     expect(mockEvent.preventDefault).toHaveBeenCalledTimes(1);
     expect(mockEvent.stopPropagation).toHaveBeenCalledTimes(1);

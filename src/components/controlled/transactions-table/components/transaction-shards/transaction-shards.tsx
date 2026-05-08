@@ -5,7 +5,7 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 import type { TransactionRowType } from '../../transactions-table.type';
 
 const transactionShardsClasses: Record<string, string> = {
-  explorerLink: 'drt:text-blue-link!',
+  explorerLink: 'drt:text-primary!',
 };
 
 @Component({
@@ -27,7 +27,9 @@ export class TransactionShards {
           <span data-testid={DataTestIdsEnum.senderShard}>{this.transaction.sender.shard}</span>
         </drt-explorer-link>
 
-        <span class="transaction-shards-arrow">&#10132;</span>
+        <span class="transaction-shards-arrow">
+          <drt-arrow-right-icon />
+        </span>
 
         <drt-explorer-link
           link={this.transaction.receiver.shardLink}
