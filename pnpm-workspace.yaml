@@ -1,0 +1,2 @@
+allowBuilds:
+  postcss-combine-duplicated-selectors: true
