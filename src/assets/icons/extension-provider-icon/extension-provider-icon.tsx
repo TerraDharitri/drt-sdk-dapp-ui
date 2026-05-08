@@ -19,7 +19,15 @@ export class ExtensionProviderIcon {
         height={this.height ?? '44'}
         class={{ 'extension-provider-icon': true, [this.class]: Boolean(this.class) }}
       >
-        <mask id="mask0_8093_13961" maskUnits="userSpaceOnUse" x="0" y="4" width="40" height="40">
+        <mask
+          id="mask0_7107_23656"
+          style={{ maskType: 'alpha' }}
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="4"
+          width="40"
+          height="40"
+        >
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
@@ -27,7 +35,7 @@ export class ExtensionProviderIcon {
             fill="white"
           />
         </mask>
-        <g mask="url(#mask0_8093_13961)">
+        <g mask="url(#mask0_7107_23656)">
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
@@ -41,8 +49,8 @@ export class ExtensionProviderIcon {
             width="39.6602"
             height="39.6602"
             rx="8.76214"
-            fill="url(#paint0_linear_8093_13961)"
-            stroke="url(#paint1_linear_8093_13961)"
+            fill="url(#paint0_linear_7107_23656)"
+            stroke="url(#paint1_linear_7107_23656)"
             stroke-width="0.339806"
           />
           <rect
@@ -51,25 +59,25 @@ export class ExtensionProviderIcon {
             width="39.6602"
             height="39.6602"
             rx="8.76214"
-            fill="url(#paint2_linear_8093_13961)"
-            stroke="url(#paint3_linear_8093_13961)"
+            fill="url(#paint2_linear_7107_23656)"
+            stroke="url(#paint3_linear_7107_23656)"
             stroke-width="0.339806"
           />
-          <g filter="url(#filter0_dddd_8093_13961)">
+          <g filter="url(#filter0_dddd_7107_23656)">
             <path
               d="M13.1387 26.2337L18.8354 23.1782L17.8776 21.3301L12.6614 23.4483C12.527 23.5029 12.3781 23.5029 12.2438 23.4483L7.02607 21.3301L6.06836 23.1782L11.765 26.2337L6.06836 29.2878L7.02607 31.1359L12.2423 29.0177C12.3767 28.9631 12.5256 28.9631 12.6599 29.0177L17.8762 31.1359L18.8339 29.2878L13.1373 26.2323L13.1387 26.2337Z"
               fill="#000F0E"
             />
           </g>
         </g>
-        <g clip-path="url(#clip0_8093_13961)">
+        <g clip-path="url(#clip0_7107_23656)">
           <path
             d="M38 11.998C40.2091 11.998 42 10.2072 42 7.99805C42 5.78891 40.2091 3.99805 38 3.99805C35.7909 3.99805 34 5.78891 34 7.99805C34 10.2072 35.7909 11.998 38 11.998Z"
             fill="white"
           />
           <path
             d="M37.9998 4.00001H44.9269C44.225 2.78381 43.2152 1.77385 41.9991 1.07168C40.783 0.369518 39.4035 -9.79568e-05 37.9993 1.94733e-08C36.5951 9.79957e-05 35.2156 0.369906 33.9996 1.07224C32.7837 1.77457 31.774 2.78468 31.0723 4.00098L34.5358 10L34.5389 9.99921C34.1866 9.39164 34.0006 8.70191 33.9998 7.99957C33.9991 7.29722 34.1834 6.60708 34.5344 5.99872C34.8854 5.39035 35.3905 4.88526 35.9989 4.53436C36.6073 4.18346 37.2975 3.99915 37.9998 4.00001Z"
-            fill="url(#paint4_linear_8093_13961)"
+            fill="url(#paint4_linear_7107_23656)"
           />
           <path
             d="M38.0007 11.1668C39.7496 11.1668 41.1673 9.74906 41.1673 8.00016C41.1673 6.25126 39.7496 4.8335 38.0007 4.8335C36.2517 4.8335 34.834 6.25126 34.834 8.00016C34.834 9.74906 36.2517 11.1668 38.0007 11.1668Z"
@@ -77,71 +85,148 @@ export class ExtensionProviderIcon {
           />
           <path
             d="M41.463 10.0009L37.9995 15.9999C39.4037 16.0001 40.7832 15.6306 41.9994 14.9285C43.2155 14.2265 44.2253 13.2166 44.9273 12.0004C45.6294 10.7843 45.9988 9.40474 45.9986 8.00051C45.9983 6.59629 45.6284 5.21687 44.9259 4.00098H37.9989L37.998 4.00408C38.7004 4.00272 39.3907 4.18655 39.9993 4.53704C40.608 4.88752 41.1135 5.39227 41.4649 6.0004C41.8162 6.60854 42.0011 7.29856 42.0008 8.0009C42.0004 8.70325 41.815 9.3931 41.463 10.0009Z"
-            fill="url(#paint5_linear_8093_13961)"
+            fill="url(#paint5_linear_7107_23656)"
           />
           <path
             d="M34.5356 10.001L31.0721 4.00195C30.3698 5.21795 30.0001 6.59742 30 8.00166C29.9999 9.40589 30.3696 10.7854 31.0718 12.0014C31.774 13.2175 32.784 14.2272 34.0002 14.9291C35.2165 15.631 36.596 16.0004 38.0003 16L41.4638 10.0009L41.4616 9.99865C41.1116 10.6076 40.6072 11.1135 39.9994 11.4653C39.3915 11.8172 38.7016 12.0026 37.9993 12.0028C37.2969 12.003 36.6069 11.8181 35.9988 11.4667C35.3908 11.1152 34.8861 10.6097 34.5356 10.001Z"
-            fill="url(#paint6_linear_8093_13961)"
+            fill="url(#paint6_linear_7107_23656)"
           />
         </g>
         <defs>
-          <filter id="filter0_dddd_8093_13961" x="-4.9996" y="12.398" width="34.9035" height="31.9416" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <filter
+            id="filter0_dddd_7107_23656"
+            x="-4.9996"
+            y="12.398"
+            width="34.9025"
+            height="31.9416"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
             <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
             <feOffset dy="0.970874" />
             <feGaussianBlur stdDeviation="1.26214" />
             <feComposite in2="hardAlpha" operator="out" />
             <feColorMatrix type="matrix" values="0 0 0 0 0.137255 0 0 0 0 0.968627 0 0 0 0 0.866667 0 0 0 0.1 0" />
-            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_8093_13961" />
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_7107_23656" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
             <feOffset dy="2.13592" />
             <feGaussianBlur stdDeviation="5.53398" />
             <feComposite in2="hardAlpha" operator="out" />
             <feColorMatrix type="matrix" values="0 0 0 0 0.137255 0 0 0 0 0.968627 0 0 0 0 0.866667 0 0 0 0.3 0" />
-            <feBlend mode="normal" in2="effect1_dropShadow_8093_13961" result="effect2_dropShadow_8093_13961" />
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+            <feBlend mode="normal" in2="effect1_dropShadow_7107_23656" result="effect2_dropShadow_7107_23656" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
             <feOffset dy="0.291262" />
             <feGaussianBlur stdDeviation="0.533981" />
             <feComposite in2="hardAlpha" operator="out" />
             <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0" />
-            <feBlend mode="normal" in2="effect2_dropShadow_8093_13961" result="effect3_dropShadow_8093_13961" />
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+            <feBlend mode="normal" in2="effect2_dropShadow_7107_23656" result="effect3_dropShadow_7107_23656" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
             <feOffset dy="0.194175" />
             <feGaussianBlur stdDeviation="0.0970874" />
             <feComposite in2="hardAlpha" operator="out" />
             <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-            <feBlend mode="normal" in2="effect3_dropShadow_8093_13961" result="effect4_dropShadow_8093_13961" />
-            <feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_8093_13961" result="shape" />
+            <feBlend mode="normal" in2="effect3_dropShadow_7107_23656" result="effect4_dropShadow_7107_23656" />
+            <feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_7107_23656" result="shape" />
           </filter>
-          <linearGradient id="paint0_linear_8093_13961" x1="20.2306" y1="19.1846" x2="20.2306" y2="39.6748" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="paint0_linear_7107_23656"
+            x1="20.2306"
+            y1="19.1846"
+            x2="20.2306"
+            y2="39.6748"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stop-color="#00FFE0" />
             <stop offset="1" stop-color="#00FFE0" />
           </linearGradient>
-          <linearGradient id="paint1_linear_8093_13961" x1="6.49826" y1="30.7502" x2="42.1154" y2="27.4436" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="paint1_linear_7107_23656"
+            x1="6.49826"
+            y1="30.7502"
+            x2="42.1154"
+            y2="27.4436"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stop-color="#00FFE0" />
             <stop offset="1" stop-color="#4CFFE9" />
           </linearGradient>
-          <linearGradient id="paint2_linear_8093_13961" x1="20.2306" y1="25.3497" x2="20.2306" y2="45.8399" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="paint2_linear_7107_23656"
+            x1="20.2306"
+            y1="25.3497"
+            x2="20.2306"
+            y2="45.8399"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stop-color="#00FFE0" />
             <stop offset="1" stop-color="#00FFE0" />
           </linearGradient>
-          <linearGradient id="paint3_linear_8093_13961" x1="6.49826" y1="36.9152" x2="42.1154" y2="33.6087" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="paint3_linear_7107_23656"
+            x1="6.49826"
+            y1="36.9152"
+            x2="42.1154"
+            y2="33.6087"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stop-color="#00FFE0" />
             <stop offset="1" stop-color="#4CFFE9" />
           </linearGradient>
-          <linearGradient id="paint4_linear_8093_13961" x1="31.0723" y1="5.00001" x2="44.9269" y2="5.00001" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="paint4_linear_7107_23656"
+            x1="31.0723"
+            y1="5.00001"
+            x2="44.9269"
+            y2="5.00001"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stop-color="#D93025" />
             <stop offset="1" stop-color="#EA4335" />
           </linearGradient>
-          <linearGradient id="paint5_linear_8093_13961" x1="36.9065" y1="15.893" x2="43.8339" y2="3.89451" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="paint5_linear_7107_23656"
+            x1="36.9065"
+            y1="15.893"
+            x2="43.8339"
+            y2="3.89451"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stop-color="#FCC934" />
             <stop offset="1" stop-color="#FBBC04" />
           </linearGradient>
-          <linearGradient id="paint6_linear_8093_13961" x1="38.8655" y1="15.5005" x2="31.9381" y2="3.50195" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="paint6_linear_7107_23656"
+            x1="38.8655"
+            y1="15.5005"
+            x2="31.9381"
+            y2="3.50195"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stop-color="#1E8E3E" />
             <stop offset="1" stop-color="#34A853" />
           </linearGradient>
-          <clipPath id="clip0_8093_13961">
+          <clipPath id="clip0_7107_23656">
             <rect width="16" height="16" fill="white" transform="translate(30)" />
           </clipPath>
         </defs>

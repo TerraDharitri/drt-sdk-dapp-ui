@@ -1,19 +1,19 @@
 import type { JSX } from '@stencil/core';
 import { Component, h, Prop } from '@stencil/core';
 
-const XPORTAL_APP_GALLERY_LINK = 'https://appgallery.huawei.com/app/C104325151';
-const XPORTAL_APP_STORE_LINK = 'https://apps.apple.com/us/app/xportal/id1519405832';
-const XPORTAL_PLAY_STORE_LINK = 'https://play.google.com/store/apps/details?id=com.numbat.maiar.wallet&hl=ro&pli=1';
+const TDHARITRI_APP_GALLERY_LINK = 'https://appgallery.huawei.com/app/C104325151';
+const TDHARITRI_APP_STORE_LINK = 'https://apps.apple.com/us/app/tdharitri/id1519405832';
+const TDHARITRI_PLAY_STORE_LINK = 'https://play.google.com/store/apps/details?id=com.numbat.durian.wallet&hl=ro&pli=1';
 
-interface XPortalDownloadOptionType {
+interface TDharitriDownloadOptionType {
   image: JSX.Element;
   link: string;
 }
 
-const xPortalDownloadOptions: XPortalDownloadOptionType[] = [
-  { image: <drt-wallet-connect-app-store-icon />, link: XPORTAL_APP_STORE_LINK },
-  { image: <drt-wallet-connect-google-play-icon />, link: XPORTAL_PLAY_STORE_LINK },
-  { image: <drt-wallet-connect-app-gallery-icon />, link: XPORTAL_APP_GALLERY_LINK },
+const tDharitriDownloadOptions: TDharitriDownloadOptionType[] = [
+  { image: <drt-wallet-connect-app-store-icon />, link: TDHARITRI_APP_STORE_LINK },
+  { image: <drt-wallet-connect-google-play-icon />, link: TDHARITRI_PLAY_STORE_LINK },
+  { image: <drt-wallet-connect-app-gallery-icon />, link: TDHARITRI_APP_GALLERY_LINK },
 ];
 
 @Component({
@@ -28,22 +28,22 @@ export class WalletConnect {
     return (
       <div class={{ 'wallet-connect-download': true, [this.class]: Boolean(this.class) }}>
         <div class="wallet-connect-download-wrapper">
-          <drt-xportal-download-qr-icon class="wallet-connect-download-qr" />
+          <drt-tdharitri-download-qr-icon class="wallet-connect-download-qr" />
 
           <div class="wallet-connect-download-description">
-            Scan this QR code on your phone <br /> to get the xPortal app
+            Scan this QR code on your phone <br /> to get the tDharitri app
           </div>
         </div>
 
         <div class="wallet-connect-download-options">
-          {xPortalDownloadOptions.map(xPortalDownloadOption => (
+          {tDharitriDownloadOptions.map(tDharitriDownloadOption => (
             <a
               class="wallet-connect-download-option"
-              href={xPortalDownloadOption.link}
+              href={tDharitriDownloadOption.link}
               target="_blank"
               rel="noreferrer"
             >
-              {xPortalDownloadOption.image}
+              {tDharitriDownloadOption.image}
             </a>
           ))}
         </div>

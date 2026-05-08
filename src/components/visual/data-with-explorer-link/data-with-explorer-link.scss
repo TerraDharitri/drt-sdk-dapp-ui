@@ -1,0 +1,15 @@
+.data-with-explorer-link {
+  @apply drt:flex drt:gap-3;
+
+  .data-with-explorer-link-trim {
+    @apply drt:min-w-0;
+  }
+
+  .data-with-explorer-link-buttons {
+    @apply drt:flex drt:items-center drt:gap-3;
+  }
+}
+
+.data-with-explorer-link-stories-wrapper {
+  color: var(--drt-text-color-primary);
+}

@@ -2,6 +2,6 @@
   @apply drt:flex;
 
   .arrow-right-icon {
-    @apply drt:w-4 drt:h-4;
+    @apply drt:w-4 drt:h-4 drt:text-inherit;
   }
 }
